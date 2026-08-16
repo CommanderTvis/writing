@@ -141,7 +141,47 @@ flowchart LR
 The mechanics, briefly. IR nodes are sum types with a closed set of
 variants — 39 expression, 17 statement, 16 database-expression — and the
 interpreter is pattern matching over them that the compiler checks for
-exhaustiveness, with per-domain logic split into separate files.
+exhaustiveness, with per-domain logic split into separate files. The
+same node before and after, lightly trimmed from the repo:
+
+```kotlin
+// before: execution lives on the compiler's node
+class R_IfExpr(
+    type: R_Type,          // compiler type object, drags the compiler in
+    private val cond: R_Expr,
+    private val trueExpr: R_Expr,
+    private val falseExpr: R_Expr,
+): R_BaseExpr(type) {
+    override fun evaluate0(frame: Rt_CallFrame): Rt_Value {
+        val b = cond.evaluate(frame).asBoolean()
+        return (if (b) trueExpr else falseExpr).evaluate(frame)
+    }
+}
+
+// after: the node is data...
+sealed interface RR_Expr {
+    val type: RR_Type
+
+    data class If(
+        override val type: RR_Type,   // plain data, no compiler references
+        val cond: RR_Expr,
+        val trueExpr: RR_Expr,
+        val falseExpr: RR_Expr,
+    ): RR_Expr
+
+    // ...
+}
+
+// ...and the interpreter owns the behavior, one arm per variant
+fun evaluateExpr(expr: RR_Expr, frame: Rt_CallFrame): Rt_Value = when (expr) {
+    is RR_Expr.If -> {
+        val cond = (evaluateExpr(expr.cond, frame) as Rt_BooleanValue).value
+        evaluateExpr(if (cond) expr.trueExpr else expr.falseExpr, frame)
+    }
+    // ...38 more arms; the compiler rejects a missing one
+}
+```
+
 Cross-references are integer indices into flat per-kind arrays
 (entities, structs, functions, queries…); serialized modules carry only
 index vectors, and convenience maps are rebuilt on deserialization. The

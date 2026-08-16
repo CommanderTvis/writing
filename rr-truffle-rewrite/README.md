@@ -43,7 +43,7 @@ entity post {
     body: text;
 }
 
-// Each at-expression compiles to its own SELECT.
+// Each @-expression compiles to its own SELECT.
 query main() {
     // Filter + sort + projection.
     val adults = user @* { .age >= 18 } ( @sort .name, .age );
@@ -55,7 +55,7 @@ query main() {
 }
 ```
 
-The `@`-forms are at-expressions, Rell's query syntax. The two in
+Those are @-expressions, Rell's query syntax. The two in
 `main()` come out as:
 
 ```sql
@@ -85,12 +85,13 @@ serialization.
 
 Before the rewrite, the compiler's output model (`R_App`) was mutable,
 lazy, full of compiler-internal sentinels. Every node carried its own
-execution. `R_Expr` had an abstract `evaluate(frame)` on it. SQL
-generation machinery (`SqlGenContext`, `SqlBuilder`) lived inside the
-*model* package, on the same classes the compiler built. At-expressions mixed IR
-nodes with runtime evaluator classes in one file. The runtime was tied to the
-compiler the way it is in every language still running on its original
-internals: not by a bad decision, but by a thousand convenient ones.
+execution, as an abstract `evaluate(frame)` on `R_Expr`. SQL generation
+machinery (`SqlGenContext`, `SqlBuilder`) lived inside the *model*
+package, on the same classes the compiler built. @-expressions mixed IR
+nodes with runtime evaluator classes in one file. The runtime was tied
+to the compiler the way it is in every language still running on its
+original internals: not by a bad decision, but by a thousand convenient
+ones.
 
 The consequences: no second backend (execution was hard-wired into one
 tree walk), no serialization (you cannot serialize behavior), and every
@@ -111,7 +112,7 @@ compromise you live with for years.
 The radical option: make the IR pure data (no behavior on nodes at all)
 and re-assemble every scattered piece of interpretation as new, exhaustive
 matching over the new tree. Including the database semantics:
-at-expressions, SQL generation, create/update/delete.
+@-expressions, SQL generation, create/update/delete.
 
 I chose the radical option, and the serialization goal is what settled
 it. A node that delegates to compiler-side code has nothing to write

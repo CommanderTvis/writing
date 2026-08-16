@@ -31,7 +31,7 @@ whose relational operations compile to SQL. A taste, runnable in the
 [playground](https://chromiaproject.github.io/rell-playground/)'s
 SQL dry-run pane:
 
-```
+```rell
 entity user {
     key name: text;
     mutable age: integer;

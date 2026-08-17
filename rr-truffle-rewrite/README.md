@@ -437,27 +437,28 @@ The harness matters because JVM code starts out interpreted and is
 compiled only after the JIT has watched it run, so the first iterations
 of anything measure the wrong thing; JMH warms each benchmark up and
 reports the steady state.
-A summary, as Truffle against the tree-walker on the same workload:
+A summary. Every value is how many times slower than that row's
+baseline, so lower is better and 1.0 is the baseline itself:
 
-| workload shape | Truffle vs tree-walker | detail |
-|---|---|---|
-| compute-bound loop (primes, Collatz, Fibonacci) | ×33 faster | 763.6ms to 23.2ms per op; hand-written Kotlin 12.9ms |
-| struct/DTO mapping | ×2.4–4.5 faster | |
-| real library code (FT4, a Rell asset library) | ×1.3–1.6 faster | serialization, rule evaluation |
-| Advent-of-Code corpus (14 samples) | ×1.4 faster at the median | ×39 to ×28 slower than Kotlin; on 2 of 14 the tree-walker wins |
-| decimal-heavy numeric code | ×1.1–1.2 faster | ≥60% of time is JDK BigDecimal: no dispatch to win |
+| workload shape | tree-walker | Truffle | baseline |
+|---|---|---|---|
+| compute-bound loop (primes, Collatz, Fibonacci) | ×59.1 | ×1.8 | Kotlin, 12.9ms/op |
+| Advent-of-Code corpus (14 samples, median) | ×39 | ×28 | Kotlin; on 2 of 14 the tree-walker wins |
+| struct/DTO mapping | ×2.4–4.5 | ×1.0 | Truffle; no Kotlin equivalent written |
+| real library code (FT4, a Rell asset library) | ×1.3–1.6 | ×1.0 | Truffle; serialization, rule evaluation |
+| decimal-heavy numeric code | ×1.1–1.2 | ×1.0 | Truffle; ≥60% of time is JDK BigDecimal |
 
 The pattern is the classic one. Where the tree-walker's dispatch
 overhead dominates, partial evaluation removes it: on the compute-bound
-suite, Truffle cuts 763.6ms to 23.2ms, a 33x drop.
+suite the tree-walker runs ×59.1 slower than hand-written Kotlin, and
+Truffle ×1.8.
 
-**The 1.8x that remains against hand-written Kotlin is the number worth
-reading, because of what it is measured against. Kotlin here is
-optimized JVM bytecode, which is the output a run-time bytecode
-generator would be trying to match, so that path sets the ceiling at 1x.
-Truffle comes within a factor of two of the ceiling while the source
-stays an interpreter: interpretation overhead went from 33x to under 2x,
-and no bytecode was emitted.**
+**The ×1.8 that remains is the number worth reading, because of what it
+is measured against. Kotlin here is optimized JVM bytecode, which is the
+output a run-time bytecode generator would be trying to match, so that
+path sets the ceiling at ×1. Truffle comes within a factor of two of the
+ceiling while the source stays an interpreter: interpretation overhead
+went from ×59 to ×1.8, and no bytecode was emitted.**
 
 Where the JDK's
 [`BigDecimal`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/math/BigDecimal.html)

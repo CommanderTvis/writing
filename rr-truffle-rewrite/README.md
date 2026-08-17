@@ -19,9 +19,9 @@ live with, and about the part I would not have attempted without them.
 ## The setup
 
 Rell is a standalone statically typed language with Kotlin-like syntax,
-whose relational operations compile to SQL. A taste, runnable in the
-[playground](https://chromiaproject.github.io/rell-playground/)'s
-SQL dry-run pane:
+whose relational operations compile to SQL. The following runs in the
+[playground](https://chromiaproject.github.io/rell-playground/)'s SQL
+dry-run pane:
 
 ```rell
 entity user {

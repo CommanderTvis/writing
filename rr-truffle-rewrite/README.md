@@ -429,12 +429,13 @@ A summary, all values average ms per operation, lower is better:
 
 The pattern is the classic one. Where the tree-walker's dispatch
 overhead dominates, partial evaluation removes it, and Truffle lands
-within ×2 of hand-written Kotlin. Where the JDK's `BigDecimal` (Java's
-arbitrary-precision decimal type) dominates, the dispatch was never the
-cost, and specializing it wins nothing. The fix there was different:
-decimal fast-path leaves that keep values in `long` when they fit, which
-the report credits on a simplex-noise benchmark. And on two small
-samples the tree-walker still wins outright. Benchmarks that only
+within ×2 of hand-written Kotlin. Where the JDK's
+[`BigDecimal`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/math/BigDecimal.html)
+(Java's arbitrary-precision decimal type) dominates, the dispatch was
+never the cost, and specializing it wins nothing. The fix there was
+different: decimal fast-path leaves that keep values in `long` when they
+fit, which the report credits on a simplex-noise benchmark. And on two
+small samples the tree-walker still wins outright. Benchmarks that only
 bragged would not have told me any of that.
 
 ## Optimizing against a compiler you did not write
@@ -461,10 +462,12 @@ fast one is only sane if something checks the two against each other,
 which is the differential's whole job. Second came changes that add code
 but are logical and system-independent, such as keeping a number in a
 `long` (or a custom 128-bit integer) when it fits instead of allocating
-a `BigInteger`; the decimal fast-path representations in the benchmark
-table above are this tier, and they live in the tree as ordinary,
-readable wrapper types. Machine-dependent tricks would come last, and
-mostly did not come at all.
+a
+[`BigInteger`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/math/BigInteger.html);
+the decimal fast-path representations in the benchmark table above are
+this tier, and they live in the tree as ordinary, readable wrapper
+types. Machine-dependent tricks would come last, and mostly did not come
+at all.
 
 The same policy also kills work, including work already done. The
 GraalVM bytecode DSL (a Truffle facility that generates a bytecode

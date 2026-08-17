@@ -139,7 +139,7 @@ format) and is the *only* thing the runtime consumes. In the codebase it is call
 
 ```mermaid
 flowchart LR
-    SRC[source files] --> S["S_ (AST)"]
+    SRC[source files] -- "ANTLR4" --> S["S_ (AST)"]
     S --> C["C_ (compilation,<br/>13 passes)"]
     C --> R["R_ (compiler model:<br/>mutable, lazy, sentinels)"]
     R -- "resolve()" --> RR["RR_ (resolved IR:<br/>immutable, flat arrays)"]

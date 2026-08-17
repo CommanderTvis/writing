@@ -3,3 +3,4 @@
 !/rr-truffle-rewrite/
 /rr-truffle-rewrite/*
 !/rr-truffle-rewrite/README.md
+!/rr-truffle-rewrite/report.html

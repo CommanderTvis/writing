@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rell Benchmarks — 2026-08-07 · 04:57 GMT</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <style>:root {
+  --ink:        #0F0F10;
+  --ink-soft:   #2B2B2F;
+  --muted:      #6B6D73;
+  --faint:      #A8A9AE;
+  --bg:         #FAFAF7;
+  --bg-alt:     #F2F2EE;
+  --surface:    #FFFFFF;
+  --rule:       rgba(15,15,16,0.12);
+  --rule-hair:  rgba(15,15,16,0.06);
+  --accent:     #C1440E;
+  --accent-bg:  rgba(193,68,14,0.06);
+  --sans: 'Geist', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  --mono: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', Consolas, ui-monospace, monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 15px; scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "ss01", "cv01";
+}
+a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .15s ease; }
+a:hover { border-bottom-color: var(--accent); }
+
+.doc-head { background: var(--surface); border-bottom: 2px solid var(--ink); }
+.doc-head-inner { max-width: 1180px; margin: 0 auto; padding: 1.5rem 2rem 1.2rem; }
+.doc-title {
+  font-family: var(--mono); font-weight: 600;
+  font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+  letter-spacing: -0.03em; color: var(--ink); line-height: 1.05; margin-bottom: .7rem;
+}
+.doc-meta { display: flex; flex-wrap: wrap; gap: .35rem 1.1rem; font-family: var(--mono); font-size: .74rem; color: var(--ink-soft); }
+.doc-meta-pair { display: inline-flex; gap: .4rem; }
+.doc-meta-pair .k {
+  color: var(--muted); text-transform: uppercase; letter-spacing: .12em;
+  font-size: .68rem; font-weight: 600; line-height: 1.6;
+}
+.doc-meta-pair .v { color: var(--ink); font-weight: 500; font-variant-numeric: tabular-nums; }
+
+main { max-width: 1180px; margin: 0 auto; padding: 2rem 2rem 2.5rem; }
+
+.section { margin-bottom: 2.4rem; position: relative; }
+.section-head {
+  padding: 1rem 0 .8rem; margin-bottom: 1.1rem;
+  border-top: 1px solid var(--ink);
+}
+.section-title {
+  font-family: var(--mono); font-weight: 600;
+  font-size: 1.05rem; letter-spacing: -0.01em; line-height: 1.25;
+  color: var(--ink); text-transform: lowercase;
+  white-space: pre-wrap;
+}
+.section-title::before { content: '# '; color: var(--faint); font-weight: 400; }
+.section-strap { margin-top: .25rem; font-family: var(--sans); font-size: .82rem; color: var(--muted); max-width: 64ch; line-height: 1.5; }
+.section-body h3 {
+  font-family: var(--mono); font-size: .68rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .18em; color: var(--muted);
+  margin-bottom: .7rem; padding-bottom: .35rem;
+  border-bottom: 1px solid var(--rule-hair);
+}
+.section-body h3.sub { margin-top: 1.4rem; }
+.section-body > h3.sub:first-child { margin-top: 0; }
+.prose { font-size: .92rem; color: var(--ink-soft); margin-bottom: .8rem; }
+.prose code {
+  font-family: var(--mono); font-size: .82rem;
+  color: var(--ink); background: var(--bg-alt);
+  padding: 1px 5px; border-radius: 2px;
+}
+
+.metrics {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  background: var(--surface); border: 1px solid var(--rule);
+}
+.metric { padding: 1rem 1.2rem; border-left: 1px solid var(--rule-hair); display: flex; flex-direction: column; justify-content: center; min-height: 92px; }
+.metric:first-child { border-left: 0; }
+.metric-label {
+  font-family: var(--mono); font-size: .66rem;
+  text-transform: uppercase; letter-spacing: .18em;
+  color: var(--muted); font-weight: 600; margin-bottom: .35rem;
+}
+.metric-value {
+  font-family: var(--mono); font-size: 1.8rem; font-weight: 600;
+  line-height: 1; letter-spacing: -0.02em;
+  color: var(--ink); font-variant-numeric: tabular-nums;
+}
+.metric-unit { font-family: var(--mono); font-size: .8rem; font-weight: 500; color: var(--muted); margin-left: .1rem; letter-spacing: 0; }
+.metric-sub { margin-top: .3rem; font-size: .72rem; color: var(--muted); font-family: var(--mono); }
+
+.sysinfo-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  background: var(--surface); border: 1px solid var(--rule);
+}
+.sysinfo-block { padding: 1rem 1.2rem; border-left: 1px solid var(--rule-hair); }
+.sysinfo-block:first-child { border-left: 0; }
+.sysinfo-block dl { display: grid; grid-template-columns: max-content 1fr; gap: .3rem .8rem; font-size: .8rem; }
+.sysinfo-block dt { color: var(--muted); font-size: .72rem; font-family: var(--mono); font-weight: 500; letter-spacing: .02em; }
+.sysinfo-block dd { color: var(--ink); font-family: var(--sans); font-size: .82rem; word-break: break-all; }
+.mono { font-family: var(--mono); font-size: .76rem; }
+
+table { border-collapse: collapse; width: 100%; }
+.table-scroll { overflow-x: auto; margin: 0 -.75rem; padding: 0 .75rem; }
+thead th {
+  text-align: left; font-family: var(--mono); font-weight: 600;
+  font-size: .68rem; text-transform: uppercase; letter-spacing: .18em;
+  color: var(--muted); padding: .5rem .75rem;
+  border-bottom: 1px solid var(--ink); background: transparent;
+}
+thead th.num { text-align: right; }
+td { padding: .55rem .75rem; border-bottom: 1px solid var(--rule-hair); vertical-align: middle; font-size: .85rem; }
+tbody tr:hover { background: rgba(193,68,14,0.04); }
+td.name { font-family: var(--sans); font-weight: 500; }
+.num {
+  text-align: right; font-variant-numeric: tabular-nums;
+  font-family: var(--mono); font-size: .82rem; color: var(--ink);
+}
+.num.strong { font-weight: 700; color: var(--ink); }
+.rank { color: var(--muted); font-weight: 600; width: 40px; }
+
+.colophon { margin-top: 3rem; border-top: 1px solid var(--rule); background: var(--surface); }
+.colophon-inner {
+  max-width: 1180px; margin: 0 auto; padding: 1.1rem 2rem 1.3rem;
+  font-family: var(--mono); font-size: .7rem; letter-spacing: .06em;
+  color: var(--muted); display: flex; gap: .5rem; flex-wrap: wrap; align-items: center;
+}
+.colophon-inner .sep { color: var(--faint); }
+.colophon-spacer { flex: 1; }
+.colophon-meta { color: var(--faint); font-size: .66rem; letter-spacing: .02em; }
+
+.empty {
+  font-family: var(--sans); color: var(--muted); font-style: italic;
+  padding: 1rem 0;
+}
+
+@media (max-width: 720px) {
+  html { font-size: 14px; }
+  .doc-head-inner, main, .colophon-inner { padding-left: 1.1rem; padding-right: 1.1rem; }
+  .sysinfo-grid, .metrics { grid-template-columns: 1fr; }
+  .sysinfo-block, .metric { border-left: 0; border-top: 1px solid var(--rule-hair); }
+  .sysinfo-block:first-child, .metric:first-child { border-top: 0; }
+}
+
+@media print {
+  body { background: #fff; }
+  .section { break-inside: avoid; }
+  a { color: var(--ink); border-bottom: 0; }
+}.bars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: .4rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  padding: .9rem 1rem;
+  margin-bottom: 1.2rem;
+}
+.bars-panel { display: flex; flex-direction: column; min-width: 0; }
+.bars-panel-title {
+  font-family: var(--mono); font-size: .78rem; font-weight: 600;
+  text-transform: lowercase; letter-spacing: .04em;
+  color: var(--ink); padding: .2rem .25rem .35rem;
+  border-bottom: 1px solid var(--rule-hair); margin-bottom: .45rem;
+}
+.bars-panel-desc {
+  font-family: var(--sans); font-size: .76rem; line-height: 1.45;
+  color: var(--ink-soft); padding: 0 .25rem .5rem; margin-bottom: .15rem;
+}
+.bars-panel-svg svg { display: block; max-width: 100%; height: auto; }
+
+td.name .sample-link {
+  color: var(--ink); font-weight: 600;
+  /* Solid accent underline so bold sample names still read as links. The dashed --rule
+     variant blended into the surface at this font weight. */
+  border-bottom: 1px solid var(--accent);
+}
+td.name .sample-link:hover {
+  color: var(--accent); border-bottom-width: 2px;
+}
+ul.sample-cell-sources {
+  list-style: none; padding: 0; margin: .15rem 0 0;
+  font-family: var(--mono); font-size: .68rem;
+}
+ul.sample-cell-sources li { margin: .08rem 0; overflow-wrap: anywhere; }
+ul.sample-cell-sources a { color: var(--accent); }
+.grid { stroke: var(--rule-hair); stroke-width: 1; }
+.baseline { stroke: var(--ink); stroke-width: 1; }
+.tick { font-family: var(--mono); font-size: 11px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+.axis-label { font-family: var(--mono); font-size: 10px; fill: var(--muted); text-transform: uppercase; letter-spacing: .12em; }
+.group-label { font-family: var(--mono); font-size: 11px; fill: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.bar-label { font-family: var(--mono); font-size: 11px; fill: var(--ink); font-variant-numeric: tabular-nums; }
+.err-line { stroke: var(--ink); stroke-width: 1; }
+
+.aoc-headline {
+  display: flex; flex-wrap: wrap; gap: 1.2rem;
+  margin: -.4rem 0 .8rem; padding: .6rem .9rem;
+  background: var(--surface); border: 1px solid var(--rule);
+  font-family: var(--mono); font-size: .78rem;
+}
+.aoc-headline-cell { display: inline-flex; align-items: baseline; gap: .4rem; }
+.aoc-headline-swatch { display: inline-block; width: 10px; height: 10px; align-self: center; flex-shrink: 0; }
+.aoc-headline-engine { color: var(--ink); font-weight: 600; letter-spacing: .04em; }
+.aoc-headline-ratio { color: var(--accent); font-weight: 700; font-variant-numeric: tabular-nums; }
+.aoc-headline-note { color: var(--muted); letter-spacing: .04em; }
+
+.aoc-slope {
+  background: var(--surface); border: 1px solid var(--rule);
+  padding: .9rem 1rem; margin-bottom: 1.2rem;
+}
+.aoc-slope svg { display: block; max-width: 100%; height: auto; }
+.aoc-slope .aoc-col { stroke: var(--rule); stroke-width: 1; }
+.aoc-slope .aoc-col-label {
+  font-family: var(--mono); font-size: 12px; font-weight: 600;
+  text-transform: lowercase; letter-spacing: .04em;
+}
+/* Per-sample lines: light enough to read as a bundle, dark enough that the count of 14 is
+   visible. Day is a nuisance variable — none gets a colour. */
+.aoc-slope .aoc-slope-line {
+  fill: none; stroke: var(--ink-soft); stroke-width: 1; opacity: .28;
+}
+.aoc-slope .aoc-slope-pt { fill: var(--ink-soft); opacity: .55; }
+/* Median path: the visual subject. Solid ink, thick enough to read through the bundle. */
+.aoc-slope .aoc-median-line {
+  fill: none; stroke: var(--accent); stroke-width: 2.4;
+}
+.aoc-slope .aoc-median-pt { fill: var(--accent); }
+.aoc-slope .aoc-median-label {
+  font-family: var(--mono); font-size: 11px; fill: var(--accent);
+  font-variant-numeric: tabular-nums; letter-spacing: .04em;
+}
+
+.legend { display: flex; gap: 1.4rem; flex-wrap: wrap; margin-top: -.5rem; margin-bottom: 1.2rem; font-family: var(--mono); font-size: .72rem; color: var(--ink-soft); }
+.legend-item { display: inline-flex; align-items: center; gap: .5rem; }
+.swatch { display: inline-block; width: 10px; height: 10px; background: var(--muted); flex-shrink: 0; }
+.legend-label { letter-spacing: .04em; }
+
+thead th .unit { color: var(--faint); font-weight: 500; letter-spacing: .04em; }
+td.num .err { color: var(--muted); font-size: .75rem; }
+td.num.winner { font-weight: 700; color: var(--accent); }
+td.num .ratio { color: var(--accent); font-weight: 600; }
+td.num .ratio-note { color: var(--muted); font-family: var(--mono); font-size: .72rem; letter-spacing: .04em; margin-left: .35rem; text-transform: lowercase; }</style>
+  </head>
+  <body>
+    <header class="doc-head">
+      <div class="doc-head-inner">
+        <h1 class="doc-title">Rell Benchmarks</h1>
+      </div>
+    </header>
+    <main>
+      <section class="section">
+        <div class="section-head">
+          <div class="section-title">environment</div>
+        </div>
+        <div class="section-body">
+          <div class="sysinfo-grid">
+            <div class="sysinfo-block">
+              <h3>Host</h3>
+              <dl>
+                <dt>Hostname</dt>
+                <dd>runner-irvnkruup-project-32802097-concurrent-0</dd>
+                <dt>OS</dt>
+                <dd>Linux 6.1.176-223.369.amzn2023.x86_64</dd>
+                <dt>Arch</dt>
+                <dd>amd64</dd>
+                <dt>CPUs</dt>
+                <dd>4</dd>
+                <dt>Memory</dt>
+                <dd>15.3 GiB</dd>
+              </dl>
+            </div>
+            <div class="sysinfo-block">
+              <h3>JVM</h3>
+              <dl>
+                <dt>Vendor</dt>
+                <dd>Oracle Corporation Oracle GraalVM 21.0.12+7.1</dd>
+                <dt>Version</dt>
+                <dd class="mono">21.0.12</dd>
+                <dt>VM</dt>
+                <dd class="mono">Java HotSpot(TM) 64-Bit Server VM 21.0.12+7-LTS-jvmci-23.1-b96</dd>
+                <dt>Path</dt>
+                <dd class="mono">/usr/lib/jvm/graalvm-jdk-21/bin/java</dd>
+              </dl>
+            </div>
+            <div class="sysinfo-block">
+              <h3>Harness</h3>
+              <dl>
+                <dt>JMH</dt>
+                <dd>1.37</dd>
+                <dt>Mode</dt>
+                <dd>avgt</dd>
+                <dt>Threads / forks</dt>
+                <dd>1 / 1</dd>
+                <dt>Unit</dt>
+                <dd>ms/op</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-head">
+          <div class="section-title">workload</div>
+        </div>
+        <div class="section-body">
+          <div class="metrics">
+            <div class="metric">
+              <div class="metric-label">Benchmarks</div>
+              <div class="metric-value">73</div>
+              <div class="metric-sub">runs recorded</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Suites</div>
+              <div class="metric-value">7</div>
+              <div class="metric-sub">benchmark classes</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Samples</div>
+              <div class="metric-value">28</div>
+              <div class="metric-sub">distinct inputs</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Methods</div>
+              <div class="metric-value">9</div>
+              <div class="metric-sub">under test</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-head">
+          <div class="section-title">aocbenchmark</div>
+          <div class="section-strap">ms/op · log y · lower is better · day marginalized  ·  warmup 5× 2 s · measurement 10× 2 s</div>
+        </div>
+        <div class="section-body">
+          <div class="aoc-headline">
+            <div class="aoc-headline-cell"><span class="aoc-headline-swatch" style="background:#1F6B4A"></span><span class="aoc-headline-engine">kotlin</span><span class="aoc-headline-note">baseline</span></div>
+            <div class="aoc-headline-cell"><span class="aoc-headline-swatch" style="background:#2E5E8A"></span><span class="aoc-headline-engine">truffle</span><span class="aoc-headline-ratio">×28</span><span class="aoc-headline-note">slower than kotlin (median)</span></div>
+            <div class="aoc-headline-cell"><span class="aoc-headline-swatch" style="background:#C1440E"></span><span class="aoc-headline-engine">interpreter</span><span class="aoc-headline-ratio">×39</span><span class="aoc-headline-note">slower than kotlin (median)</span></div>
+          </div>
+          <div class="aoc-slope"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 424" width="660" height="424" role="img"><line class="grid" x1="64" y1="396.00" x2="604" y2="396.00"/><text class="tick" x="56" y="399.00" text-anchor="end">1µs</text><line class="grid" x1="64" y1="324.00" x2="604" y2="324.00"/><text class="tick" x="56" y="327.00" text-anchor="end">10µs</text><line class="grid" x1="64" y1="252.00" x2="604" y2="252.00"/><text class="tick" x="56" y="255.00" text-anchor="end">100µs</text><line class="grid" x1="64" y1="180.00" x2="604" y2="180.00"/><text class="tick" x="56" y="183.00" text-anchor="end">1ms</text><line class="grid" x1="64" y1="108.00" x2="604" y2="108.00"/><text class="tick" x="56" y="111.00" text-anchor="end">10ms</text><line class="grid" x1="64" y1="36.00" x2="604" y2="36.00"/><text class="tick" x="56" y="39.00" text-anchor="end">100ms</text><line class="aoc-col" x1="64.00" y1="36" x2="64.00" y2="396"/><text class="aoc-col-label" x="64.00" y="20" text-anchor="middle" fill="#1F6B4A">kotlin</text><line class="aoc-col" x1="334.00" y1="36" x2="334.00" y2="396"/><text class="aoc-col-label" x="334.00" y="20" text-anchor="middle" fill="#2E5E8A">truffle</text><line class="aoc-col" x1="604.00" y1="36" x2="604.00" y2="396"/><text class="aoc-col-label" x="604.00" y="20" text-anchor="middle" fill="#C1440E">interpreter</text><polyline class="aoc-slope-line" points="64.00,248.70 334.00,166.91 604.00,135.62"/><circle class="aoc-slope-pt" cx="64.00" cy="248.70" r="2"/><circle class="aoc-slope-pt" cx="334.00" cy="166.91" r="2"/><circle class="aoc-slope-pt" cx="604.00" cy="135.62" r="2"/><polyline class="aoc-slope-line" points="64.00,263.40 334.00,155.29 604.00,133.37"/><circle class="aoc-slope-pt" cx="64.00" cy="263.40" r="2"/><circle class="aoc-slope-pt" cx="334.00" cy="155.29" r="2"/><circle class="aoc-slope-pt" cx="604.00" cy="133.37" r="2"/><polyline class="aoc-slope-line" points="64.00,220.62 334.00,125.44 604.00,122.51"/><circle class="aoc-slope-pt" cx="64.00" cy="220.62" r="2"/><circle class="aoc-slope-pt" cx="334.00" cy="125.44" r="2"/><circle class="aoc-slope-pt" cx="604.00" cy="122.51" r="2"/><polyline class="aoc-slope-line" points="64.00,208.90 334.00,99.61 604.00,91.26"/><circle class="aoc-slope-pt" cx="64.00" cy="208.90" r="2"/><circle class="aoc-slope-pt" cx="334.00" cy="99.61" r="2"/><circle class="aoc-slope-pt" cx="604.00" cy="91.26" r="2"/><polyline class="aoc-slope-line" points="64.00,211.79 334.00,124.45 604.00,109.49"/><circle class="aoc-slope-pt" cx="64.00" cy="211.79" r="2"/><circle class="aoc-slope-pt" cx="334.00" cy="124.45" r="2"/><circle class="aoc-slope-pt" cx="604.00" cy="109.49" r="2"/><polyline class="aoc-slope-line" points="64.00,183.85 334.00,102.33 604.00,91.21"/><circle class="aoc-slope-pt" cx="64.00" cy="183.85" r="2"/><circle class="aoc-slope-pt" cx="334.00" cy="102.33" r="2"/><circle class="aoc-slope-pt" cx="604.00" cy="91.21" r="2"/><polyline class="aoc-slope-line" points="64.00,232.62 334.00,119.27 604.00,85.66"/><circle class="aoc-slope-pt" cx="64.00" cy="232.62" r="2"/><circle class="aoc-slope-pt" cx="334.00" cy="119.27" r="2"/><circle class="aoc-slope-pt" cx="604.00" cy="85.66" r="2"/><polyline class="aoc-slope-line" points="64.00,339.89 334.00,183.04 604.00,159.21"/><circle class="aoc-slope-pt" cx="64.00" cy="339.89" r="2"/><circle class="aoc-slope-pt" cx="334.00" cy="183.04" r="2"/><circle class="aoc-slope-pt" cx="604.00" cy="159.21" r="2"/><polyline class="aoc-slope-line" points="64.00,229.55 334.00,129.57 604.00,117.06"/><circle class="aoc-slope-pt" cx="64.00" cy="229.55" r="2"/><circle class="aoc-slope-pt" cx="334.00" cy="129.57" r="2"/><circle class="aoc-slope-pt" cx="604.00" cy="117.06" r="2"/><polyline class="aoc-slope-line" points="64.00,216.62 334.00,115.28 604.00,100.45"/><circle class="aoc-slope-pt" cx="64.00" cy="216.62" r="2"/><circle class="aoc-slope-pt" cx="334.00" cy="115.28" r="2"/><circle class="aoc-slope-pt" cx="604.00" cy="100.45" r="2"/><polyline class="aoc-slope-line" points="64.00,286.09 334.00,152.24 604.00,142.56"/><circle class="aoc-slope-pt" cx="64.00" cy="286.09" r="2"/><circle class="aoc-slope-pt" cx="334.00" cy="152.24" r="2"/><circle class="aoc-slope-pt" cx="604.00" cy="142.56" r="2"/><polyline class="aoc-slope-line" points="64.00,225.82 334.00,99.33 604.00,92.26"/><circle class="aoc-slope-pt" cx="64.00" cy="225.82" r="2"/><circle class="aoc-slope-pt" cx="334.00" cy="99.33" r="2"/><circle class="aoc-slope-pt" cx="604.00" cy="92.26" r="2"/><polyline class="aoc-slope-line" points="64.00,187.70 334.00,82.32 604.00,86.49"/><circle class="aoc-slope-pt" cx="64.00" cy="187.70" r="2"/><circle class="aoc-slope-pt" cx="334.00" cy="82.32" r="2"/><circle class="aoc-slope-pt" cx="604.00" cy="86.49" r="2"/><polyline class="aoc-slope-line" points="64.00,227.16 334.00,123.96 604.00,131.46"/><circle class="aoc-slope-pt" cx="64.00" cy="227.16" r="2"/><circle class="aoc-slope-pt" cx="334.00" cy="123.96" r="2"/><circle class="aoc-slope-pt" cx="604.00" cy="131.46" r="2"/><polyline class="aoc-median-line" points="64.00,226.48 334.00,124.21 604.00,113.05"/><circle class="aoc-median-pt" cx="64.00" cy="226.48" r="4"/><circle class="aoc-median-pt" cx="334.00" cy="124.21" r="4"/><circle class="aoc-median-pt" cx="604.00" cy="113.05" r="4"/><text class="aoc-median-label" x="612.00" y="116.05">median</text></svg></div>
+          <div class="table-scroll">
+            <table class="results">
+              <thead>
+                <tr>
+                  <th>Sample</th>
+                  <th class="num">kotlin<span class="unit"> ms/op</span></th>
+                  <th class="num">truffle<span class="unit"> ms/op</span></th>
+                  <th class="num">interpreter<span class="unit"> ms/op</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="name"><a href="https://gitlab.com/chromaway/rell/-/blob/dev/performance/src/main/resources/aoc_bench/main.rell#L58" class="sample-link" target="_blank" rel="noopener">day1a</a></td>
+                  <td class="num winner">0.1<span class="err"> ± 0.003</span></td>
+                  <td class="num">1.5<span class="err"> ± 0.02</span><span class="ratio-note"> <span class="ratio">×13.7</span> kotlin</span></td>
+                  <td class="num">4.1<span class="err"> ± 0.02</span><span class="ratio-note"> <span class="ratio">×37.2</span> kotlin</span></td>
+                </tr>
+                <tr>
+                  <td class="name"><a href="https://gitlab.com/chromaway/rell/-/blob/dev/performance/src/main/resources/aoc_bench/main.rell#L69" class="sample-link" target="_blank" rel="noopener">day1b</a></td>
+                  <td class="num winner">0.07<span class="err"> ± 0.0002</span></td>
+                  <td class="num">2.2<span class="err"> ± 0.03</span><span class="ratio-note"> <span class="ratio">×31.7</span> kotlin</span></td>
+                  <td class="num">4.4<span class="err"> ± 0.02</span><span class="ratio-note"> <span class="ratio">×64.0</span> kotlin</span></td>
+                </tr>
+                <tr>
+                  <td class="name"><a href="https://gitlab.com/chromaway/rell/-/blob/dev/performance/src/main/resources/aoc_bench/main.rell#L131" class="sample-link" target="_blank" rel="noopener">day2a</a></td>
+                  <td class="num winner">0.3<span class="err"> ± 0.008</span></td>
+                  <td class="num">5.7<span class="err"> ± 0.02</span><span class="ratio-note"> <span class="ratio">×21.0</span> kotlin</span></td>
+                  <td class="num">6.3<span class="err"> ± 0.03</span><span class="ratio-note"> <span class="ratio">×23.0</span> kotlin</span></td>
+                </tr>
+                <tr>
+                  <td class="name"><a href="https://gitlab.com/chromaway/rell/-/blob/dev/performance/src/main/resources/aoc_bench/main.rell#L142" class="sample-link" target="_blank" rel="noopener">day2b</a></td>
+                  <td class="num winner">0.4<span class="err"> ± 0.002</span></td>
+                  <td class="num">13.1<span class="err"> ± 0.2</span><span class="ratio-note"> <span class="ratio">×32.9</span> kotlin</span></td>
+                  <td class="num">17.1<span class="err"> ± 0.07</span><span class="ratio-note"> <span class="ratio">×43.0</span> kotlin</span></td>
+                </tr>
+                <tr>
+                  <td class="name"><a href="https://gitlab.com/chromaway/rell/-/blob/dev/performance/src/main/resources/aoc_bench/main.rell#L187" class="sample-link" target="_blank" rel="noopener">day3a</a></td>
+                  <td class="num winner">0.4<span class="err"> ± 0.02</span></td>
+                  <td class="num">5.9<span class="err"> ± 0.01</span><span class="ratio-note"> <span class="ratio">×16.3</span> kotlin</span></td>
+                  <td class="num">9.5<span class="err"> ± 0.04</span><span class="ratio-note"> <span class="ratio">×26.4</span> kotlin</span></td>
+                </tr>
+                <tr>
+                  <td class="name"><a href="https://gitlab.com/chromaway/rell/-/blob/dev/performance/src/main/resources/aoc_bench/main.rell#L197" class="sample-link" target="_blank" rel="noopener">day3b</a></td>
+                  <td class="num winner">0.9<span class="err"> ± 0.003</span></td>
+                  <td class="num">12.0<span class="err"> ± 0.2</span><span class="ratio-note"> <span class="ratio">×13.6</span> kotlin</span></td>
+                  <td class="num">17.1<span class="err"> ± 0.07</span><span class="ratio-note"> <span class="ratio">×19.4</span> kotlin</span></td>
+                </tr>
+                <tr>
+                  <td class="name"><a href="https://gitlab.com/chromaway/rell/-/blob/dev/performance/src/main/resources/aoc_bench/main.rell#L276" class="sample-link" target="_blank" rel="noopener">day4a</a></td>
+                  <td class="num winner">0.2<span class="err"> ± 0.003</span></td>
+                  <td class="num">7.0<span class="err"> ± 0.02</span><span class="ratio-note"> <span class="ratio">×37.5</span> kotlin</span></td>
+                  <td class="num">20.4<span class="err"> ± 0.1</span><span class="ratio-note"> <span class="ratio">×109.9</span> kotlin</span></td>
+                </tr>
+                <tr>
+                  <td class="name"><a href="https://gitlab.com/chromaway/rell/-/blob/dev/performance/src/main/resources/aoc_bench/main.rell#L287" class="sample-link" target="_blank" rel="noopener">day4b</a></td>
+                  <td class="num winner">0.006<span class="err"> ± 0.00002</span></td>
+                  <td class="num">0.9<span class="err"> ± 0.003</span><span class="ratio-note"> <span class="ratio">×150.8</span> kotlin</span></td>
+                  <td class="num">1.9<span class="err"> ± 0.02</span><span class="ratio-note"> <span class="ratio">×323.2</span> kotlin</span></td>
+                </tr>
+                <tr>
+                  <td class="name"><a href="https://gitlab.com/chromaway/rell/-/blob/dev/performance/src/main/resources/aoc_bench/main.rell#L390" class="sample-link" target="_blank" rel="noopener">day5a</a></td>
+                  <td class="num winner">0.2<span class="err"> ± 0.005</span></td>
+                  <td class="num">5.0<span class="err"> ± 0.06</span><span class="ratio-note"> <span class="ratio">×24.5</span> kotlin</span></td>
+                  <td class="num">7.5<span class="err"> ± 0.03</span><span class="ratio-note"> <span class="ratio">×36.5</span> kotlin</span></td>
+                </tr>
+                <tr>
+                  <td class="name"><a href="https://gitlab.com/chromaway/rell/-/blob/dev/performance/src/main/resources/aoc_bench/main.rell#L401" class="sample-link" target="_blank" rel="noopener">day5b</a></td>
+                  <td class="num winner">0.3<span class="err"> ± 0.01</span></td>
+                  <td class="num">7.9<span class="err"> ± 0.03</span><span class="ratio-note"> <span class="ratio">×25.6</span> kotlin</span></td>
+                  <td class="num">12.7<span class="err"> ± 0.06</span><span class="ratio-note"> <span class="ratio">×41.1</span> kotlin</span></td>
+                </tr>
+                <tr>
+                  <td class="name"><a href="https://gitlab.com/chromaway/rell/-/blob/dev/performance/src/main/resources/aoc_bench/main.rell#L535" class="sample-link" target="_blank" rel="noopener">day6a</a></td>
+                  <td class="num winner">0.03<span class="err"> ± 0.00006</span></td>
+                  <td class="num">2.4<span class="err"> ± 0.04</span><span class="ratio-note"> <span class="ratio">×72.3</span> kotlin</span></td>
+                  <td class="num">3.3<span class="err"> ± 0.02</span><span class="ratio-note"> <span class="ratio">×98.5</span> kotlin</span></td>
+                </tr>
+                <tr>
+                  <td class="name"><a href="https://gitlab.com/chromaway/rell/-/blob/dev/performance/src/main/resources/aoc_bench/main.rell#L546" class="sample-link" target="_blank" rel="noopener">day6b</a></td>
+                  <td class="num winner">0.2<span class="err"> ± 0.01</span></td>
+                  <td class="num">13.2<span class="err"> ± 0.06</span><span class="ratio-note"> <span class="ratio">×57.1</span> kotlin</span></td>
+                  <td class="num">16.5<span class="err"> ± 0.04</span><span class="ratio-note"> <span class="ratio">×71.6</span> kotlin</span></td>
+                </tr>
+                <tr>
+                  <td class="name"><a href="https://gitlab.com/chromaway/rell/-/blob/dev/performance/src/main/resources/aoc_bench/main.rell#L660" class="sample-link" target="_blank" rel="noopener">day7a</a></td>
+                  <td class="num winner">0.8<span class="err"> ± 0.007</span></td>
+                  <td class="num">22.7<span class="err"> ± 0.8</span><span class="ratio-note"> <span class="ratio">×29.1</span> kotlin</span></td>
+                  <td class="num">19.9<span class="err"> ± 0.2</span><span class="ratio-note"> <span class="ratio">×25.5</span> kotlin</span></td>
+                </tr>
+                <tr>
+                  <td class="name"><a href="https://gitlab.com/chromaway/rell/-/blob/dev/performance/src/main/resources/aoc_bench/main.rell#L671" class="sample-link" target="_blank" rel="noopener">day7b</a></td>
+                  <td class="num winner">0.2<span class="err"> ± 0.009</span></td>
+                  <td class="num">6.0<span class="err"> ± 0.1</span><span class="ratio-note"> <span class="ratio">×27.1</span> kotlin</span></td>
+                  <td class="num">4.7<span class="err"> ± 0.02</span><span class="ratio-note"> <span class="ratio">×21.3</span> kotlin</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-head">
+          <div class="section-title">ft4benchmark</div>
+          <div class="section-strap">ms/op · lower is better  ·  warmup 5× 2 s · measurement 10× 2 s</div>
+        </div>
+        <div class="section-body">
+          <div class="bars-grid">
+            <div class="bars-panel">
+              <div class="bars-panel-title">convert_gtv_to_text</div>
+              <div class="bars-panel-desc">Pretty-prints a mid-sized nested gtv (lists, dicts, ints, byte_arrays, booleans) 200 times.</div>
+              <div class="bars-panel-svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 200" width="280" height="200" role="img"><line class="grid" x1="36" y1="172" x2="268" y2="172"/><text class="tick" x="31" y="175" text-anchor="end">0.00</text><line class="grid" x1="36" y1="133" x2="268" y2="133"/><text class="tick" x="31" y="136" text-anchor="end">12.5</text><line class="grid" x1="36" y1="93" x2="268" y2="93"/><text class="tick" x="31" y="96" text-anchor="end">25.0</text><line class="grid" x1="36" y1="54" x2="268" y2="54"/><text class="tick" x="31" y="57" text-anchor="end">37.5</text><line class="grid" x1="36" y1="14" x2="268" y2="14"/><text class="tick" x="31" y="17" text-anchor="end">50.0</text><line class="baseline" x1="36" y1="172" x2="268" y2="172"/><rect x="53.40" y="58.65" width="81.20" height="113.35" fill="#C1440E"/><line class="err-line" x1="94.00" y1="57.26" x2="94.00" y2="60.04"/><line class="err-line" x1="86.00" y1="57.26" x2="102.00" y2="57.26"/><line class="err-line" x1="86.00" y1="60.04" x2="102.00" y2="60.04"/><text class="bar-axis" x="94.00" y="188" text-anchor="middle">interpreter</text><rect x="169.40" y="85.70" width="81.20" height="86.30" fill="#2E5E8A"/><line class="err-line" x1="210.00" y1="85.18" x2="210.00" y2="86.22"/><line class="err-line" x1="202.00" y1="85.18" x2="218.00" y2="85.18"/><line class="err-line" x1="202.00" y1="86.22" x2="218.00" y2="86.22"/><text class="bar-axis" x="210.00" y="188" text-anchor="middle">truffle</text></svg></div>
+            </div>
+            <div class="bars-panel">
+              <div class="bars-panel-title">auth descriptor rule serde</div>
+              <div class="bars-panel-desc">500 round-trips of a five-rule list: serialize_rules to gtv, then map_rule_expressions_from_gtv back.</div>
+              <div class="bars-panel-svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 200" width="280" height="200" role="img"><line class="grid" x1="36" y1="172" x2="268" y2="172"/><text class="tick" x="31" y="175" text-anchor="end">0.00</text><line class="grid" x1="36" y1="133" x2="268" y2="133"/><text class="tick" x="31" y="136" text-anchor="end">6.25</text><line class="grid" x1="36" y1="93" x2="268" y2="93"/><text class="tick" x="31" y="96" text-anchor="end">12.5</text><line class="grid" x1="36" y1="54" x2="268" y2="54"/><text class="tick" x="31" y="57" text-anchor="end">18.8</text><line class="grid" x1="36" y1="14" x2="268" y2="14"/><text class="tick" x="31" y="17" text-anchor="end">25.0</text><line class="baseline" x1="36" y1="172" x2="268" y2="172"/><rect x="53.40" y="16.98" width="81.20" height="155.02" fill="#C1440E"/><line class="err-line" x1="94.00" y1="16.63" x2="94.00" y2="17.33"/><line class="err-line" x1="86.00" y1="16.63" x2="102.00" y2="16.63"/><line class="err-line" x1="86.00" y1="17.33" x2="102.00" y2="17.33"/><text class="bar-axis" x="94.00" y="188" text-anchor="middle">interpreter</text><rect x="169.40" y="75.34" width="81.20" height="96.66" fill="#2E5E8A"/><line class="err-line" x1="210.00" y1="70.42" x2="210.00" y2="80.26"/><line class="err-line" x1="202.00" y1="70.42" x2="218.00" y2="70.42"/><line class="err-line" x1="202.00" y1="80.26" x2="218.00" y2="80.26"/><text class="bar-axis" x="210.00" y="188" text-anchor="middle">truffle</text></svg></div>
+            </div>
+            <div class="bars-panel">
+              <div class="bars-panel-title">auth descriptor rule evaluation</div>
+              <div class="bars-panel-desc">5_000 calls of is_rule_violated against a fixed five-rule set and a map&lt;text, gtv&gt; of variable values.</div>
+              <div class="bars-panel-svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 200" width="280" height="200" role="img"><line class="grid" x1="36" y1="172" x2="268" y2="172"/><text class="tick" x="31" y="175" text-anchor="end">0.00</text><line class="grid" x1="36" y1="133" x2="268" y2="133"/><text class="tick" x="31" y="136" text-anchor="end">12.5</text><line class="grid" x1="36" y1="93" x2="268" y2="93"/><text class="tick" x="31" y="96" text-anchor="end">25.0</text><line class="grid" x1="36" y1="54" x2="268" y2="54"/><text class="tick" x="31" y="57" text-anchor="end">37.5</text><line class="grid" x1="36" y1="14" x2="268" y2="14"/><text class="tick" x="31" y="17" text-anchor="end">50.0</text><line class="baseline" x1="36" y1="172" x2="268" y2="172"/><rect x="53.40" y="44.41" width="81.20" height="127.59" fill="#C1440E"/><line class="err-line" x1="94.00" y1="43.92" x2="94.00" y2="44.89"/><line class="err-line" x1="86.00" y1="43.92" x2="102.00" y2="43.92"/><line class="err-line" x1="86.00" y1="44.89" x2="102.00" y2="44.89"/><text class="bar-axis" x="94.00" y="188" text-anchor="middle">interpreter</text><rect x="169.40" y="87.98" width="81.20" height="84.02" fill="#2E5E8A"/><line class="err-line" x1="210.00" y1="87.71" x2="210.00" y2="88.24"/><line class="err-line" x1="202.00" y1="87.71" x2="218.00" y2="87.71"/><line class="err-line" x1="202.00" y1="88.24" x2="218.00" y2="88.24"/><text class="bar-axis" x="210.00" y="188" text-anchor="middle">truffle</text></svg></div>
+            </div>
+          </div>
+          <div class="legend">
+            <div class="legend-item"><span class="swatch" style="background:#C1440E"></span><span class="legend-label">interpreter</span></div>
+            <div class="legend-item"><span class="swatch" style="background:#2E5E8A"></span><span class="legend-label">truffle</span></div>
+          </div>
+          <div class="table-scroll">
+            <table class="results">
+              <thead>
+                <tr>
+                  <th>Sample</th>
+                  <th class="num">interpreter<span class="unit"> ms/op</span></th>
+                  <th class="num">truffle<span class="unit"> ms/op</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="name"><a href="https://gitlab.com/chromaway/rell/-/blob/dev/performance/src/main/resources/ft4_bench/main.rell#L169" class="sample-link" target="_blank" rel="noopener">convert_gtv_to_text</a>
+                    <ul class="sample-cell-sources">
+                      <li><a href="https://gitlab.com/chromaway/ft4-lib/-/blob/development/rell/src/lib/ft4/utils/utils.rell" target="_blank" rel="noopener">ft4-lib · utils/utils.rell</a></li>
+                    </ul>
+                  </td>
+                  <td class="num">35.9<span class="err"> ± 0.4</span><span class="ratio-note"> <span class="ratio">×1.3</span> truffle</span></td>
+                  <td class="num winner">27.3<span class="err"> ± 0.2</span></td>
+                </tr>
+                <tr>
+                  <td class="name"><a href="https://gitlab.com/chromaway/rell/-/blob/dev/performance/src/main/resources/ft4_bench/main.rell#L188" class="sample-link" target="_blank" rel="noopener">auth descriptor rule serde</a>
+                    <ul class="sample-cell-sources">
+                      <li><a href="https://gitlab.com/chromaway/ft4-lib/-/blob/development/rell/src/lib/ft4/core/accounts/auth_descriptor_rule_validation.rell" target="_blank" rel="noopener">ft4-lib · auth_descriptor_rule_validation.rell</a></li>
+                      <li><a href="https://gitlab.com/chromaway/ft4-lib/-/blob/development/rell/src/lib/ft4/core/accounts/auth_descriptor_rule_expression.rell" target="_blank" rel="noopener">ft4-lib · auth_descriptor_rule_expression.rell</a></li>
+                    </ul>
+                  </td>
+                  <td class="num">24.5<span class="err"> ± 0.06</span><span class="ratio-note"> <span class="ratio">×1.6</span> truffle</span></td>
+                  <td class="num winner">15.3<span class="err"> ± 0.8</span></td>
+                </tr>
+                <tr>
+                  <td class="name"><a href="https://gitlab.com/chromaway/rell/-/blob/dev/performance/src/main/resources/ft4_bench/main.rell#L211" class="sample-link" target="_blank" rel="noopener">auth descriptor rule evaluation</a>
+                    <ul class="sample-cell-sources">
+                      <li><a href="https://gitlab.com/chromaway/ft4-lib/-/blob/development/rell/src/lib/ft4/core/accounts/auth_descriptor_rule_validation.rell" target="_blank" rel="noopener">ft4-lib · auth_descriptor_rule_validation.rell</a></li>
+                    </ul>
+                  </td>
+                  <td class="num">40.4<span class="err"> ± 0.2</span><span class="ratio-note"> <span class="ratio">×1.5</span> truffle</span></td>
+                  <td class="num winner">26.6<span class="err"> ± 0.08</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-head">
+          <div class="section-title">interpreterbenchmark</div>
+          <div class="section-strap">ms/op · lower is better  ·  warmup 5× 2 s · measurement 10× 2 s</div>
+        </div>
+        <div class="section-body">
+          <div class="bars-grid">
+            <div class="bars-panel">
+              <div class="bars-panel-title">Collatz · primality · Fibonacci</div>
+              <div class="bars-panel-desc">Sums Collatz sequence lengths for every prime in [2, 100_000], then adds the 20th Fibonacci number.</div>
+              <div class="bars-panel-svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 200" width="280" height="200" role="img"><line class="grid" x1="36" y1="172" x2="268" y2="172"/><text class="tick" x="31" y="175" text-anchor="end">0.00</text><line class="grid" x1="36" y1="133" x2="268" y2="133"/><text class="tick" x="31" y="136" text-anchor="end">250</text><line class="grid" x1="36" y1="93" x2="268" y2="93"/><text class="tick" x="31" y="96" text-anchor="end">500</text><line class="grid" x1="36" y1="54" x2="268" y2="54"/><text class="tick" x="31" y="57" text-anchor="end">750</text><line class="grid" x1="36" y1="14" x2="268" y2="14"/><text class="tick" x="31" y="17" text-anchor="end">1000</text><line class="baseline" x1="36" y1="172" x2="268" y2="172"/><rect x="47.60" y="51.35" width="54.13" height="120.65" fill="#C1440E"/><line class="err-line" x1="74.67" y1="51.06" x2="74.67" y2="51.63"/><line class="err-line" x1="66.67" y1="51.06" x2="82.67" y2="51.06"/><line class="err-line" x1="66.67" y1="51.63" x2="82.67" y2="51.63"/><text class="bar-axis" x="74.67" y="188" text-anchor="middle">interpreter</text><rect x="124.93" y="169.96" width="54.13" height="2.04" fill="#1F6B4A"/><line class="err-line" x1="152.00" y1="169.96" x2="152.00" y2="169.96"/><line class="err-line" x1="144.00" y1="169.96" x2="160.00" y2="169.96"/><line class="err-line" x1="144.00" y1="169.96" x2="160.00" y2="169.96"/><text class="bar-axis" x="152.00" y="188" text-anchor="middle">kotlin</text><rect x="202.27" y="168.34" width="54.13" height="3.66" fill="#2E5E8A"/><line class="err-line" x1="229.33" y1="168.21" x2="229.33" y2="168.46"/><line class="err-line" x1="221.33" y1="168.21" x2="237.33" y2="168.21"/><line class="err-line" x1="221.33" y1="168.46" x2="237.33" y2="168.46"/><text class="bar-axis" x="229.33" y="188" text-anchor="middle">truffle</text></svg></div>
+            </div>
+          </div>
+          <div class="legend">
+            <div class="legend-item"><span class="swatch" style="background:#C1440E"></span><span class="legend-label">interpreter</span></div>
+            <div class="legend-item"><span class="swatch" style="background:#1F6B4A"></span><span class="legend-label">kotlin</span></div>
+            <div class="legend-item"><span class="swatch" style="background:#2E5E8A"></span><span class="legend-label">truffle</span></div>
+          </div>
+          <div class="table-scroll">
+            <table class="results">
+              <thead>
+                <tr>
+                  <th>Sample</th>
+                  <th class="num">interpreter<span class="unit"> ms/op</span></th>
+                  <th class="num">kotlin<span class="unit"> ms/op</span></th>
+                  <th class="num">truffle<span class="unit"> ms/op</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="name"><a href="https://gitlab.com/chromaway/rell/-/blob/dev/performance/src/main/resources/synthetic_bench/main.rell#L34" class="sample-link" target="_blank" rel="noopener">Collatz · primality · Fibonacci</a></td>
+                  <td class="num">763.6<span class="err"> ± 1.8</span><span class="ratio-note"> <span class="ratio">×59.1</span> kotlin</span></td>
+                  <td class="num winner">12.9<span class="err"> ± 0.01</span></td>
+                  <td class="num">23.2<span class="err"> ± 0.8</span><span class="ratio-note"> <span class="ratio">×1.8</span> kotlin</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-head">
+          <div class="section-title">mnabenchmark</div>
+          <div class="section-strap">ms/op · lower is better  ·  warmup 5× 2 s · measurement 10× 2 s</div>
+        </div>
+        <div class="section-body">
+          <div class="bars-grid">
+            <div class="bars-panel">
+              <div class="bars-panel-title">decimal power · ln · exp</div>
+              <div class="bars-panel-desc">200 calls × 4 (base, exponent) shapes of power: integer exponent, non-integer exponent, fractional base near 1, and negative exponent. Note: ≳60% of wall time is spent in JDK BigInteger / BigDecimal arithmetic — small Rell-runtime wins translate to small ms/op deltas here. Distilled from chromaway/mna-blockchain (closed source).</div>
+              <div class="bars-panel-svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 200" width="280" height="200" role="img"><line class="grid" x1="36" y1="172" x2="268" y2="172"/><text class="tick" x="31" y="175" text-anchor="end">0.00</text><line class="grid" x1="36" y1="133" x2="268" y2="133"/><text class="tick" x="31" y="136" text-anchor="end">6.25</text><line class="grid" x1="36" y1="93" x2="268" y2="93"/><text class="tick" x="31" y="96" text-anchor="end">12.5</text><line class="grid" x1="36" y1="54" x2="268" y2="54"/><text class="tick" x="31" y="57" text-anchor="end">18.8</text><line class="grid" x1="36" y1="14" x2="268" y2="14"/><text class="tick" x="31" y="17" text-anchor="end">25.0</text><line class="baseline" x1="36" y1="172" x2="268" y2="172"/><rect x="53.40" y="38.14" width="81.20" height="133.86" fill="#C1440E"/><line class="err-line" x1="94.00" y1="37.76" x2="94.00" y2="38.53"/><line class="err-line" x1="86.00" y1="37.76" x2="102.00" y2="37.76"/><line class="err-line" x1="86.00" y1="38.53" x2="102.00" y2="38.53"/><text class="bar-axis" x="94.00" y="188" text-anchor="middle">interpreter</text><rect x="169.40" y="55.39" width="81.20" height="116.61" fill="#2E5E8A"/><line class="err-line" x1="210.00" y1="52.32" x2="210.00" y2="58.45"/><line class="err-line" x1="202.00" y1="52.32" x2="218.00" y2="52.32"/><line class="err-line" x1="202.00" y1="58.45" x2="218.00" y2="58.45"/><text class="bar-axis" x="210.00" y="188" text-anchor="middle">truffle</text></svg></div>
+            </div>
+            <div class="bars-panel">
+              <div class="bars-panel-title">8-octave 2D Simplex noise</div>
+              <div class="bars-panel-desc">20 calls of sum_octave_2d on a 5×5 grid (500 simplex_2d samples per rep) with the canonical permutation tables. Note: ~40-50% of wall time is JDK BigDecimal / BigInteger arithmetic; the truffle backend's int128/long-scale decimal leaves shave a chunk off when values stay in range. Distilled from chromaway/mna-blockchain (closed source).</div>
+              <div class="bars-panel-svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 200" width="280" height="200" role="img"><line class="grid" x1="36" y1="172" x2="268" y2="172"/><text class="tick" x="31" y="175" text-anchor="end">0.00</text><line class="grid" x1="36" y1="133" x2="268" y2="133"/><text class="tick" x="31" y="136" text-anchor="end">25.0</text><line class="grid" x1="36" y1="93" x2="268" y2="93"/><text class="tick" x="31" y="96" text-anchor="end">50.0</text><line class="grid" x1="36" y1="54" x2="268" y2="54"/><text class="tick" x="31" y="57" text-anchor="end">75.0</text><line class="grid" x1="36" y1="14" x2="268" y2="14"/><text class="tick" x="31" y="17" text-anchor="end">100</text><line class="baseline" x1="36" y1="172" x2="268" y2="172"/><rect x="53.40" y="18.01" width="81.20" height="153.99" fill="#C1440E"/><line class="err-line" x1="94.00" y1="17.55" x2="94.00" y2="18.46"/><line class="err-line" x1="86.00" y1="17.55" x2="102.00" y2="17.55"/><line class="err-line" x1="86.00" y1="18.46" x2="102.00" y2="18.46"/><text class="bar-axis" x="94.00" y="188" text-anchor="middle">interpreter</text><rect x="169.40" y="39.38" width="81.20" height="132.62" fill="#2E5E8A"/><line class="err-line" x1="210.00" y1="38.64" x2="210.00" y2="40.12"/><line class="err-line" x1="202.00" y1="38.64" x2="218.00" y2="38.64"/><line class="err-line" x1="202.00" y1="40.12" x2="218.00" y2="40.12"/><text class="bar-axis" x="210.00" y="188" text-anchor="middle">truffle</text></svg></div>
+            </div>
+            <div class="bars-panel">
+              <div class="bars-panel-title">rotate · area_for_locations</div>
+              <div class="bars-panel-desc">200 reps × 4 cardinal rotations of a 64-point list&lt;location&gt;; each rotated copy is collected into a set&lt;location&gt; and reduced via area_for_locations. Distilled from chromaway/mna-blockchain (closed source).</div>
+              <div class="bars-panel-svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 200" width="280" height="200" role="img"><line class="grid" x1="36" y1="172" x2="268" y2="172"/><text class="tick" x="31" y="175" text-anchor="end">0.00</text><line class="grid" x1="36" y1="133" x2="268" y2="133"/><text class="tick" x="31" y="136" text-anchor="end">50.0</text><line class="grid" x1="36" y1="93" x2="268" y2="93"/><text class="tick" x="31" y="96" text-anchor="end">100</text><line class="grid" x1="36" y1="54" x2="268" y2="54"/><text class="tick" x="31" y="57" text-anchor="end">150</text><line class="grid" x1="36" y1="14" x2="268" y2="14"/><text class="tick" x="31" y="17" text-anchor="end">200</text><line class="baseline" x1="36" y1="172" x2="268" y2="172"/><rect x="53.40" y="87.21" width="81.20" height="84.79" fill="#C1440E"/><line class="err-line" x1="94.00" y1="86.91" x2="94.00" y2="87.51"/><line class="err-line" x1="86.00" y1="86.91" x2="102.00" y2="86.91"/><line class="err-line" x1="86.00" y1="87.51" x2="102.00" y2="87.51"/><text class="bar-axis" x="94.00" y="188" text-anchor="middle">interpreter</text><rect x="169.40" y="154.12" width="81.20" height="17.88" fill="#2E5E8A"/><line class="err-line" x1="210.00" y1="153.88" x2="210.00" y2="154.35"/><line class="err-line" x1="202.00" y1="153.88" x2="218.00" y2="153.88"/><line class="err-line" x1="202.00" y1="154.35" x2="218.00" y2="154.35"/><text class="bar-axis" x="210.00" y="188" text-anchor="middle">truffle</text></svg></div>
+            </div>
+          </div>
+          <div class="legend">
+            <div class="legend-item"><span class="swatch" style="background:#C1440E"></span><span class="legend-label">interpreter</span></div>
+            <div class="legend-item"><span class="swatch" style="background:#2E5E8A"></span><span class="legend-label">truffle</span></div>
+          </div>
+          <div class="table-scroll">
+            <table class="results">
+              <thead>
+                <tr>
+                  <th>Sample</th>
+                  <th class="num">interpreter<span class="unit"> ms/op</span></th>
+                  <th class="num">truffle<span class="unit"> ms/op</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="name"><a href="https://gitlab.com/chromaway/rell/-/blob/dev/performance/src/main/resources/mna_bench/main.rell#L314" class="sample-link" target="_blank" rel="noopener">decimal power · ln · exp</a></td>
+                  <td class="num">21.2<span class="err"> ± 0.06</span><span class="ratio-note"> <span class="ratio">×1.1</span> truffle</span></td>
+                  <td class="num winner">18.5<span class="err"> ± 0.5</span></td>
+                </tr>
+                <tr>
+                  <td class="name"><a href="https://gitlab.com/chromaway/rell/-/blob/dev/performance/src/main/resources/mna_bench/main.rell#L340" class="sample-link" target="_blank" rel="noopener">8-octave 2D Simplex noise</a></td>
+                  <td class="num">97.5<span class="err"> ± 0.3</span><span class="ratio-note"> <span class="ratio">×1.2</span> truffle</span></td>
+                  <td class="num winner">83.9<span class="err"> ± 0.5</span></td>
+                </tr>
+                <tr>
+                  <td class="name"><a href="https://gitlab.com/chromaway/rell/-/blob/dev/performance/src/main/resources/mna_bench/main.rell#L389" class="sample-link" target="_blank" rel="noopener">rotate · area_for_locations</a></td>
+                  <td class="num">107.3<span class="err"> ± 0.4</span><span class="ratio-note"> <span class="ratio">×4.7</span> truffle</span></td>
+                  <td class="num winner">22.6<span class="err"> ± 0.3</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-head">
+          <div class="section-title">parserbenchmark</div>
+          <div class="section-strap">ms/op · lower is better  ·  warmup 3× 2 s · measurement 5× 2 s</div>
+        </div>
+        <div class="section-body">
+          <div class="bars-grid">
+            <div class="bars-panel">
+              <div class="bars-panel-title">profiling-dapp</div>
+              <div class="bars-panel-svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 200" width="280" height="200" role="img"><line class="grid" x1="36" y1="172" x2="268" y2="172"/><text class="tick" x="31" y="175" text-anchor="end">0.00</text><line class="grid" x1="36" y1="133" x2="268" y2="133"/><text class="tick" x="31" y="136" text-anchor="end">0.50</text><line class="grid" x1="36" y1="93" x2="268" y2="93"/><text class="tick" x="31" y="96" text-anchor="end">1.00</text><line class="grid" x1="36" y1="54" x2="268" y2="54"/><text class="tick" x="31" y="57" text-anchor="end">1.50</text><line class="grid" x1="36" y1="14" x2="268" y2="14"/><text class="tick" x="31" y="17" text-anchor="end">2.00</text><line class="baseline" x1="36" y1="172" x2="268" y2="172"/><rect x="47.60" y="22.19" width="54.13" height="149.81" fill="#C1440E"/><line class="err-line" x1="74.67" y1="19.02" x2="74.67" y2="25.36"/><line class="err-line" x1="66.67" y1="19.02" x2="82.67" y2="19.02"/><line class="err-line" x1="66.67" y1="25.36" x2="82.67" y2="25.36"/><text class="bar-axis" x="74.67" y="188" text-anchor="middle">antlr</text><rect x="124.93" y="161.05" width="54.13" height="10.95" fill="#1F6B4A"/><line class="err-line" x1="152.00" y1="160.93" x2="152.00" y2="161.17"/><line class="err-line" x1="144.00" y1="160.93" x2="160.00" y2="160.93"/><line class="err-line" x1="144.00" y1="161.17" x2="160.00" y2="161.17"/><text class="bar-axis" x="152.00" y="188" text-anchor="middle">antlrSLL</text><rect x="202.27" y="150.23" width="54.13" height="21.77" fill="#0F0F10"/><line class="err-line" x1="229.33" y1="146.86" x2="229.33" y2="153.59"/><line class="err-line" x1="221.33" y1="146.86" x2="237.33" y2="146.86"/><line class="err-line" x1="221.33" y1="153.59" x2="237.33" y2="153.59"/><text class="bar-axis" x="229.33" y="188" text-anchor="middle">betterParse</text></svg></div>
+            </div>
+            <div class="bars-panel">
+              <div class="bars-panel-title">deathmatch</div>
+              <div class="bars-panel-svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 200" width="280" height="200" role="img"><line class="grid" x1="36" y1="172" x2="268" y2="172"/><text class="tick" x="31" y="175" text-anchor="end">0.00</text><line class="grid" x1="36" y1="133" x2="268" y2="133"/><text class="tick" x="31" y="136" text-anchor="end">5.00</text><line class="grid" x1="36" y1="93" x2="268" y2="93"/><text class="tick" x="31" y="96" text-anchor="end">10.0</text><line class="grid" x1="36" y1="54" x2="268" y2="54"/><text class="tick" x="31" y="57" text-anchor="end">15.0</text><line class="grid" x1="36" y1="14" x2="268" y2="14"/><text class="tick" x="31" y="17" text-anchor="end">20.0</text><line class="baseline" x1="36" y1="172" x2="268" y2="172"/><rect x="47.60" y="57.97" width="54.13" height="114.03" fill="#C1440E"/><line class="err-line" x1="74.67" y1="56.06" x2="74.67" y2="59.87"/><line class="err-line" x1="66.67" y1="56.06" x2="82.67" y2="56.06"/><line class="err-line" x1="66.67" y1="59.87" x2="82.67" y2="59.87"/><text class="bar-axis" x="74.67" y="188" text-anchor="middle">antlr</text><rect x="124.93" y="163.17" width="54.13" height="8.83" fill="#1F6B4A"/><line class="err-line" x1="152.00" y1="162.94" x2="152.00" y2="163.41"/><line class="err-line" x1="144.00" y1="162.94" x2="160.00" y2="162.94"/><line class="err-line" x1="144.00" y1="163.41" x2="160.00" y2="163.41"/><text class="bar-axis" x="152.00" y="188" text-anchor="middle">antlrSLL</text><rect x="202.27" y="156.45" width="54.13" height="15.55" fill="#0F0F10"/><line class="err-line" x1="229.33" y1="155.79" x2="229.33" y2="157.11"/><line class="err-line" x1="221.33" y1="155.79" x2="237.33" y2="155.79"/><line class="err-line" x1="221.33" y1="157.11" x2="237.33" y2="157.11"/><text class="bar-axis" x="229.33" y="188" text-anchor="middle">betterParse</text></svg></div>
+            </div>
+            <div class="bars-panel">
+              <div class="bars-panel-title">operations_queries_api</div>
+              <div class="bars-panel-svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 200" width="280" height="200" role="img"><line class="grid" x1="36" y1="172" x2="268" y2="172"/><text class="tick" x="31" y="175" text-anchor="end">0.00</text><line class="grid" x1="36" y1="133" x2="268" y2="133"/><text class="tick" x="31" y="136" text-anchor="end">12.5</text><line class="grid" x1="36" y1="93" x2="268" y2="93"/><text class="tick" x="31" y="96" text-anchor="end">25.0</text><line class="grid" x1="36" y1="54" x2="268" y2="54"/><text class="tick" x="31" y="57" text-anchor="end">37.5</text><line class="grid" x1="36" y1="14" x2="268" y2="14"/><text class="tick" x="31" y="17" text-anchor="end">50.0</text><line class="baseline" x1="36" y1="172" x2="268" y2="172"/><rect x="47.60" y="86.68" width="54.13" height="85.32" fill="#C1440E"/><line class="err-line" x1="74.67" y1="83.61" x2="74.67" y2="89.75"/><line class="err-line" x1="66.67" y1="83.61" x2="82.67" y2="83.61"/><line class="err-line" x1="66.67" y1="89.75" x2="82.67" y2="89.75"/><text class="bar-axis" x="74.67" y="188" text-anchor="middle">antlr</text><rect x="124.93" y="165.86" width="54.13" height="6.14" fill="#1F6B4A"/><line class="err-line" x1="152.00" y1="165.73" x2="152.00" y2="166.00"/><line class="err-line" x1="144.00" y1="165.73" x2="160.00" y2="165.73"/><line class="err-line" x1="144.00" y1="166.00" x2="160.00" y2="166.00"/><text class="bar-axis" x="152.00" y="188" text-anchor="middle">antlrSLL</text><rect x="202.27" y="161.24" width="54.13" height="10.76" fill="#0F0F10"/><line class="err-line" x1="229.33" y1="160.49" x2="229.33" y2="162.00"/><line class="err-line" x1="221.33" y1="160.49" x2="237.33" y2="160.49"/><line class="err-line" x1="221.33" y1="162.00" x2="237.33" y2="162.00"/><text class="bar-axis" x="229.33" y="188" text-anchor="middle">betterParse</text></svg></div>
+            </div>
+          </div>
+          <div class="legend">
+            <div class="legend-item"><span class="swatch" style="background:#C1440E"></span><span class="legend-label">antlr</span></div>
+            <div class="legend-item"><span class="swatch" style="background:#1F6B4A"></span><span class="legend-label">antlrSLL</span></div>
+            <div class="legend-item"><span class="swatch" style="background:#0F0F10"></span><span class="legend-label">betterParse</span></div>
+          </div>
+          <div class="table-scroll">
+            <table class="results">
+              <thead>
+                <tr>
+                  <th>Sample</th>
+                  <th class="num">antlr<span class="unit"> ms/op</span></th>
+                  <th class="num">antlrSLL<span class="unit"> ms/op</span></th>
+                  <th class="num">betterParse<span class="unit"> ms/op</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="name">profiling-dapp</td>
+                  <td class="num">1.9<span class="err"> ± 0.04</span><span class="ratio-note"> <span class="ratio">×13.7</span> antlrSLL</span></td>
+                  <td class="num winner">0.1<span class="err"> ± 0.002</span></td>
+                  <td class="num">0.3<span class="err"> ± 0.04</span><span class="ratio-note"> <span class="ratio">×2.0</span> antlrSLL</span></td>
+                </tr>
+                <tr>
+                  <td class="name">deathmatch</td>
+                  <td class="num">14.4<span class="err"> ± 0.2</span><span class="ratio-note"> <span class="ratio">×12.9</span> antlrSLL</span></td>
+                  <td class="num winner">1.1<span class="err"> ± 0.03</span></td>
+                  <td class="num">2.0<span class="err"> ± 0.08</span><span class="ratio-note"> <span class="ratio">×1.8</span> antlrSLL</span></td>
+                </tr>
+                <tr>
+                  <td class="name">operations_queries_api</td>
+                  <td class="num">27.0<span class="err"> ± 1.0</span><span class="ratio-note"> <span class="ratio">×13.9</span> antlrSLL</span></td>
+                  <td class="num winner">1.9<span class="err"> ± 0.04</span></td>
+                  <td class="num">3.4<span class="err"> ± 0.2</span><span class="ratio-note"> <span class="ratio">×1.8</span> antlrSLL</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-head">
+          <div class="section-title">stdlibcallbenchmark</div>
+          <div class="section-strap">ms/op · lower is better  ·  warmup 5× 2 s · measurement 10× 2 s</div>
+        </div>
+        <div class="section-body">
+          <div class="bars-grid">
+            <div class="bars-panel">
+              <div class="bars-panel-title">—</div>
+              <div class="bars-panel-svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 200" width="280" height="200" role="img"><line class="grid" x1="36" y1="172" x2="268" y2="172"/><text class="tick" x="31" y="175" text-anchor="end">0.00</text><line class="grid" x1="36" y1="133" x2="268" y2="133"/><text class="tick" x="31" y="136" text-anchor="end">25.0</text><line class="grid" x1="36" y1="93" x2="268" y2="93"/><text class="tick" x="31" y="96" text-anchor="end">50.0</text><line class="grid" x1="36" y1="54" x2="268" y2="54"/><text class="tick" x="31" y="57" text-anchor="end">75.0</text><line class="grid" x1="36" y1="14" x2="268" y2="14"/><text class="tick" x="31" y="17" text-anchor="end">100</text><line class="baseline" x1="36" y1="172" x2="268" y2="172"/><rect x="70.80" y="32.13" width="162.40" height="139.87" fill="#C1440E"/><line class="err-line" x1="152.00" y1="31.76" x2="152.00" y2="32.50"/><line class="err-line" x1="144.00" y1="31.76" x2="160.00" y2="31.76"/><line class="err-line" x1="144.00" y1="32.50" x2="160.00" y2="32.50"/><text class="bar-axis" x="152.00" y="188" text-anchor="middle">runQuery</text></svg></div>
+            </div>
+          </div>
+          <div class="legend">
+            <div class="legend-item"><span class="swatch" style="background:#C1440E"></span><span class="legend-label">runQuery</span></div>
+          </div>
+          <div class="table-scroll">
+            <table class="results">
+              <thead>
+                <tr>
+                  <th>Sample</th>
+                  <th class="num">runQuery<span class="unit"> ms/op</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="name">—</td>
+                  <td class="num">88.5<span class="err"> ± 0.2</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-head">
+          <div class="section-title">structbenchmark</div>
+          <div class="section-strap">ms/op · lower is better  ·  warmup 5× 2 s · measurement 10× 2 s</div>
+        </div>
+        <div class="section-body">
+          <div class="bars-grid">
+            <div class="bars-panel">
+              <div class="bars-panel-title">nested DTO mapping</div>
+              <div class="bars-panel-desc">50 reps × 16 quests × (3 goals × 4 assets) × 4 rewards — triple-nested struct construction in a tight loop, mirroring the quests/community_quests get_*_dto path. Distilled from chromaway/mna-blockchain (closed source).</div>
+              <div class="bars-panel-svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 200" width="280" height="200" role="img"><line class="grid" x1="36" y1="172" x2="268" y2="172"/><text class="tick" x="31" y="175" text-anchor="end">0.00</text><line class="grid" x1="36" y1="133" x2="268" y2="133"/><text class="tick" x="31" y="136" text-anchor="end">5.00</text><line class="grid" x1="36" y1="93" x2="268" y2="93"/><text class="tick" x="31" y="96" text-anchor="end">10.0</text><line class="grid" x1="36" y1="54" x2="268" y2="54"/><text class="tick" x="31" y="57" text-anchor="end">15.0</text><line class="grid" x1="36" y1="14" x2="268" y2="14"/><text class="tick" x="31" y="17" text-anchor="end">20.0</text><line class="baseline" x1="36" y1="172" x2="268" y2="172"/><rect x="53.40" y="17.01" width="81.20" height="154.99" fill="#C1440E"/><line class="err-line" x1="94.00" y1="16.59" x2="94.00" y2="17.42"/><line class="err-line" x1="86.00" y1="16.59" x2="102.00" y2="16.59"/><line class="err-line" x1="86.00" y1="17.42" x2="102.00" y2="17.42"/><text class="bar-axis" x="94.00" y="188" text-anchor="middle">interpreter</text><rect x="169.40" y="137.46" width="81.20" height="34.54" fill="#2E5E8A"/><line class="err-line" x1="210.00" y1="137.32" x2="210.00" y2="137.61"/><line class="err-line" x1="202.00" y1="137.32" x2="218.00" y2="137.32"/><line class="err-line" x1="202.00" y1="137.61" x2="218.00" y2="137.61"/><text class="bar-axis" x="210.00" y="188" text-anchor="middle">truffle</text></svg></div>
+            </div>
+            <div class="bars-panel">
+              <div class="bars-panel-title">page_cursor codec · paged_result</div>
+              <div class="bars-panel-desc">100 reps of cursor encode (to_bytes + base64) plus paged_result assembly over a 32-row pagination_result. Adapted from ft4-lib make_page; preserves the struct-ser hot path.</div>
+              <div class="bars-panel-svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 200" width="280" height="200" role="img"><line class="grid" x1="36" y1="172" x2="268" y2="172"/><text class="tick" x="31" y="175" text-anchor="end">0.00</text><line class="grid" x1="36" y1="133" x2="268" y2="133"/><text class="tick" x="31" y="136" text-anchor="end">0.50</text><line class="grid" x1="36" y1="93" x2="268" y2="93"/><text class="tick" x="31" y="96" text-anchor="end">1.00</text><line class="grid" x1="36" y1="54" x2="268" y2="54"/><text class="tick" x="31" y="57" text-anchor="end">1.50</text><line class="grid" x1="36" y1="14" x2="268" y2="14"/><text class="tick" x="31" y="17" text-anchor="end">2.00</text><line class="baseline" x1="36" y1="172" x2="268" y2="172"/><rect x="53.40" y="24.51" width="81.20" height="147.49" fill="#C1440E"/><line class="err-line" x1="94.00" y1="23.83" x2="94.00" y2="25.19"/><line class="err-line" x1="86.00" y1="23.83" x2="102.00" y2="23.83"/><line class="err-line" x1="86.00" y1="25.19" x2="102.00" y2="25.19"/><text class="bar-axis" x="94.00" y="188" text-anchor="middle">interpreter</text><rect x="169.40" y="109.62" width="81.20" height="62.38" fill="#2E5E8A"/><line class="err-line" x1="210.00" y1="108.87" x2="210.00" y2="110.37"/><line class="err-line" x1="202.00" y1="108.87" x2="218.00" y2="108.87"/><line class="err-line" x1="202.00" y1="110.37" x2="218.00" y2="110.37"/><text class="bar-axis" x="210.00" y="188" text-anchor="middle">truffle</text></svg></div>
+            </div>
+            <div class="bars-panel">
+              <div class="bars-panel-title">multi-sig auth descriptor eval</div>
+              <div class="bars-panel-desc">500 reps of multi-sig signer-list evaluation: struct deserialization (to_struct from gtv), set/list intersection over the candidate signer set, and an early-exit signer loop.</div>
+              <div class="bars-panel-svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 200" width="280" height="200" role="img"><line class="grid" x1="36" y1="172" x2="268" y2="172"/><text class="tick" x="31" y="175" text-anchor="end">0.00</text><line class="grid" x1="36" y1="133" x2="268" y2="133"/><text class="tick" x="31" y="136" text-anchor="end">12.5</text><line class="grid" x1="36" y1="93" x2="268" y2="93"/><text class="tick" x="31" y="96" text-anchor="end">25.0</text><line class="grid" x1="36" y1="54" x2="268" y2="54"/><text class="tick" x="31" y="57" text-anchor="end">37.5</text><line class="grid" x1="36" y1="14" x2="268" y2="14"/><text class="tick" x="31" y="17" text-anchor="end">50.0</text><line class="baseline" x1="36" y1="172" x2="268" y2="172"/><rect x="53.40" y="32.09" width="81.20" height="139.91" fill="#C1440E"/><line class="err-line" x1="94.00" y1="31.29" x2="94.00" y2="32.89"/><line class="err-line" x1="86.00" y1="31.29" x2="102.00" y2="31.29"/><line class="err-line" x1="86.00" y1="32.89" x2="102.00" y2="32.89"/><text class="bar-axis" x="94.00" y="188" text-anchor="middle">interpreter</text><rect x="169.40" y="49.44" width="81.20" height="122.56" fill="#2E5E8A"/><line class="err-line" x1="210.00" y1="46.82" x2="210.00" y2="52.07"/><line class="err-line" x1="202.00" y1="46.82" x2="218.00" y2="46.82"/><line class="err-line" x1="202.00" y1="52.07" x2="218.00" y2="52.07"/><text class="bar-axis" x="210.00" y="188" text-anchor="middle">truffle</text></svg></div>
+            </div>
+          </div>
+          <div class="legend">
+            <div class="legend-item"><span class="swatch" style="background:#C1440E"></span><span class="legend-label">interpreter</span></div>
+            <div class="legend-item"><span class="swatch" style="background:#2E5E8A"></span><span class="legend-label">truffle</span></div>
+          </div>
+          <div class="table-scroll">
+            <table class="results">
+              <thead>
+                <tr>
+                  <th>Sample</th>
+                  <th class="num">interpreter<span class="unit"> ms/op</span></th>
+                  <th class="num">truffle<span class="unit"> ms/op</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="name"><a href="https://gitlab.com/chromaway/rell/-/blob/dev/performance/src/main/resources/struct_bench/main.rell#L149" class="sample-link" target="_blank" rel="noopener">nested DTO mapping</a></td>
+                  <td class="num">19.6<span class="err"> ± 0.05</span><span class="ratio-note"> <span class="ratio">×4.5</span> truffle</span></td>
+                  <td class="num winner">4.4<span class="err"> ± 0.02</span></td>
+                </tr>
+                <tr>
+                  <td class="name"><a href="https://gitlab.com/chromaway/rell/-/blob/dev/performance/src/main/resources/struct_bench/main.rell#L235" class="sample-link" target="_blank" rel="noopener">page_cursor codec · paged_result</a>
+                    <ul class="sample-cell-sources">
+                      <li><a href="https://gitlab.com/chromaway/ft4-lib/-/blob/development/rell/src/lib/ft4/utils/pagination.rell" target="_blank" rel="noopener">ft4-lib · utils/pagination.rell</a></li>
+                    </ul>
+                  </td>
+                  <td class="num">1.9<span class="err"> ± 0.009</span><span class="ratio-note"> <span class="ratio">×2.4</span> truffle</span></td>
+                  <td class="num winner">0.8<span class="err"> ± 0.010</span></td>
+                </tr>
+                <tr>
+                  <td class="name"><a href="https://gitlab.com/chromaway/rell/-/blob/dev/performance/src/main/resources/struct_bench/main.rell#L336" class="sample-link" target="_blank" rel="noopener">multi-sig auth descriptor eval</a>
+                    <ul class="sample-cell-sources">
+                      <li><a href="https://gitlab.com/chromaway/ft4-lib/-/blob/development/rell/src/lib/ft4/core/accounts/auth_basic.rell" target="_blank" rel="noopener">ft4-lib · core/accounts/auth_basic.rell</a></li>
+                    </ul>
+                  </td>
+                  <td class="num">44.3<span class="err"> ± 0.3</span><span class="ratio-note"> <span class="ratio">×1.1</span> truffle</span></td>
+                  <td class="num winner">38.8<span class="err"> ± 0.8</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-head">
+          <div class="section-title">methodology</div>
+        </div>
+        <div class="section-body">
+          <p class="prose">Benchmarks are driven by <code>org.jetbrains.kotlinx.benchmark</code> on the JMH backend. Mode is <code>avgt</code>; each iteration produces a mean reported in <code>ms/op</code>.</p>
+          <p class="prose">Each benchmark class exposes one or more methods (shown as columns) exercised against a set of samples (shown as rows). Samples come from JMH <code>@Param</code> inputs when present, otherwise collapse to a single synthetic row.</p>
+        </div>
+      </section>
+    </main>
+    <footer class="colophon">
+      <div class="colophon-inner"><span><a href="https://gitlab.com/chromaway/rell">chromaway/rell</a></span><span class="colophon-spacer"></span><span class="colophon-meta">main.json</span><span class="sep">·</span><span class="colophon-meta">2026-08-07 · 04:57 GMT</span></div>
+    </footer>
+  </body>
+</html>

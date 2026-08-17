@@ -73,11 +73,13 @@ application no database: no indexing of its own transactions, no
 relational queries, so that work moves off-chain and gets paid for
 twice. Rell buys the database and pays in throughput. The same trade
 runs through language implementations. LLVM spends a lot of compile time
-and emits fast code. CPython spends none and executes slowly. The JVM,
-V8 and .NET sit in between, compiling as they go. A tree-walking
-interpreter, which is what Rell had, sits at the CPython end: it starts
-instantly and then runs about as slowly as you would expect from walking
-a tree per operation.
+and emits fast code, which is the deal Julia takes: the first call to a
+function pays for compiling it, and the code that comes out runs at C
+speed. CPython spends none and executes slowly. The JVM, V8 and .NET sit
+in between, compiling as they go. A tree-walking interpreter, which is
+what Rell had, sits at the CPython end: it starts instantly and then
+runs about as slowly as you would expect from walking a tree per
+operation.
 
 That is the gap Truffle closes, and it is why the second backend was
 worth a rewrite. Truffle is a framework on GraalVM (an extended Java VM)

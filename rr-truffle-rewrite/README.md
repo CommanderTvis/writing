@@ -151,8 +151,12 @@ flowchart LR
 The mechanics, briefly. IR nodes are sum types with a closed set of
 variants — 39 expression, 17 statement, 16 database-expression — and the
 interpreter is pattern matching over them that the compiler checks for
-exhaustiveness, with per-domain logic split into separate files. The
-same node before and after, lightly trimmed from the repo:
+exhaustiveness, with per-domain logic split into separate files. In the
+Kotlin below, a `sealed interface` is a sum type whose variants are all
+declared in one file and known to the compiler, a `data class` is a
+record with structural equality, and `when (expr) { is X -> ... }` is
+the match over them: leave a variant out and the code does not compile.
+The same node before and after, lightly trimmed from the repo:
 
 ```kotlin
 // before: execution lives on the compiler's node
@@ -384,19 +388,34 @@ internal class Generic(
 }
 ```
 
+One JVM fact makes the rest of this section legible. The JVM splits
+values into primitives, which live in registers and on the stack, and
+objects, which are allocated on the heap. An interpreter that hands
+around one generic value type boxes every intermediate result into an
+object, so a loop that adds integers allocates on every iteration. That
+is what `executeBoolean` above avoids: the typed path returns a raw
+boolean instead of wrapping it.
+
 The `@Child` annotations and the `VirtualFrame` are the whole contract:
 they tell Graal the tree shape is stable, so partial evaluation can
 compile this method against *one* program's nodes and constant-fold the
-dispatch away. What is left reads like the tree-walker. That is the
-deal Truffle offers: interpreter-shaped source, compiled-language
-speed, and the machinery that gets you there is not yours to maintain.
+dispatch away. This is the first Futamura projection, done for real and
+in production: specialize an interpreter to a fixed program and what
+falls out is a compiler for it. What is left reads like the tree-walker.
+That is the deal Truffle offers: interpreter-shaped source,
+compiled-language speed, and the machinery that gets you there is not
+yours to maintain.
 
 How much it buys depends on the workload shape, and the honest way to
-show that is the
-[per-commit benchmark report from CI](https://chromaway.gitlab.io/-/rell/-/jobs/15761948926/artifacts/public/report.html)
+show that is the [per-commit benchmark report from
+CI](https://chromaway.gitlab.io/-/rell/-/jobs/15761948926/artifacts/public/report.html)
 (run with JMH, the standard JVM benchmark harness, on GraalVM 21; 73
-benchmarks across 7 suites; a public CI artifact, not my laptop). A
-summary, all values average ms per operation, lower is better:
+benchmarks across 7 suites; a public CI artifact, not my laptop).
+The harness matters because JVM code starts out interpreted and is
+compiled only after the JIT has watched it run, so the first iterations
+of anything measure the wrong thing; JMH warms each benchmark up and
+reports the steady state.
+A summary, all values average ms per operation, lower is better:
 
 | workload shape | tree-walker | Truffle | note |
 |---|---|---|---|

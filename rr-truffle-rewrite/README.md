@@ -431,8 +431,10 @@ A summary, all values average ms per operation, lower is better:
 | Advent-of-Code corpus (14 samples) | median ×39 slower than Kotlin | median ×28 slower than Kotlin | 2 of 14 samples: tree-walker beats Truffle |
 
 The pattern is the classic one. Where the tree-walker's dispatch
-overhead dominates, partial evaluation removes it, and Truffle lands
-within ×2 of hand-written Kotlin. Where the JDK's
+overhead dominates, partial evaluation removes it: on the compute-bound
+suite, Truffle cuts 763.6ms to 23.2ms, a 33x drop, and lands within 1.8x
+of hand-written Kotlin, the same JVM the tree-walker was running on the
+whole time. Where the JDK's
 [`BigDecimal`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/math/BigDecimal.html)
 (Java's arbitrary-precision decimal type) dominates, the dispatch was
 never the cost, and specializing it wins nothing. The fix there was

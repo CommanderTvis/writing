@@ -371,7 +371,9 @@ mv.visitFrame(F_SAME, 0, null, 0, null);
 ```
 
 You are now maintaining stack maps, local-variable slots and verifier
-rules, and a mistake surfaces as a `VerifyError` at class-load time
+rules, and a mistake surfaces as a
+[`VerifyError`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/VerifyError.html)
+at class-load time
 rather than a wrong answer you can debug. The Truffle version of the
 same node, trimmed from the repo, is the interpreter you would have
 written anyway:

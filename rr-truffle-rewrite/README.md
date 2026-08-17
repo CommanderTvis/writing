@@ -1,13 +1,5 @@
 # Rewriting a production compiler's IR with AI agents in five weeks
 
-<!-- DRAFT 3 — 2026-08-14. Extracted and expanded from the diary's April–June
-     chapter, per plan: this publishes FIRST; the diary links to it.
-     Style: ~/writing/style/STYLE.md. All facts backed by public commits/docs
-     in gitlab.com/chromaway/rell (mirrored to github.com/chromiaproject/rell).
-     No employer internals.
-     PASS 2 — 2026-08-14: persona edit (compiler-literate, no JVM/Kotlin/Rell background): glosses at first use, jargon simplified, grammar pass.
-     PASS 3 — 2026-08-14: final polish (spike budget, flip-paragraph trim, seams). -->
-
 Every language that survives long enough ends up rewriting the guts of its
 compiler. C# did it with Roslyn. Rust grew MIR. Kotlin spent years on the
 K2 transition, one I participated in from inside JetBrains' Kotlin team,
@@ -75,11 +67,26 @@ much simpler than either. I would still have budgeted most of a year for
 this project by hand: untangling the old trees node by node, rewriting
 the interpreter, keeping both worlds running mid-migration.
 
-What forced the rewrite was Truffle, a framework on GraalVM (an extended
-Java VM) that turns an interpreter into a JIT-compiled backend. I wanted
-a second execution backend built on it, and the compiler's output model
-could not support one. It also could not support something I wanted more:
-serialization.
+Two trades place Rell, and both are deliberate. The fastest chains
+compute orders of magnitude faster than Chromia, and give the
+application no database: no indexing of its own transactions, no
+relational queries, so that work moves off-chain and gets paid for
+twice. Rell buys the database and pays in throughput. The same trade
+runs through language implementations. LLVM spends a lot of compile time
+and emits fast code. CPython spends none and executes slowly. The JVM,
+V8 and .NET sit in between, compiling as they go. A tree-walking
+interpreter, which is what Rell had, sits at the CPython end: it starts
+instantly and then runs about as slowly as you would expect from walking
+a tree per operation.
+
+That is the gap Truffle closes, and it is why the second backend was
+worth a rewrite. Truffle is a framework on GraalVM (an extended Java VM)
+that takes an interpreter written to its conventions and lets the JIT
+compiler specialize it to the program being run. The alternative for the
+same speedup is emitting JVM bytecode from the compiler, which is a much
+larger and more delicate thing to own. I wanted the backend built on
+Truffle, and the compiler's output model could not support one. It also
+could not support something I wanted more: serialization.
 
 ## The problem: execution logic lived on the compiler's tree
 
@@ -338,6 +345,50 @@ connection; only the dispatch differs. The repo's own rule for it is one
 sentence: "Differences between the tree-walker and Truffle are Truffle
 bugs."
 
+The reason a solo maintainer can own a JIT backend at all is what the
+code looks like. Take the same `if` expression from earlier. Emitting
+JVM bytecode for it, the classic way to make a JVM language fast, means
+writing something in this register:
+
+```java
+// the path not taken: hand-emitting bytecode
+Label elseBranch = new Label(), end = new Label();
+compile(cond, mv);                       // leaves a boolean on the stack
+mv.visitJumpInsn(IFEQ, elseBranch);
+compile(trueExpr, mv);
+mv.visitJumpInsn(GOTO, end);
+mv.visitLabel(elseBranch);
+mv.visitFrame(F_SAME, 0, null, 0, null); // stack map, or the verifier rejects it
+compile(falseExpr, mv);
+mv.visitLabel(end);
+mv.visitFrame(F_SAME, 0, null, 0, null);
+```
+
+You are now maintaining stack maps, local-variable slots and verifier
+rules, and a mistake surfaces as a `VerifyError` at class-load time
+rather than a wrong answer you can debug. The Truffle version of the
+same node, trimmed from the repo, is the interpreter you would have
+written anyway:
+
+```kotlin
+internal class Generic(
+    @field:Child private var cond: Tf_ExprNode,
+    @field:Child private var trueBranch: Tf_ExprNode,
+    @field:Child private var falseBranch: Tf_ExprNode,
+): Tf_IfExprNode() {
+    override fun execute(frame: VirtualFrame): Rt_Value =
+        if (cond.executeBoolean(frame)) trueBranch.execute(frame)
+        else falseBranch.execute(frame)
+}
+```
+
+The `@Child` annotations and the `VirtualFrame` are the whole contract:
+they tell Graal the tree shape is stable, so partial evaluation can
+compile this method against *one* program's nodes and constant-fold the
+dispatch away. What is left reads like the tree-walker. That is the
+deal Truffle offers: interpreter-shaped source, compiled-language
+speed, and the machinery that gets you there is not yours to maintain.
+
 How much it buys depends on the workload shape, and the honest way to
 show that is the
 [per-commit benchmark report from CI](https://chromaway.gitlab.io/-/rell/-/jobs/15761948926/artifacts/public/report.html)
@@ -353,28 +404,27 @@ summary, all values average ms per operation, lower is better:
 | decimal-heavy numeric code | — | ×1.1–1.2 faster | ≥60% of time is JDK BigDecimal: no dispatch to win |
 | Advent-of-Code corpus (14 samples) | median ×39 slower than Kotlin | median ×28 slower than Kotlin | 2 of 14 samples: tree-walker beats Truffle |
 
-The pattern is the classic one. Where the tree-walker's dispatch overhead
-dominates, partial evaluation (Truffle compiling the interpreter
-specialized to one program) removes it, and Truffle lands within ×2 of
-hand-written Kotlin. Where the JDK's `BigDecimal` (Java's
-arbitrary-precision decimal type) dominates, there is nothing for a JIT
-of *my* language to win. The fix there was different: decimal fast-path
-leaves that keep values in `long` when they fit, which the report
-credits on a simplex-noise benchmark. And on two small samples the
-tree-walker still wins outright. Benchmarks that only bragged would not
-have told me any of that.
+The pattern is the classic one. Where the tree-walker's dispatch
+overhead dominates, partial evaluation removes it, and Truffle lands
+within ×2 of hand-written Kotlin. Where the JDK's `BigDecimal` (Java's
+arbitrary-precision decimal type) dominates, the dispatch was never the
+cost, and specializing it wins nothing. The fix there was different:
+decimal fast-path leaves that keep values in `long` when they fit, which
+the report credits on a simplex-noise benchmark. And on two small
+samples the tree-walker still wins outright. Benchmarks that only
+bragged would not have told me any of that.
 
-## Optimizing without being a Graal specialist
+## Optimizing against a compiler you did not write
 
-I am not a Truffle expert. My understanding of Graal is at the level of
-conference talks: I know what partial evaluation does and why, not the
-compiler's internals. The optimization loop that worked anyway: run the
-benchmark suites with async-profiler attached, and feed both — the
-numbers and the profiles of the benchmarks themselves — to the agent,
-asking for ideas ranked by return. One such prompt, verbatim: "Analyze profiling data and tell only the most profitable
-Rell-sided directions to make nodes faster. Judge by return, not by
-engineering effort." The agent proposes; the ranking and the risk policy
-are mine.
+Graal's internals are not the interesting part here, and you do not need
+them: what a backend author works with is partial evaluation as a
+contract, plus a profiler. The loop was to run the benchmark suites with
+async-profiler attached, and feed both, the numbers and the profiles of
+the benchmarks themselves, to the agent, asking for ideas ranked by
+return. One such prompt, verbatim: "Analyze profiling data and tell only
+the most profitable Rell-sided directions to make nodes faster. Judge by
+return, not by engineering effort." The agent proposes; the ranking and
+the risk policy are mine.
 
 The policy was tiered. First I greenlit changes that improve the code
 whether or not they help performance. The main example is removing

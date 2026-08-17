@@ -398,15 +398,18 @@ object, so a loop that adds integers allocates on every iteration. That
 is what `executeBoolean` above avoids: the typed path returns a raw
 boolean instead of wrapping it.
 
-The `@Child` annotations and the `VirtualFrame` are the whole contract:
-they tell Graal the tree shape is stable, so partial evaluation can
-compile this method against *one* program's nodes and constant-fold the
-dispatch away. This is the first Futamura projection, done for real and
-in production: specialize an interpreter to a fixed program and what
-falls out is a compiler for it. What is left reads like the tree-walker.
-That is the deal Truffle offers: interpreter-shaped source,
-compiled-language speed, and the machinery that gets you there is not
-yours to maintain.
+The
+[`@Child`](https://www.graalvm.org/truffle/javadoc/com/oracle/truffle/api/nodes/Node.Child.html)
+annotations and the
+[`VirtualFrame`](https://www.graalvm.org/truffle/javadoc/com/oracle/truffle/api/frame/VirtualFrame.html)
+are the whole contract: they tell Graal the tree shape is stable, so
+partial evaluation can compile this method against *one* program's nodes
+and constant-fold the dispatch away. This is the first Futamura
+projection, done for real and in production: specialize an interpreter
+to a fixed program and what falls out is a compiler for it. What is left
+reads like the tree-walker. That is the deal Truffle offers:
+interpreter-shaped source, compiled-language speed, and the machinery
+that gets you there is not yours to maintain.
 
 How much it buys depends on the workload shape, and the honest way to
 show that is the [per-commit benchmark report from

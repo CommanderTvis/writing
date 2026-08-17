@@ -541,7 +541,8 @@ the truth.
 
 ---
 
-*Everything referenced is public:
+*This is a personal account, not a Chromia publication: opinions,
+framing and any errors are mine. Everything referenced is public:
 [rell](https://github.com/chromiaproject/rell) (the architecture doc and
 the serialization security analysis are in the repo), and the
 [playground](https://chromiaproject.github.io/rell-playground/), which

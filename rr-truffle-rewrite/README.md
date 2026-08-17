@@ -432,14 +432,18 @@ A summary, all values average ms per operation, lower is better:
 
 The pattern is the classic one. Where the tree-walker's dispatch
 overhead dominates, partial evaluation removes it: on the compute-bound
-suite, Truffle cuts 763.6ms to 23.2ms, a 33x drop. The 1.8x that remains
-against hand-written Kotlin is the number worth reading, because of what
-it is measured against. Kotlin here is optimized JVM bytecode, which is
-the output a run-time bytecode generator would be trying to match, so
-that path sets the ceiling at 1x. Truffle comes within a factor of two
-of the ceiling while the source stays an interpreter: interpretation
-overhead went from 33x to under 2x, and the labels, stack maps and
-verifier rules from earlier never got written. Where the JDK's
+suite, Truffle cuts 763.6ms to 23.2ms, a 33x drop.
+
+**The 1.8x that remains against hand-written Kotlin is the number worth
+reading, because of what it is measured against. Kotlin here is
+optimized JVM bytecode, which is the output a run-time bytecode
+generator would be trying to match, so that path sets the ceiling at 1x.
+Truffle comes within a factor of two of the ceiling while the source
+stays an interpreter: interpretation overhead went from 33x to under 2x,
+and the labels, stack maps and verifier rules from earlier never got
+written.**
+
+Where the JDK's
 [`BigDecimal`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/math/BigDecimal.html)
 (Java's arbitrary-precision decimal type) dominates, the dispatch was
 never the cost, and specializing it wins nothing. The fix there was

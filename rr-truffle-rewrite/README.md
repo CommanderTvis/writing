@@ -26,7 +26,7 @@ dry-run pane:
 ```rell
 entity user {
     key name: text;
-    mutable age: integer;
+    mutable age: integer; 
 }
 
 entity post {
@@ -60,26 +60,32 @@ select A01."name", COALESCE(SUM(?),0) from "c0.post" A00
 ```
 
 Note what the second one did: `.author.name` walked an entity reference,
-and the join fell out of the compiler. I have maintained Rell solo since
-February 2026; real blockchain networks run on every release. Rell is a
-niche language, with a smaller blast radius than Rust or Kotlin, and
-much simpler than either. I would still have budgeted most of a year for
-this project by hand: untangling the old trees node by node, rewriting
-the interpreter, keeping both worlds running mid-migration.
+and the join fell out of the compiler.
 
-Two trades place Rell, and both are deliberate. The fastest chains
-compute orders of magnitude faster than Chromia, and give the
-application no database: no indexing of its own transactions, no
-relational queries, so that work moves off-chain and gets paid for
-twice. Rell buys the database and pays in throughput. The same trade
-runs through language implementations. LLVM spends a lot of compile time
-and emits fast code, which is the deal Julia takes: the first call to a
-function pays for compiling it, and the code that comes out runs at C
-speed. CPython spends none and executes slowly. The JVM, V8 and .NET sit
-in between, compiling as they go. A tree-walking interpreter, which is
-what Rell had, sits at the CPython end: it starts instantly and then
-runs about as slowly as you would expect from walking a tree per
-operation.
+**This is the part of Rell with no counterpart on other chains. A
+contract on Ethereum, Solana or the Move chains gets key-value storage,
+and anything resembling a query is somebody else's off-chain problem.
+Rell's state is a relational database, and querying it is language
+syntax: type-checked against the schema at compile time, compiled to
+SQL, executed inside the consensus boundary.**
+
+I have maintained Rell solo since February 2026; real blockchain
+networks run on every release. Rell is a niche language, with a smaller
+blast radius than Rust or Kotlin, and much simpler than either. I would
+still have budgeted most of a year for this project by hand: untangling
+the old trees node by node, rewriting the interpreter, keeping both
+worlds running mid-migration.
+
+That database is bought, not free: the fastest chains compute orders of
+magnitude faster than Chromia, and Rell pays for its query layer in
+throughput. The same kind of trade runs through language
+implementations. LLVM spends a lot of compile time and emits fast code,
+which is the deal Julia takes: the first call to a function pays for
+compiling it, and the code that comes out runs at C speed. CPython
+spends none and executes slowly. The JVM, V8 and .NET sit in between,
+compiling as they go. A tree-walking interpreter, which is what Rell
+had, sits at the CPython end: it starts instantly and then runs about as
+slowly as you would expect from walking a tree per operation.
 
 That is the gap Truffle closes, and it is why the second backend was
 worth a rewrite. Truffle is a framework on GraalVM (an extended Java VM)
@@ -411,8 +417,17 @@ reads like the tree-walker. That is the deal Truffle offers:
 interpreter-shaped source, compiled-language speed, and the machinery
 that gets you there is not yours to maintain.
 
-How much it buys depends on the workload shape, and the honest way to
-show that is the [per-commit benchmark report from
+What gets faster is running a Rell program, not compiling one: same
+compiler, same output, a different backend consuming it. How much faster
+depends on how much of the program's time went into walking the tree in
+the first place. Loops, recursion and branching are almost all dispatch,
+and that is what partial evaluation removes. Code that spends its time
+inside standard-library functions, or whose expression trees are
+shallow, has little dispatch to remove and barely moves. The baseline
+throughout is hand-written Kotlin: the speed of code compiled for the
+JVM directly.
+
+The honest way to show the spread is the [per-commit benchmark report from
 CI](https://chromaway.gitlab.io/-/rell/-/jobs/15761948926/artifacts/public/report.html)
 (run with JMH, the standard JVM benchmark harness, on GraalVM 21; 73
 benchmarks across 7 suites; a public CI artifact, not my laptop; that
@@ -422,15 +437,15 @@ The harness matters because JVM code starts out interpreted and is
 compiled only after the JIT has watched it run, so the first iterations
 of anything measure the wrong thing; JMH warms each benchmark up and
 reports the steady state.
-A summary, all values average ms per operation, lower is better:
+A summary, as Truffle against the tree-walker on the same workload:
 
-| workload shape | tree-walker | Truffle | note |
-|---|---|---|---|
-| compute-bound loop (primes, Collatz, Fibonacci) | 763.6 | 23.2 | hand-written Kotlin: 12.9 |
-| real library code (FT4, a Rell asset library) | — | ×1.3–1.6 faster | serialization, rule evaluation |
-| struct/DTO mapping | — | ×2.4–4.5 faster | |
-| decimal-heavy numeric code | — | ×1.1–1.2 faster | ≥60% of time is JDK BigDecimal: no dispatch to win |
-| Advent-of-Code corpus (14 samples) | median ×39 slower than Kotlin | median ×28 slower than Kotlin | 2 of 14 samples: tree-walker beats Truffle |
+| workload shape | Truffle vs tree-walker | detail |
+|---|---|---|
+| compute-bound loop (primes, Collatz, Fibonacci) | ×33 faster | 763.6ms to 23.2ms per op; hand-written Kotlin 12.9ms |
+| struct/DTO mapping | ×2.4–4.5 faster | |
+| real library code (FT4, a Rell asset library) | ×1.3–1.6 faster | serialization, rule evaluation |
+| Advent-of-Code corpus (14 samples) | ×1.4 faster at the median | ×39 to ×28 slower than Kotlin; on 2 of 14 the tree-walker wins |
+| decimal-heavy numeric code | ×1.1–1.2 faster | ≥60% of time is JDK BigDecimal: no dispatch to win |
 
 The pattern is the classic one. Where the tree-walker's dispatch
 overhead dominates, partial evaluation removes it: on the compute-bound
@@ -442,8 +457,7 @@ optimized JVM bytecode, which is the output a run-time bytecode
 generator would be trying to match, so that path sets the ceiling at 1x.
 Truffle comes within a factor of two of the ceiling while the source
 stays an interpreter: interpretation overhead went from 33x to under 2x,
-and the labels, stack maps and verifier rules from earlier never got
-written.**
+and no bytecode was emitted.**
 
 Where the JDK's
 [`BigDecimal`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/math/BigDecimal.html)

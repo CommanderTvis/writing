@@ -346,10 +346,10 @@ tested ahead of that decision, which is the right order to build them in.
 The Truffle backend ships behind an opt-in runtime flag and is loaded by
 class name at run time, so it sits in the distribution without being
 wired in: full test parity, deliberately not the default. It is a peer
-backend in the strict sense: same runtime values, same standard library, same database
-connection; only the dispatch differs. The repo's own rule for it is one
-sentence: "Differences between the tree-walker and Truffle are Truffle
-bugs."
+backend in the strict sense: same runtime values, same standard library,
+same database connection; only the dispatch differs. The repo's own rule
+for it is one sentence: "Differences between the tree-walker and Truffle
+are Truffle bugs; the tree-walker is the canonical reference."
 
 The reason a solo maintainer can own a JIT backend at all is what the
 code looks like. Take the same `if` expression from earlier. Emitting
@@ -415,7 +415,9 @@ How much it buys depends on the workload shape, and the honest way to
 show that is the [per-commit benchmark report from
 CI](https://chromaway.gitlab.io/-/rell/-/jobs/15761948926/artifacts/public/report.html)
 (run with JMH, the standard JVM benchmark harness, on GraalVM 21; 73
-benchmarks across 7 suites; a public CI artifact, not my laptop).
+benchmarks across 7 suites; a public CI artifact, not my laptop; that
+job artifact expires 30 days after the run, so a copy is [mirrored
+here](report.html)).
 The harness matters because JVM code starts out interpreted and is
 compiled only after the JIT has watched it run, so the first iterations
 of anything measure the wrong thing; JMH warms each benchmark up and

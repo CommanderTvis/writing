@@ -11,8 +11,9 @@ support, serialization — that the original trees were never designed to
 carry. For big languages, this rewrite is a multi-year, multi-team effort.
 
 This spring I did that rewrite for
-[Rell](https://gitlab.com/chromaway/rell), the smart-contract language
-of the Chromia blockchain, in five weeks, directing AI agents. This post
+[Rell](https://gitlab.com/chromaway/rell), Chromia's language for
+building decentralized applications (dapps), in five weeks, directing
+AI agents. This post
 is about the decision that shaped it, which was mine to make and mine to
 live with, and about the part I would not have attempted without them.
 

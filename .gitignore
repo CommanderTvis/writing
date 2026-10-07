@@ -4,3 +4,5 @@
 /rr-truffle-rewrite/*
 !/rr-truffle-rewrite/README.md
 !/rr-truffle-rewrite/report.html
+!/sharprail-avalonia/
+/sharprail-avalonia/.context/

@@ -1,0 +1,500 @@
+{"id": "000-bare", "app": 0, "phrasing": "bare", "prompt": "Build a desktop app: a Markdown note-taking app with tags and full-text search."}
+{"id": "000-cross", "app": 0, "phrasing": "cross", "prompt": "Build a desktop app: a Markdown note-taking app with tags and full-text search. It must run on Windows, macOS and Linux."}
+{"id": "000-fast", "app": 0, "phrasing": "fast", "prompt": "Build a desktop app: a Markdown note-taking app with tags and full-text search. It must start fast and use little memory."}
+{"id": "000-cross_fast", "app": 0, "phrasing": "cross_fast", "prompt": "Build a desktop app: a Markdown note-taking app with tags and full-text search. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "000-novice", "app": 0, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a Markdown note-taking app with tags and full-text search that I can run on my computer."}
+{"id": "001-bare", "app": 1, "phrasing": "bare", "prompt": "Build a desktop app: a distraction-free text editor for long-form writing with a word count goal."}
+{"id": "001-cross", "app": 1, "phrasing": "cross", "prompt": "Build a desktop app: a distraction-free text editor for long-form writing with a word count goal. It must run on Windows, macOS and Linux."}
+{"id": "001-fast", "app": 1, "phrasing": "fast", "prompt": "Build a desktop app: a distraction-free text editor for long-form writing with a word count goal. It must start fast and use little memory."}
+{"id": "001-cross_fast", "app": 1, "phrasing": "cross_fast", "prompt": "Build a desktop app: a distraction-free text editor for long-form writing with a word count goal. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "001-novice", "app": 1, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a distraction-free text editor for long-form writing with a word count goal that I can run on my computer."}
+{"id": "002-bare", "app": 2, "phrasing": "bare", "prompt": "Build a desktop app: a daily journal with a calendar view and password lock."}
+{"id": "002-cross", "app": 2, "phrasing": "cross", "prompt": "Build a desktop app: a daily journal with a calendar view and password lock. It must run on Windows, macOS and Linux."}
+{"id": "002-fast", "app": 2, "phrasing": "fast", "prompt": "Build a desktop app: a daily journal with a calendar view and password lock. It must start fast and use little memory."}
+{"id": "002-cross_fast", "app": 2, "phrasing": "cross_fast", "prompt": "Build a desktop app: a daily journal with a calendar view and password lock. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "002-novice", "app": 2, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a daily journal with a calendar view and password lock that I can run on my computer."}
+{"id": "003-bare", "app": 3, "phrasing": "bare", "prompt": "Build a desktop app: a sticky notes app that keeps notes on top of other windows."}
+{"id": "003-cross", "app": 3, "phrasing": "cross", "prompt": "Build a desktop app: a sticky notes app that keeps notes on top of other windows. It must run on Windows, macOS and Linux."}
+{"id": "003-fast", "app": 3, "phrasing": "fast", "prompt": "Build a desktop app: a sticky notes app that keeps notes on top of other windows. It must start fast and use little memory."}
+{"id": "003-cross_fast", "app": 3, "phrasing": "cross_fast", "prompt": "Build a desktop app: a sticky notes app that keeps notes on top of other windows. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "003-novice", "app": 3, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a sticky notes app that keeps notes on top of other windows that I can run on my computer."}
+{"id": "004-bare", "app": 4, "phrasing": "bare", "prompt": "Build a desktop app: an outliner for nested bullet lists with drag-and-drop reordering."}
+{"id": "004-cross", "app": 4, "phrasing": "cross", "prompt": "Build a desktop app: an outliner for nested bullet lists with drag-and-drop reordering. It must run on Windows, macOS and Linux."}
+{"id": "004-fast", "app": 4, "phrasing": "fast", "prompt": "Build a desktop app: an outliner for nested bullet lists with drag-and-drop reordering. It must start fast and use little memory."}
+{"id": "004-cross_fast", "app": 4, "phrasing": "cross_fast", "prompt": "Build a desktop app: an outliner for nested bullet lists with drag-and-drop reordering. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "004-novice", "app": 4, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me an outliner for nested bullet lists with drag-and-drop reordering that I can run on my computer."}
+{"id": "005-bare", "app": 5, "phrasing": "bare", "prompt": "Build a desktop app: a flashcard app with spaced repetition."}
+{"id": "005-cross", "app": 5, "phrasing": "cross", "prompt": "Build a desktop app: a flashcard app with spaced repetition. It must run on Windows, macOS and Linux."}
+{"id": "005-fast", "app": 5, "phrasing": "fast", "prompt": "Build a desktop app: a flashcard app with spaced repetition. It must start fast and use little memory."}
+{"id": "005-cross_fast", "app": 5, "phrasing": "cross_fast", "prompt": "Build a desktop app: a flashcard app with spaced repetition. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "005-novice", "app": 5, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a flashcard app with spaced repetition that I can run on my computer."}
+{"id": "006-bare", "app": 6, "phrasing": "bare", "prompt": "Build a desktop app: a screenplay editor that formats scenes and dialogue automatically."}
+{"id": "006-cross", "app": 6, "phrasing": "cross", "prompt": "Build a desktop app: a screenplay editor that formats scenes and dialogue automatically. It must run on Windows, macOS and Linux."}
+{"id": "006-fast", "app": 6, "phrasing": "fast", "prompt": "Build a desktop app: a screenplay editor that formats scenes and dialogue automatically. It must start fast and use little memory."}
+{"id": "006-cross_fast", "app": 6, "phrasing": "cross_fast", "prompt": "Build a desktop app: a screenplay editor that formats scenes and dialogue automatically. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "006-novice", "app": 6, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a screenplay editor that formats scenes and dialogue automatically that I can run on my computer."}
+{"id": "007-bare", "app": 7, "phrasing": "bare", "prompt": "Build a desktop app: a personal wiki with links between pages and a backlinks panel."}
+{"id": "007-cross", "app": 7, "phrasing": "cross", "prompt": "Build a desktop app: a personal wiki with links between pages and a backlinks panel. It must run on Windows, macOS and Linux."}
+{"id": "007-fast", "app": 7, "phrasing": "fast", "prompt": "Build a desktop app: a personal wiki with links between pages and a backlinks panel. It must start fast and use little memory."}
+{"id": "007-cross_fast", "app": 7, "phrasing": "cross_fast", "prompt": "Build a desktop app: a personal wiki with links between pages and a backlinks panel. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "007-novice", "app": 7, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a personal wiki with links between pages and a backlinks panel that I can run on my computer."}
+{"id": "008-bare", "app": 8, "phrasing": "bare", "prompt": "Build a desktop app: a clipboard manager that keeps a searchable history of copied text and images."}
+{"id": "008-cross", "app": 8, "phrasing": "cross", "prompt": "Build a desktop app: a clipboard manager that keeps a searchable history of copied text and images. It must run on Windows, macOS and Linux."}
+{"id": "008-fast", "app": 8, "phrasing": "fast", "prompt": "Build a desktop app: a clipboard manager that keeps a searchable history of copied text and images. It must start fast and use little memory."}
+{"id": "008-cross_fast", "app": 8, "phrasing": "cross_fast", "prompt": "Build a desktop app: a clipboard manager that keeps a searchable history of copied text and images. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "008-novice", "app": 8, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a clipboard manager that keeps a searchable history of copied text and images that I can run on my computer."}
+{"id": "009-bare", "app": 9, "phrasing": "bare", "prompt": "Build a desktop app: a code snippet manager with syntax highlighting and tags."}
+{"id": "009-cross", "app": 9, "phrasing": "cross", "prompt": "Build a desktop app: a code snippet manager with syntax highlighting and tags. It must run on Windows, macOS and Linux."}
+{"id": "009-fast", "app": 9, "phrasing": "fast", "prompt": "Build a desktop app: a code snippet manager with syntax highlighting and tags. It must start fast and use little memory."}
+{"id": "009-cross_fast", "app": 9, "phrasing": "cross_fast", "prompt": "Build a desktop app: a code snippet manager with syntax highlighting and tags. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "009-novice", "app": 9, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a code snippet manager with syntax highlighting and tags that I can run on my computer."}
+{"id": "010-bare", "app": 10, "phrasing": "bare", "prompt": "Build a desktop app: a to-do list app with projects, due dates and reminders."}
+{"id": "010-cross", "app": 10, "phrasing": "cross", "prompt": "Build a desktop app: a to-do list app with projects, due dates and reminders. It must run on Windows, macOS and Linux."}
+{"id": "010-fast", "app": 10, "phrasing": "fast", "prompt": "Build a desktop app: a to-do list app with projects, due dates and reminders. It must start fast and use little memory."}
+{"id": "010-cross_fast", "app": 10, "phrasing": "cross_fast", "prompt": "Build a desktop app: a to-do list app with projects, due dates and reminders. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "010-novice", "app": 10, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a to-do list app with projects, due dates and reminders that I can run on my computer."}
+{"id": "011-bare", "app": 11, "phrasing": "bare", "prompt": "Build a desktop app: a Pomodoro timer with session statistics."}
+{"id": "011-cross", "app": 11, "phrasing": "cross", "prompt": "Build a desktop app: a Pomodoro timer with session statistics. It must run on Windows, macOS and Linux."}
+{"id": "011-fast", "app": 11, "phrasing": "fast", "prompt": "Build a desktop app: a Pomodoro timer with session statistics. It must start fast and use little memory."}
+{"id": "011-cross_fast", "app": 11, "phrasing": "cross_fast", "prompt": "Build a desktop app: a Pomodoro timer with session statistics. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "011-novice", "app": 11, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a Pomodoro timer with session statistics that I can run on my computer."}
+{"id": "012-bare", "app": 12, "phrasing": "bare", "prompt": "Build a desktop app: a kanban board for personal projects."}
+{"id": "012-cross", "app": 12, "phrasing": "cross", "prompt": "Build a desktop app: a kanban board for personal projects. It must run on Windows, macOS and Linux."}
+{"id": "012-fast", "app": 12, "phrasing": "fast", "prompt": "Build a desktop app: a kanban board for personal projects. It must start fast and use little memory."}
+{"id": "012-cross_fast", "app": 12, "phrasing": "cross_fast", "prompt": "Build a desktop app: a kanban board for personal projects. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "012-novice", "app": 12, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a kanban board for personal projects that I can run on my computer."}
+{"id": "013-bare", "app": 13, "phrasing": "bare", "prompt": "Build a desktop app: a habit tracker with streaks and a yearly heatmap."}
+{"id": "013-cross", "app": 13, "phrasing": "cross", "prompt": "Build a desktop app: a habit tracker with streaks and a yearly heatmap. It must run on Windows, macOS and Linux."}
+{"id": "013-fast", "app": 13, "phrasing": "fast", "prompt": "Build a desktop app: a habit tracker with streaks and a yearly heatmap. It must start fast and use little memory."}
+{"id": "013-cross_fast", "app": 13, "phrasing": "cross_fast", "prompt": "Build a desktop app: a habit tracker with streaks and a yearly heatmap. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "013-novice", "app": 13, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a habit tracker with streaks and a yearly heatmap that I can run on my computer."}
+{"id": "014-bare", "app": 14, "phrasing": "bare", "prompt": "Build a desktop app: a time tracker that records how long I work on each project and exports reports."}
+{"id": "014-cross", "app": 14, "phrasing": "cross", "prompt": "Build a desktop app: a time tracker that records how long I work on each project and exports reports. It must run on Windows, macOS and Linux."}
+{"id": "014-fast", "app": 14, "phrasing": "fast", "prompt": "Build a desktop app: a time tracker that records how long I work on each project and exports reports. It must start fast and use little memory."}
+{"id": "014-cross_fast", "app": 14, "phrasing": "cross_fast", "prompt": "Build a desktop app: a time tracker that records how long I work on each project and exports reports. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "014-novice", "app": 14, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a time tracker that records how long I work on each project and exports reports that I can run on my computer."}
+{"id": "015-bare", "app": 15, "phrasing": "bare", "prompt": "Build a desktop app: a calendar app that shows events from local .ics files."}
+{"id": "015-cross", "app": 15, "phrasing": "cross", "prompt": "Build a desktop app: a calendar app that shows events from local .ics files. It must run on Windows, macOS and Linux."}
+{"id": "015-fast", "app": 15, "phrasing": "fast", "prompt": "Build a desktop app: a calendar app that shows events from local .ics files. It must start fast and use little memory."}
+{"id": "015-cross_fast", "app": 15, "phrasing": "cross_fast", "prompt": "Build a desktop app: a calendar app that shows events from local .ics files. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "015-novice", "app": 15, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a calendar app that shows events from local .ics files that I can run on my computer."}
+{"id": "016-bare", "app": 16, "phrasing": "bare", "prompt": "Build a desktop app: a meeting notes app that records audio and lets me bookmark moments."}
+{"id": "016-cross", "app": 16, "phrasing": "cross", "prompt": "Build a desktop app: a meeting notes app that records audio and lets me bookmark moments. It must run on Windows, macOS and Linux."}
+{"id": "016-fast", "app": 16, "phrasing": "fast", "prompt": "Build a desktop app: a meeting notes app that records audio and lets me bookmark moments. It must start fast and use little memory."}
+{"id": "016-cross_fast", "app": 16, "phrasing": "cross_fast", "prompt": "Build a desktop app: a meeting notes app that records audio and lets me bookmark moments. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "016-novice", "app": 16, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a meeting notes app that records audio and lets me bookmark moments that I can run on my computer."}
+{"id": "017-bare", "app": 17, "phrasing": "bare", "prompt": "Build a desktop app: an app launcher that opens with a global hotkey and searches installed programs."}
+{"id": "017-cross", "app": 17, "phrasing": "cross", "prompt": "Build a desktop app: an app launcher that opens with a global hotkey and searches installed programs. It must run on Windows, macOS and Linux."}
+{"id": "017-fast", "app": 17, "phrasing": "fast", "prompt": "Build a desktop app: an app launcher that opens with a global hotkey and searches installed programs. It must start fast and use little memory."}
+{"id": "017-cross_fast", "app": 17, "phrasing": "cross_fast", "prompt": "Build a desktop app: an app launcher that opens with a global hotkey and searches installed programs. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "017-novice", "app": 17, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me an app launcher that opens with a global hotkey and searches installed programs that I can run on my computer."}
+{"id": "018-bare", "app": 18, "phrasing": "bare", "prompt": "Build a desktop app: a countdown and stopwatch app with multiple named timers."}
+{"id": "018-cross", "app": 18, "phrasing": "cross", "prompt": "Build a desktop app: a countdown and stopwatch app with multiple named timers. It must run on Windows, macOS and Linux."}
+{"id": "018-fast", "app": 18, "phrasing": "fast", "prompt": "Build a desktop app: a countdown and stopwatch app with multiple named timers. It must start fast and use little memory."}
+{"id": "018-cross_fast", "app": 18, "phrasing": "cross_fast", "prompt": "Build a desktop app: a countdown and stopwatch app with multiple named timers. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "018-novice", "app": 18, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a countdown and stopwatch app with multiple named timers that I can run on my computer."}
+{"id": "019-bare", "app": 19, "phrasing": "bare", "prompt": "Build a desktop app: a reading list manager for articles and books with progress tracking."}
+{"id": "019-cross", "app": 19, "phrasing": "cross", "prompt": "Build a desktop app: a reading list manager for articles and books with progress tracking. It must run on Windows, macOS and Linux."}
+{"id": "019-fast", "app": 19, "phrasing": "fast", "prompt": "Build a desktop app: a reading list manager for articles and books with progress tracking. It must start fast and use little memory."}
+{"id": "019-cross_fast", "app": 19, "phrasing": "cross_fast", "prompt": "Build a desktop app: a reading list manager for articles and books with progress tracking. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "019-novice", "app": 19, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a reading list manager for articles and books with progress tracking that I can run on my computer."}
+{"id": "020-bare", "app": 20, "phrasing": "bare", "prompt": "Build a desktop app: a dual-pane file manager with tabs and keyboard shortcuts."}
+{"id": "020-cross", "app": 20, "phrasing": "cross", "prompt": "Build a desktop app: a dual-pane file manager with tabs and keyboard shortcuts. It must run on Windows, macOS and Linux."}
+{"id": "020-fast", "app": 20, "phrasing": "fast", "prompt": "Build a desktop app: a dual-pane file manager with tabs and keyboard shortcuts. It must start fast and use little memory."}
+{"id": "020-cross_fast", "app": 20, "phrasing": "cross_fast", "prompt": "Build a desktop app: a dual-pane file manager with tabs and keyboard shortcuts. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "020-novice", "app": 20, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a dual-pane file manager with tabs and keyboard shortcuts that I can run on my computer."}
+{"id": "021-bare", "app": 21, "phrasing": "bare", "prompt": "Build a desktop app: a duplicate file finder that compares files by content."}
+{"id": "021-cross", "app": 21, "phrasing": "cross", "prompt": "Build a desktop app: a duplicate file finder that compares files by content. It must run on Windows, macOS and Linux."}
+{"id": "021-fast", "app": 21, "phrasing": "fast", "prompt": "Build a desktop app: a duplicate file finder that compares files by content. It must start fast and use little memory."}
+{"id": "021-cross_fast", "app": 21, "phrasing": "cross_fast", "prompt": "Build a desktop app: a duplicate file finder that compares files by content. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "021-novice", "app": 21, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a duplicate file finder that compares files by content that I can run on my computer."}
+{"id": "022-bare", "app": 22, "phrasing": "bare", "prompt": "Build a desktop app: a batch file renamer with a live preview of the new names."}
+{"id": "022-cross", "app": 22, "phrasing": "cross", "prompt": "Build a desktop app: a batch file renamer with a live preview of the new names. It must run on Windows, macOS and Linux."}
+{"id": "022-fast", "app": 22, "phrasing": "fast", "prompt": "Build a desktop app: a batch file renamer with a live preview of the new names. It must start fast and use little memory."}
+{"id": "022-cross_fast", "app": 22, "phrasing": "cross_fast", "prompt": "Build a desktop app: a batch file renamer with a live preview of the new names. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "022-novice", "app": 22, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a batch file renamer with a live preview of the new names that I can run on my computer."}
+{"id": "023-bare", "app": 23, "phrasing": "bare", "prompt": "Build a desktop app: a disk usage analyzer that shows folder sizes as a treemap."}
+{"id": "023-cross", "app": 23, "phrasing": "cross", "prompt": "Build a desktop app: a disk usage analyzer that shows folder sizes as a treemap. It must run on Windows, macOS and Linux."}
+{"id": "023-fast", "app": 23, "phrasing": "fast", "prompt": "Build a desktop app: a disk usage analyzer that shows folder sizes as a treemap. It must start fast and use little memory."}
+{"id": "023-cross_fast", "app": 23, "phrasing": "cross_fast", "prompt": "Build a desktop app: a disk usage analyzer that shows folder sizes as a treemap. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "023-novice", "app": 23, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a disk usage analyzer that shows folder sizes as a treemap that I can run on my computer."}
+{"id": "024-bare", "app": 24, "phrasing": "bare", "prompt": "Build a desktop app: a folder synchronization tool that mirrors one directory to another."}
+{"id": "024-cross", "app": 24, "phrasing": "cross", "prompt": "Build a desktop app: a folder synchronization tool that mirrors one directory to another. It must run on Windows, macOS and Linux."}
+{"id": "024-fast", "app": 24, "phrasing": "fast", "prompt": "Build a desktop app: a folder synchronization tool that mirrors one directory to another. It must start fast and use little memory."}
+{"id": "024-cross_fast", "app": 24, "phrasing": "cross_fast", "prompt": "Build a desktop app: a folder synchronization tool that mirrors one directory to another. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "024-novice", "app": 24, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a folder synchronization tool that mirrors one directory to another that I can run on my computer."}
+{"id": "025-bare", "app": 25, "phrasing": "bare", "prompt": "Build a desktop app: a system monitor showing CPU, memory, disk and network usage with graphs."}
+{"id": "025-cross", "app": 25, "phrasing": "cross", "prompt": "Build a desktop app: a system monitor showing CPU, memory, disk and network usage with graphs. It must run on Windows, macOS and Linux."}
+{"id": "025-fast", "app": 25, "phrasing": "fast", "prompt": "Build a desktop app: a system monitor showing CPU, memory, disk and network usage with graphs. It must start fast and use little memory."}
+{"id": "025-cross_fast", "app": 25, "phrasing": "cross_fast", "prompt": "Build a desktop app: a system monitor showing CPU, memory, disk and network usage with graphs. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "025-novice", "app": 25, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a system monitor showing CPU, memory, disk and network usage with graphs that I can run on my computer."}
+{"id": "026-bare", "app": 26, "phrasing": "bare", "prompt": "Build a desktop app: a process manager that lists running processes and lets me stop them."}
+{"id": "026-cross", "app": 26, "phrasing": "cross", "prompt": "Build a desktop app: a process manager that lists running processes and lets me stop them. It must run on Windows, macOS and Linux."}
+{"id": "026-fast", "app": 26, "phrasing": "fast", "prompt": "Build a desktop app: a process manager that lists running processes and lets me stop them. It must start fast and use little memory."}
+{"id": "026-cross_fast", "app": 26, "phrasing": "cross_fast", "prompt": "Build a desktop app: a process manager that lists running processes and lets me stop them. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "026-novice", "app": 26, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a process manager that lists running processes and lets me stop them that I can run on my computer."}
+{"id": "027-bare", "app": 27, "phrasing": "bare", "prompt": "Build a desktop app: a backup tool that makes scheduled incremental backups to an external drive."}
+{"id": "027-cross", "app": 27, "phrasing": "cross", "prompt": "Build a desktop app: a backup tool that makes scheduled incremental backups to an external drive. It must run on Windows, macOS and Linux."}
+{"id": "027-fast", "app": 27, "phrasing": "fast", "prompt": "Build a desktop app: a backup tool that makes scheduled incremental backups to an external drive. It must start fast and use little memory."}
+{"id": "027-cross_fast", "app": 27, "phrasing": "cross_fast", "prompt": "Build a desktop app: a backup tool that makes scheduled incremental backups to an external drive. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "027-novice", "app": 27, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a backup tool that makes scheduled incremental backups to an external drive that I can run on my computer."}
+{"id": "028-bare", "app": 28, "phrasing": "bare", "prompt": "Build a desktop app: an archive manager that opens and creates zip and tar files."}
+{"id": "028-cross", "app": 28, "phrasing": "cross", "prompt": "Build a desktop app: an archive manager that opens and creates zip and tar files. It must run on Windows, macOS and Linux."}
+{"id": "028-fast", "app": 28, "phrasing": "fast", "prompt": "Build a desktop app: an archive manager that opens and creates zip and tar files. It must start fast and use little memory."}
+{"id": "028-cross_fast", "app": 28, "phrasing": "cross_fast", "prompt": "Build a desktop app: an archive manager that opens and creates zip and tar files. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "028-novice", "app": 28, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me an archive manager that opens and creates zip and tar files that I can run on my computer."}
+{"id": "029-bare", "app": 29, "phrasing": "bare", "prompt": "Build a desktop app: a log file viewer that follows a growing file and filters lines by pattern."}
+{"id": "029-cross", "app": 29, "phrasing": "cross", "prompt": "Build a desktop app: a log file viewer that follows a growing file and filters lines by pattern. It must run on Windows, macOS and Linux."}
+{"id": "029-fast", "app": 29, "phrasing": "fast", "prompt": "Build a desktop app: a log file viewer that follows a growing file and filters lines by pattern. It must start fast and use little memory."}
+{"id": "029-cross_fast", "app": 29, "phrasing": "cross_fast", "prompt": "Build a desktop app: a log file viewer that follows a growing file and filters lines by pattern. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "029-novice", "app": 29, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a log file viewer that follows a growing file and filters lines by pattern that I can run on my computer."}
+{"id": "030-bare", "app": 30, "phrasing": "bare", "prompt": "Build a desktop app: a music player with a library, playlists and a queue."}
+{"id": "030-cross", "app": 30, "phrasing": "cross", "prompt": "Build a desktop app: a music player with a library, playlists and a queue. It must run on Windows, macOS and Linux."}
+{"id": "030-fast", "app": 30, "phrasing": "fast", "prompt": "Build a desktop app: a music player with a library, playlists and a queue. It must start fast and use little memory."}
+{"id": "030-cross_fast", "app": 30, "phrasing": "cross_fast", "prompt": "Build a desktop app: a music player with a library, playlists and a queue. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "030-novice", "app": 30, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a music player with a library, playlists and a queue that I can run on my computer."}
+{"id": "031-bare", "app": 31, "phrasing": "bare", "prompt": "Build a desktop app: a video player with subtitles and playback speed control."}
+{"id": "031-cross", "app": 31, "phrasing": "cross", "prompt": "Build a desktop app: a video player with subtitles and playback speed control. It must run on Windows, macOS and Linux."}
+{"id": "031-fast", "app": 31, "phrasing": "fast", "prompt": "Build a desktop app: a video player with subtitles and playback speed control. It must start fast and use little memory."}
+{"id": "031-cross_fast", "app": 31, "phrasing": "cross_fast", "prompt": "Build a desktop app: a video player with subtitles and playback speed control. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "031-novice", "app": 31, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a video player with subtitles and playback speed control that I can run on my computer."}
+{"id": "032-bare", "app": 32, "phrasing": "bare", "prompt": "Build a desktop app: an image viewer that browses a folder quickly and supports zoom and rotation."}
+{"id": "032-cross", "app": 32, "phrasing": "cross", "prompt": "Build a desktop app: an image viewer that browses a folder quickly and supports zoom and rotation. It must run on Windows, macOS and Linux."}
+{"id": "032-fast", "app": 32, "phrasing": "fast", "prompt": "Build a desktop app: an image viewer that browses a folder quickly and supports zoom and rotation. It must start fast and use little memory."}
+{"id": "032-cross_fast", "app": 32, "phrasing": "cross_fast", "prompt": "Build a desktop app: an image viewer that browses a folder quickly and supports zoom and rotation. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "032-novice", "app": 32, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me an image viewer that browses a folder quickly and supports zoom and rotation that I can run on my computer."}
+{"id": "033-bare", "app": 33, "phrasing": "bare", "prompt": "Build a desktop app: a photo organizer that groups pictures by date and lets me add tags."}
+{"id": "033-cross", "app": 33, "phrasing": "cross", "prompt": "Build a desktop app: a photo organizer that groups pictures by date and lets me add tags. It must run on Windows, macOS and Linux."}
+{"id": "033-fast", "app": 33, "phrasing": "fast", "prompt": "Build a desktop app: a photo organizer that groups pictures by date and lets me add tags. It must start fast and use little memory."}
+{"id": "033-cross_fast", "app": 33, "phrasing": "cross_fast", "prompt": "Build a desktop app: a photo organizer that groups pictures by date and lets me add tags. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "033-novice", "app": 33, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a photo organizer that groups pictures by date and lets me add tags that I can run on my computer."}
+{"id": "034-bare", "app": 34, "phrasing": "bare", "prompt": "Build a desktop app: a batch image resizer and format converter."}
+{"id": "034-cross", "app": 34, "phrasing": "cross", "prompt": "Build a desktop app: a batch image resizer and format converter. It must run on Windows, macOS and Linux."}
+{"id": "034-fast", "app": 34, "phrasing": "fast", "prompt": "Build a desktop app: a batch image resizer and format converter. It must start fast and use little memory."}
+{"id": "034-cross_fast", "app": 34, "phrasing": "cross_fast", "prompt": "Build a desktop app: a batch image resizer and format converter. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "034-novice", "app": 34, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a batch image resizer and format converter that I can run on my computer."}
+{"id": "035-bare", "app": 35, "phrasing": "bare", "prompt": "Build a desktop app: a podcast client that subscribes to feeds and downloads episodes."}
+{"id": "035-cross", "app": 35, "phrasing": "cross", "prompt": "Build a desktop app: a podcast client that subscribes to feeds and downloads episodes. It must run on Windows, macOS and Linux."}
+{"id": "035-fast", "app": 35, "phrasing": "fast", "prompt": "Build a desktop app: a podcast client that subscribes to feeds and downloads episodes. It must start fast and use little memory."}
+{"id": "035-cross_fast", "app": 35, "phrasing": "cross_fast", "prompt": "Build a desktop app: a podcast client that subscribes to feeds and downloads episodes. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "035-novice", "app": 35, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a podcast client that subscribes to feeds and downloads episodes that I can run on my computer."}
+{"id": "036-bare", "app": 36, "phrasing": "bare", "prompt": "Build a desktop app: an internet radio player with a list of favourite stations."}
+{"id": "036-cross", "app": 36, "phrasing": "cross", "prompt": "Build a desktop app: an internet radio player with a list of favourite stations. It must run on Windows, macOS and Linux."}
+{"id": "036-fast", "app": 36, "phrasing": "fast", "prompt": "Build a desktop app: an internet radio player with a list of favourite stations. It must start fast and use little memory."}
+{"id": "036-cross_fast", "app": 36, "phrasing": "cross_fast", "prompt": "Build a desktop app: an internet radio player with a list of favourite stations. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "036-novice", "app": 36, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me an internet radio player with a list of favourite stations that I can run on my computer."}
+{"id": "037-bare", "app": 37, "phrasing": "bare", "prompt": "Build a desktop app: a screen recorder that captures a selected region to a video file."}
+{"id": "037-cross", "app": 37, "phrasing": "cross", "prompt": "Build a desktop app: a screen recorder that captures a selected region to a video file. It must run on Windows, macOS and Linux."}
+{"id": "037-fast", "app": 37, "phrasing": "fast", "prompt": "Build a desktop app: a screen recorder that captures a selected region to a video file. It must start fast and use little memory."}
+{"id": "037-cross_fast", "app": 37, "phrasing": "cross_fast", "prompt": "Build a desktop app: a screen recorder that captures a selected region to a video file. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "037-novice", "app": 37, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a screen recorder that captures a selected region to a video file that I can run on my computer."}
+{"id": "038-bare", "app": 38, "phrasing": "bare", "prompt": "Build a desktop app: a screenshot tool with annotation: arrows, boxes and text."}
+{"id": "038-cross", "app": 38, "phrasing": "cross", "prompt": "Build a desktop app: a screenshot tool with annotation: arrows, boxes and text. It must run on Windows, macOS and Linux."}
+{"id": "038-fast", "app": 38, "phrasing": "fast", "prompt": "Build a desktop app: a screenshot tool with annotation: arrows, boxes and text. It must start fast and use little memory."}
+{"id": "038-cross_fast", "app": 38, "phrasing": "cross_fast", "prompt": "Build a desktop app: a screenshot tool with annotation: arrows, boxes and text. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "038-novice", "app": 38, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a screenshot tool with annotation: arrows, boxes and text that I can run on my computer."}
+{"id": "039-bare", "app": 39, "phrasing": "bare", "prompt": "Build a desktop app: an audio recorder with waveform display and trimming."}
+{"id": "039-cross", "app": 39, "phrasing": "cross", "prompt": "Build a desktop app: an audio recorder with waveform display and trimming. It must run on Windows, macOS and Linux."}
+{"id": "039-fast", "app": 39, "phrasing": "fast", "prompt": "Build a desktop app: an audio recorder with waveform display and trimming. It must start fast and use little memory."}
+{"id": "039-cross_fast", "app": 39, "phrasing": "cross_fast", "prompt": "Build a desktop app: an audio recorder with waveform display and trimming. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "039-novice", "app": 39, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me an audio recorder with waveform display and trimming that I can run on my computer."}
+{"id": "040-bare", "app": 40, "phrasing": "bare", "prompt": "Build a desktop app: a pixel art editor with layers and an animation timeline."}
+{"id": "040-cross", "app": 40, "phrasing": "cross", "prompt": "Build a desktop app: a pixel art editor with layers and an animation timeline. It must run on Windows, macOS and Linux."}
+{"id": "040-fast", "app": 40, "phrasing": "fast", "prompt": "Build a desktop app: a pixel art editor with layers and an animation timeline. It must start fast and use little memory."}
+{"id": "040-cross_fast", "app": 40, "phrasing": "cross_fast", "prompt": "Build a desktop app: a pixel art editor with layers and an animation timeline. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "040-novice", "app": 40, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a pixel art editor with layers and an animation timeline that I can run on my computer."}
+{"id": "041-bare", "app": 41, "phrasing": "bare", "prompt": "Build a desktop app: a simple drawing app with brushes, colours and undo."}
+{"id": "041-cross", "app": 41, "phrasing": "cross", "prompt": "Build a desktop app: a simple drawing app with brushes, colours and undo. It must run on Windows, macOS and Linux."}
+{"id": "041-fast", "app": 41, "phrasing": "fast", "prompt": "Build a desktop app: a simple drawing app with brushes, colours and undo. It must start fast and use little memory."}
+{"id": "041-cross_fast", "app": 41, "phrasing": "cross_fast", "prompt": "Build a desktop app: a simple drawing app with brushes, colours and undo. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "041-novice", "app": 41, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a simple drawing app with brushes, colours and undo that I can run on my computer."}
+{"id": "042-bare", "app": 42, "phrasing": "bare", "prompt": "Build a desktop app: a diagram editor for flowcharts with boxes and connecting arrows."}
+{"id": "042-cross", "app": 42, "phrasing": "cross", "prompt": "Build a desktop app: a diagram editor for flowcharts with boxes and connecting arrows. It must run on Windows, macOS and Linux."}
+{"id": "042-fast", "app": 42, "phrasing": "fast", "prompt": "Build a desktop app: a diagram editor for flowcharts with boxes and connecting arrows. It must start fast and use little memory."}
+{"id": "042-cross_fast", "app": 42, "phrasing": "cross_fast", "prompt": "Build a desktop app: a diagram editor for flowcharts with boxes and connecting arrows. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "042-novice", "app": 42, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a diagram editor for flowcharts with boxes and connecting arrows that I can run on my computer."}
+{"id": "043-bare", "app": 43, "phrasing": "bare", "prompt": "Build a desktop app: a colour palette generator that extracts colours from an image."}
+{"id": "043-cross", "app": 43, "phrasing": "cross", "prompt": "Build a desktop app: a colour palette generator that extracts colours from an image. It must run on Windows, macOS and Linux."}
+{"id": "043-fast", "app": 43, "phrasing": "fast", "prompt": "Build a desktop app: a colour palette generator that extracts colours from an image. It must start fast and use little memory."}
+{"id": "043-cross_fast", "app": 43, "phrasing": "cross_fast", "prompt": "Build a desktop app: a colour palette generator that extracts colours from an image. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "043-novice", "app": 43, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a colour palette generator that extracts colours from an image that I can run on my computer."}
+{"id": "044-bare", "app": 44, "phrasing": "bare", "prompt": "Build a desktop app: a font browser that previews all installed fonts with custom sample text."}
+{"id": "044-cross", "app": 44, "phrasing": "cross", "prompt": "Build a desktop app: a font browser that previews all installed fonts with custom sample text. It must run on Windows, macOS and Linux."}
+{"id": "044-fast", "app": 44, "phrasing": "fast", "prompt": "Build a desktop app: a font browser that previews all installed fonts with custom sample text. It must start fast and use little memory."}
+{"id": "044-cross_fast", "app": 44, "phrasing": "cross_fast", "prompt": "Build a desktop app: a font browser that previews all installed fonts with custom sample text. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "044-novice", "app": 44, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a font browser that previews all installed fonts with custom sample text that I can run on my computer."}
+{"id": "045-bare", "app": 45, "phrasing": "bare", "prompt": "Build a desktop app: a whiteboard app with freehand drawing and sticky notes on an infinite canvas."}
+{"id": "045-cross", "app": 45, "phrasing": "cross", "prompt": "Build a desktop app: a whiteboard app with freehand drawing and sticky notes on an infinite canvas. It must run on Windows, macOS and Linux."}
+{"id": "045-fast", "app": 45, "phrasing": "fast", "prompt": "Build a desktop app: a whiteboard app with freehand drawing and sticky notes on an infinite canvas. It must start fast and use little memory."}
+{"id": "045-cross_fast", "app": 45, "phrasing": "cross_fast", "prompt": "Build a desktop app: a whiteboard app with freehand drawing and sticky notes on an infinite canvas. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "045-novice", "app": 45, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a whiteboard app with freehand drawing and sticky notes on an infinite canvas that I can run on my computer."}
+{"id": "046-bare", "app": 46, "phrasing": "bare", "prompt": "Build a desktop app: a mind mapping tool."}
+{"id": "046-cross", "app": 46, "phrasing": "cross", "prompt": "Build a desktop app: a mind mapping tool. It must run on Windows, macOS and Linux."}
+{"id": "046-fast", "app": 46, "phrasing": "fast", "prompt": "Build a desktop app: a mind mapping tool. It must start fast and use little memory."}
+{"id": "046-cross_fast", "app": 46, "phrasing": "cross_fast", "prompt": "Build a desktop app: a mind mapping tool. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "046-novice", "app": 46, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a mind mapping tool that I can run on my computer."}
+{"id": "047-bare", "app": 47, "phrasing": "bare", "prompt": "Build a desktop app: an icon generator that exports one image to all common icon sizes."}
+{"id": "047-cross", "app": 47, "phrasing": "cross", "prompt": "Build a desktop app: an icon generator that exports one image to all common icon sizes. It must run on Windows, macOS and Linux."}
+{"id": "047-fast", "app": 47, "phrasing": "fast", "prompt": "Build a desktop app: an icon generator that exports one image to all common icon sizes. It must start fast and use little memory."}
+{"id": "047-cross_fast", "app": 47, "phrasing": "cross_fast", "prompt": "Build a desktop app: an icon generator that exports one image to all common icon sizes. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "047-novice", "app": 47, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me an icon generator that exports one image to all common icon sizes that I can run on my computer."}
+{"id": "048-bare", "app": 48, "phrasing": "bare", "prompt": "Build a desktop app: a GIF maker that turns a set of images into an animation."}
+{"id": "048-cross", "app": 48, "phrasing": "cross", "prompt": "Build a desktop app: a GIF maker that turns a set of images into an animation. It must run on Windows, macOS and Linux."}
+{"id": "048-fast", "app": 48, "phrasing": "fast", "prompt": "Build a desktop app: a GIF maker that turns a set of images into an animation. It must start fast and use little memory."}
+{"id": "048-cross_fast", "app": 48, "phrasing": "cross_fast", "prompt": "Build a desktop app: a GIF maker that turns a set of images into an animation. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "048-novice", "app": 48, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a GIF maker that turns a set of images into an animation that I can run on my computer."}
+{"id": "049-bare", "app": 49, "phrasing": "bare", "prompt": "Build a desktop app: a vector shape editor that exports SVG."}
+{"id": "049-cross", "app": 49, "phrasing": "cross", "prompt": "Build a desktop app: a vector shape editor that exports SVG. It must run on Windows, macOS and Linux."}
+{"id": "049-fast", "app": 49, "phrasing": "fast", "prompt": "Build a desktop app: a vector shape editor that exports SVG. It must start fast and use little memory."}
+{"id": "049-cross_fast", "app": 49, "phrasing": "cross_fast", "prompt": "Build a desktop app: a vector shape editor that exports SVG. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "049-novice", "app": 49, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a vector shape editor that exports SVG that I can run on my computer."}
+{"id": "050-bare", "app": 50, "phrasing": "bare", "prompt": "Build a desktop app: a REST API client that sends HTTP requests and shows formatted responses."}
+{"id": "050-cross", "app": 50, "phrasing": "cross", "prompt": "Build a desktop app: a REST API client that sends HTTP requests and shows formatted responses. It must run on Windows, macOS and Linux."}
+{"id": "050-fast", "app": 50, "phrasing": "fast", "prompt": "Build a desktop app: a REST API client that sends HTTP requests and shows formatted responses. It must start fast and use little memory."}
+{"id": "050-cross_fast", "app": 50, "phrasing": "cross_fast", "prompt": "Build a desktop app: a REST API client that sends HTTP requests and shows formatted responses. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "050-novice", "app": 50, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a REST API client that sends HTTP requests and shows formatted responses that I can run on my computer."}
+{"id": "051-bare", "app": 51, "phrasing": "bare", "prompt": "Build a desktop app: a JSON viewer and formatter with a collapsible tree."}
+{"id": "051-cross", "app": 51, "phrasing": "cross", "prompt": "Build a desktop app: a JSON viewer and formatter with a collapsible tree. It must run on Windows, macOS and Linux."}
+{"id": "051-fast", "app": 51, "phrasing": "fast", "prompt": "Build a desktop app: a JSON viewer and formatter with a collapsible tree. It must start fast and use little memory."}
+{"id": "051-cross_fast", "app": 51, "phrasing": "cross_fast", "prompt": "Build a desktop app: a JSON viewer and formatter with a collapsible tree. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "051-novice", "app": 51, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a JSON viewer and formatter with a collapsible tree that I can run on my computer."}
+{"id": "052-bare", "app": 52, "phrasing": "bare", "prompt": "Build a desktop app: a regular expression tester with live match highlighting."}
+{"id": "052-cross", "app": 52, "phrasing": "cross", "prompt": "Build a desktop app: a regular expression tester with live match highlighting. It must run on Windows, macOS and Linux."}
+{"id": "052-fast", "app": 52, "phrasing": "fast", "prompt": "Build a desktop app: a regular expression tester with live match highlighting. It must start fast and use little memory."}
+{"id": "052-cross_fast", "app": 52, "phrasing": "cross_fast", "prompt": "Build a desktop app: a regular expression tester with live match highlighting. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "052-novice", "app": 52, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a regular expression tester with live match highlighting that I can run on my computer."}
+{"id": "053-bare", "app": 53, "phrasing": "bare", "prompt": "Build a desktop app: a database browser for SQLite files with a query editor."}
+{"id": "053-cross", "app": 53, "phrasing": "cross", "prompt": "Build a desktop app: a database browser for SQLite files with a query editor. It must run on Windows, macOS and Linux."}
+{"id": "053-fast", "app": 53, "phrasing": "fast", "prompt": "Build a desktop app: a database browser for SQLite files with a query editor. It must start fast and use little memory."}
+{"id": "053-cross_fast", "app": 53, "phrasing": "cross_fast", "prompt": "Build a desktop app: a database browser for SQLite files with a query editor. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "053-novice", "app": 53, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a database browser for SQLite files with a query editor that I can run on my computer."}
+{"id": "054-bare", "app": 54, "phrasing": "bare", "prompt": "Build a desktop app: a Git client that shows history as a graph and lets me stage and commit."}
+{"id": "054-cross", "app": 54, "phrasing": "cross", "prompt": "Build a desktop app: a Git client that shows history as a graph and lets me stage and commit. It must run on Windows, macOS and Linux."}
+{"id": "054-fast", "app": 54, "phrasing": "fast", "prompt": "Build a desktop app: a Git client that shows history as a graph and lets me stage and commit. It must start fast and use little memory."}
+{"id": "054-cross_fast", "app": 54, "phrasing": "cross_fast", "prompt": "Build a desktop app: a Git client that shows history as a graph and lets me stage and commit. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "054-novice", "app": 54, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a Git client that shows history as a graph and lets me stage and commit that I can run on my computer."}
+{"id": "055-bare", "app": 55, "phrasing": "bare", "prompt": "Build a desktop app: a diff tool that compares two text files side by side."}
+{"id": "055-cross", "app": 55, "phrasing": "cross", "prompt": "Build a desktop app: a diff tool that compares two text files side by side. It must run on Windows, macOS and Linux."}
+{"id": "055-fast", "app": 55, "phrasing": "fast", "prompt": "Build a desktop app: a diff tool that compares two text files side by side. It must start fast and use little memory."}
+{"id": "055-cross_fast", "app": 55, "phrasing": "cross_fast", "prompt": "Build a desktop app: a diff tool that compares two text files side by side. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "055-novice", "app": 55, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a diff tool that compares two text files side by side that I can run on my computer."}
+{"id": "056-bare", "app": 56, "phrasing": "bare", "prompt": "Build a desktop app: a hex editor for binary files."}
+{"id": "056-cross", "app": 56, "phrasing": "cross", "prompt": "Build a desktop app: a hex editor for binary files. It must run on Windows, macOS and Linux."}
+{"id": "056-fast", "app": 56, "phrasing": "fast", "prompt": "Build a desktop app: a hex editor for binary files. It must start fast and use little memory."}
+{"id": "056-cross_fast", "app": 56, "phrasing": "cross_fast", "prompt": "Build a desktop app: a hex editor for binary files. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "056-novice", "app": 56, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a hex editor for binary files that I can run on my computer."}
+{"id": "057-bare", "app": 57, "phrasing": "bare", "prompt": "Build a desktop app: a serial port monitor that shows incoming data and sends commands."}
+{"id": "057-cross", "app": 57, "phrasing": "cross", "prompt": "Build a desktop app: a serial port monitor that shows incoming data and sends commands. It must run on Windows, macOS and Linux."}
+{"id": "057-fast", "app": 57, "phrasing": "fast", "prompt": "Build a desktop app: a serial port monitor that shows incoming data and sends commands. It must start fast and use little memory."}
+{"id": "057-cross_fast", "app": 57, "phrasing": "cross_fast", "prompt": "Build a desktop app: a serial port monitor that shows incoming data and sends commands. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "057-novice", "app": 57, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a serial port monitor that shows incoming data and sends commands that I can run on my computer."}
+{"id": "058-bare", "app": 58, "phrasing": "bare", "prompt": "Build a desktop app: a local port scanner that lists open ports on machines in my network."}
+{"id": "058-cross", "app": 58, "phrasing": "cross", "prompt": "Build a desktop app: a local port scanner that lists open ports on machines in my network. It must run on Windows, macOS and Linux."}
+{"id": "058-fast", "app": 58, "phrasing": "fast", "prompt": "Build a desktop app: a local port scanner that lists open ports on machines in my network. It must start fast and use little memory."}
+{"id": "058-cross_fast", "app": 58, "phrasing": "cross_fast", "prompt": "Build a desktop app: a local port scanner that lists open ports on machines in my network. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "058-novice", "app": 58, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a local port scanner that lists open ports on machines in my network that I can run on my computer."}
+{"id": "059-bare", "app": 59, "phrasing": "bare", "prompt": "Build a desktop app: a Markdown editor with a live preview pane."}
+{"id": "059-cross", "app": 59, "phrasing": "cross", "prompt": "Build a desktop app: a Markdown editor with a live preview pane. It must run on Windows, macOS and Linux."}
+{"id": "059-fast", "app": 59, "phrasing": "fast", "prompt": "Build a desktop app: a Markdown editor with a live preview pane. It must start fast and use little memory."}
+{"id": "059-cross_fast", "app": 59, "phrasing": "cross_fast", "prompt": "Build a desktop app: a Markdown editor with a live preview pane. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "059-novice", "app": 59, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a Markdown editor with a live preview pane that I can run on my computer."}
+{"id": "060-bare", "app": 60, "phrasing": "bare", "prompt": "Build a desktop app: a spreadsheet app with formulas and CSV import and export."}
+{"id": "060-cross", "app": 60, "phrasing": "cross", "prompt": "Build a desktop app: a spreadsheet app with formulas and CSV import and export. It must run on Windows, macOS and Linux."}
+{"id": "060-fast", "app": 60, "phrasing": "fast", "prompt": "Build a desktop app: a spreadsheet app with formulas and CSV import and export. It must start fast and use little memory."}
+{"id": "060-cross_fast", "app": 60, "phrasing": "cross_fast", "prompt": "Build a desktop app: a spreadsheet app with formulas and CSV import and export. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "060-novice", "app": 60, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a spreadsheet app with formulas and CSV import and export that I can run on my computer."}
+{"id": "061-bare", "app": 61, "phrasing": "bare", "prompt": "Build a desktop app: a CSV viewer that opens very large files and lets me sort and filter."}
+{"id": "061-cross", "app": 61, "phrasing": "cross", "prompt": "Build a desktop app: a CSV viewer that opens very large files and lets me sort and filter. It must run on Windows, macOS and Linux."}
+{"id": "061-fast", "app": 61, "phrasing": "fast", "prompt": "Build a desktop app: a CSV viewer that opens very large files and lets me sort and filter. It must start fast and use little memory."}
+{"id": "061-cross_fast", "app": 61, "phrasing": "cross_fast", "prompt": "Build a desktop app: a CSV viewer that opens very large files and lets me sort and filter. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "061-novice", "app": 61, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a CSV viewer that opens very large files and lets me sort and filter that I can run on my computer."}
+{"id": "062-bare", "app": 62, "phrasing": "bare", "prompt": "Build a desktop app: a personal finance tracker with accounts, categories and monthly charts."}
+{"id": "062-cross", "app": 62, "phrasing": "cross", "prompt": "Build a desktop app: a personal finance tracker with accounts, categories and monthly charts. It must run on Windows, macOS and Linux."}
+{"id": "062-fast", "app": 62, "phrasing": "fast", "prompt": "Build a desktop app: a personal finance tracker with accounts, categories and monthly charts. It must start fast and use little memory."}
+{"id": "062-cross_fast", "app": 62, "phrasing": "cross_fast", "prompt": "Build a desktop app: a personal finance tracker with accounts, categories and monthly charts. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "062-novice", "app": 62, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a personal finance tracker with accounts, categories and monthly charts that I can run on my computer."}
+{"id": "063-bare", "app": 63, "phrasing": "bare", "prompt": "Build a desktop app: an invoice generator that produces PDF invoices for my clients."}
+{"id": "063-cross", "app": 63, "phrasing": "cross", "prompt": "Build a desktop app: an invoice generator that produces PDF invoices for my clients. It must run on Windows, macOS and Linux."}
+{"id": "063-fast", "app": 63, "phrasing": "fast", "prompt": "Build a desktop app: an invoice generator that produces PDF invoices for my clients. It must start fast and use little memory."}
+{"id": "063-cross_fast", "app": 63, "phrasing": "cross_fast", "prompt": "Build a desktop app: an invoice generator that produces PDF invoices for my clients. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "063-novice", "app": 63, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me an invoice generator that produces PDF invoices for my clients that I can run on my computer."}
+{"id": "064-bare", "app": 64, "phrasing": "bare", "prompt": "Build a desktop app: an inventory manager for a small shop with barcode lookup."}
+{"id": "064-cross", "app": 64, "phrasing": "cross", "prompt": "Build a desktop app: an inventory manager for a small shop with barcode lookup. It must run on Windows, macOS and Linux."}
+{"id": "064-fast", "app": 64, "phrasing": "fast", "prompt": "Build a desktop app: an inventory manager for a small shop with barcode lookup. It must start fast and use little memory."}
+{"id": "064-cross_fast", "app": 64, "phrasing": "cross_fast", "prompt": "Build a desktop app: an inventory manager for a small shop with barcode lookup. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "064-novice", "app": 64, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me an inventory manager for a small shop with barcode lookup that I can run on my computer."}
+{"id": "065-bare", "app": 65, "phrasing": "bare", "prompt": "Build a desktop app: a contact manager with groups and vCard import."}
+{"id": "065-cross", "app": 65, "phrasing": "cross", "prompt": "Build a desktop app: a contact manager with groups and vCard import. It must run on Windows, macOS and Linux."}
+{"id": "065-fast", "app": 65, "phrasing": "fast", "prompt": "Build a desktop app: a contact manager with groups and vCard import. It must start fast and use little memory."}
+{"id": "065-cross_fast", "app": 65, "phrasing": "cross_fast", "prompt": "Build a desktop app: a contact manager with groups and vCard import. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "065-novice", "app": 65, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a contact manager with groups and vCard import that I can run on my computer."}
+{"id": "066-bare", "app": 66, "phrasing": "bare", "prompt": "Build a desktop app: a PDF viewer with search, bookmarks and highlighting."}
+{"id": "066-cross", "app": 66, "phrasing": "cross", "prompt": "Build a desktop app: a PDF viewer with search, bookmarks and highlighting. It must run on Windows, macOS and Linux."}
+{"id": "066-fast", "app": 66, "phrasing": "fast", "prompt": "Build a desktop app: a PDF viewer with search, bookmarks and highlighting. It must start fast and use little memory."}
+{"id": "066-cross_fast", "app": 66, "phrasing": "cross_fast", "prompt": "Build a desktop app: a PDF viewer with search, bookmarks and highlighting. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "066-novice", "app": 66, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a PDF viewer with search, bookmarks and highlighting that I can run on my computer."}
+{"id": "067-bare", "app": 67, "phrasing": "bare", "prompt": "Build a desktop app: a tool that merges, splits and reorders PDF pages."}
+{"id": "067-cross", "app": 67, "phrasing": "cross", "prompt": "Build a desktop app: a tool that merges, splits and reorders PDF pages. It must run on Windows, macOS and Linux."}
+{"id": "067-fast", "app": 67, "phrasing": "fast", "prompt": "Build a desktop app: a tool that merges, splits and reorders PDF pages. It must start fast and use little memory."}
+{"id": "067-cross_fast", "app": 67, "phrasing": "cross_fast", "prompt": "Build a desktop app: a tool that merges, splits and reorders PDF pages. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "067-novice", "app": 67, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a tool that merges, splits and reorders PDF pages that I can run on my computer."}
+{"id": "068-bare", "app": 68, "phrasing": "bare", "prompt": "Build a desktop app: a data plotting app that loads a table and draws line, bar and scatter charts."}
+{"id": "068-cross", "app": 68, "phrasing": "cross", "prompt": "Build a desktop app: a data plotting app that loads a table and draws line, bar and scatter charts. It must run on Windows, macOS and Linux."}
+{"id": "068-fast", "app": 68, "phrasing": "fast", "prompt": "Build a desktop app: a data plotting app that loads a table and draws line, bar and scatter charts. It must start fast and use little memory."}
+{"id": "068-cross_fast", "app": 68, "phrasing": "cross_fast", "prompt": "Build a desktop app: a data plotting app that loads a table and draws line, bar and scatter charts. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "068-novice", "app": 68, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a data plotting app that loads a table and draws line, bar and scatter charts that I can run on my computer."}
+{"id": "069-bare", "app": 69, "phrasing": "bare", "prompt": "Build a desktop app: a recipe manager with ingredients, scaling of servings and a shopping list."}
+{"id": "069-cross", "app": 69, "phrasing": "cross", "prompt": "Build a desktop app: a recipe manager with ingredients, scaling of servings and a shopping list. It must run on Windows, macOS and Linux."}
+{"id": "069-fast", "app": 69, "phrasing": "fast", "prompt": "Build a desktop app: a recipe manager with ingredients, scaling of servings and a shopping list. It must start fast and use little memory."}
+{"id": "069-cross_fast", "app": 69, "phrasing": "cross_fast", "prompt": "Build a desktop app: a recipe manager with ingredients, scaling of servings and a shopping list. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "069-novice", "app": 69, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a recipe manager with ingredients, scaling of servings and a shopping list that I can run on my computer."}
+{"id": "070-bare", "app": 70, "phrasing": "bare", "prompt": "Build a desktop app: a chat client for a local network without any server."}
+{"id": "070-cross", "app": 70, "phrasing": "cross", "prompt": "Build a desktop app: a chat client for a local network without any server. It must run on Windows, macOS and Linux."}
+{"id": "070-fast", "app": 70, "phrasing": "fast", "prompt": "Build a desktop app: a chat client for a local network without any server. It must start fast and use little memory."}
+{"id": "070-cross_fast", "app": 70, "phrasing": "cross_fast", "prompt": "Build a desktop app: a chat client for a local network without any server. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "070-novice", "app": 70, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a chat client for a local network without any server that I can run on my computer."}
+{"id": "071-bare", "app": 71, "phrasing": "bare", "prompt": "Build a desktop app: an RSS feed reader with folders and an unread counter."}
+{"id": "071-cross", "app": 71, "phrasing": "cross", "prompt": "Build a desktop app: an RSS feed reader with folders and an unread counter. It must run on Windows, macOS and Linux."}
+{"id": "071-fast", "app": 71, "phrasing": "fast", "prompt": "Build a desktop app: an RSS feed reader with folders and an unread counter. It must start fast and use little memory."}
+{"id": "071-cross_fast", "app": 71, "phrasing": "cross_fast", "prompt": "Build a desktop app: an RSS feed reader with folders and an unread counter. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "071-novice", "app": 71, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me an RSS feed reader with folders and an unread counter that I can run on my computer."}
+{"id": "072-bare", "app": 72, "phrasing": "bare", "prompt": "Build a desktop app: an email client for IMAP accounts with a three-pane layout."}
+{"id": "072-cross", "app": 72, "phrasing": "cross", "prompt": "Build a desktop app: an email client for IMAP accounts with a three-pane layout. It must run on Windows, macOS and Linux."}
+{"id": "072-fast", "app": 72, "phrasing": "fast", "prompt": "Build a desktop app: an email client for IMAP accounts with a three-pane layout. It must start fast and use little memory."}
+{"id": "072-cross_fast", "app": 72, "phrasing": "cross_fast", "prompt": "Build a desktop app: an email client for IMAP accounts with a three-pane layout. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "072-novice", "app": 72, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me an email client for IMAP accounts with a three-pane layout that I can run on my computer."}
+{"id": "073-bare", "app": 73, "phrasing": "bare", "prompt": "Build a desktop app: a download manager with pause, resume and a speed limit."}
+{"id": "073-cross", "app": 73, "phrasing": "cross", "prompt": "Build a desktop app: a download manager with pause, resume and a speed limit. It must run on Windows, macOS and Linux."}
+{"id": "073-fast", "app": 73, "phrasing": "fast", "prompt": "Build a desktop app: a download manager with pause, resume and a speed limit. It must start fast and use little memory."}
+{"id": "073-cross_fast", "app": 73, "phrasing": "cross_fast", "prompt": "Build a desktop app: a download manager with pause, resume and a speed limit. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "073-novice", "app": 73, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a download manager with pause, resume and a speed limit that I can run on my computer."}
+{"id": "074-bare", "app": 74, "phrasing": "bare", "prompt": "Build a desktop app: an IRC client with multiple servers and channels."}
+{"id": "074-cross", "app": 74, "phrasing": "cross", "prompt": "Build a desktop app: an IRC client with multiple servers and channels. It must run on Windows, macOS and Linux."}
+{"id": "074-fast", "app": 74, "phrasing": "fast", "prompt": "Build a desktop app: an IRC client with multiple servers and channels. It must start fast and use little memory."}
+{"id": "074-cross_fast", "app": 74, "phrasing": "cross_fast", "prompt": "Build a desktop app: an IRC client with multiple servers and channels. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "074-novice", "app": 74, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me an IRC client with multiple servers and channels that I can run on my computer."}
+{"id": "075-bare", "app": 75, "phrasing": "bare", "prompt": "Build a desktop app: a network speed monitor that lives in the system tray."}
+{"id": "075-cross", "app": 75, "phrasing": "cross", "prompt": "Build a desktop app: a network speed monitor that lives in the system tray. It must run on Windows, macOS and Linux."}
+{"id": "075-fast", "app": 75, "phrasing": "fast", "prompt": "Build a desktop app: a network speed monitor that lives in the system tray. It must start fast and use little memory."}
+{"id": "075-cross_fast", "app": 75, "phrasing": "cross_fast", "prompt": "Build a desktop app: a network speed monitor that lives in the system tray. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "075-novice", "app": 75, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a network speed monitor that lives in the system tray that I can run on my computer."}
+{"id": "076-bare", "app": 76, "phrasing": "bare", "prompt": "Build a desktop app: a remote file browser for SFTP servers."}
+{"id": "076-cross", "app": 76, "phrasing": "cross", "prompt": "Build a desktop app: a remote file browser for SFTP servers. It must run on Windows, macOS and Linux."}
+{"id": "076-fast", "app": 76, "phrasing": "fast", "prompt": "Build a desktop app: a remote file browser for SFTP servers. It must start fast and use little memory."}
+{"id": "076-cross_fast", "app": 76, "phrasing": "cross_fast", "prompt": "Build a desktop app: a remote file browser for SFTP servers. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "076-novice", "app": 76, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a remote file browser for SFTP servers that I can run on my computer."}
+{"id": "077-bare", "app": 77, "phrasing": "bare", "prompt": "Build a desktop app: a webhook tester that listens on a local port and shows incoming requests."}
+{"id": "077-cross", "app": 77, "phrasing": "cross", "prompt": "Build a desktop app: a webhook tester that listens on a local port and shows incoming requests. It must run on Windows, macOS and Linux."}
+{"id": "077-fast", "app": 77, "phrasing": "fast", "prompt": "Build a desktop app: a webhook tester that listens on a local port and shows incoming requests. It must start fast and use little memory."}
+{"id": "077-cross_fast", "app": 77, "phrasing": "cross_fast", "prompt": "Build a desktop app: a webhook tester that listens on a local port and shows incoming requests. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "077-novice", "app": 77, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a webhook tester that listens on a local port and shows incoming requests that I can run on my computer."}
+{"id": "078-bare", "app": 78, "phrasing": "bare", "prompt": "Build a desktop app: a Wi-Fi analyzer that lists nearby networks and their signal strength."}
+{"id": "078-cross", "app": 78, "phrasing": "cross", "prompt": "Build a desktop app: a Wi-Fi analyzer that lists nearby networks and their signal strength. It must run on Windows, macOS and Linux."}
+{"id": "078-fast", "app": 78, "phrasing": "fast", "prompt": "Build a desktop app: a Wi-Fi analyzer that lists nearby networks and their signal strength. It must start fast and use little memory."}
+{"id": "078-cross_fast", "app": 78, "phrasing": "cross_fast", "prompt": "Build a desktop app: a Wi-Fi analyzer that lists nearby networks and their signal strength. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "078-novice", "app": 78, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a Wi-Fi analyzer that lists nearby networks and their signal strength that I can run on my computer."}
+{"id": "079-bare", "app": 79, "phrasing": "bare", "prompt": "Build a desktop app: a torrent client with a list of transfers and per-file priorities."}
+{"id": "079-cross", "app": 79, "phrasing": "cross", "prompt": "Build a desktop app: a torrent client with a list of transfers and per-file priorities. It must run on Windows, macOS and Linux."}
+{"id": "079-fast", "app": 79, "phrasing": "fast", "prompt": "Build a desktop app: a torrent client with a list of transfers and per-file priorities. It must start fast and use little memory."}
+{"id": "079-cross_fast", "app": 79, "phrasing": "cross_fast", "prompt": "Build a desktop app: a torrent client with a list of transfers and per-file priorities. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "079-novice", "app": 79, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a torrent client with a list of transfers and per-file priorities that I can run on my computer."}
+{"id": "080-bare", "app": 80, "phrasing": "bare", "prompt": "Build a desktop app: a scientific calculator with history."}
+{"id": "080-cross", "app": 80, "phrasing": "cross", "prompt": "Build a desktop app: a scientific calculator with history. It must run on Windows, macOS and Linux."}
+{"id": "080-fast", "app": 80, "phrasing": "fast", "prompt": "Build a desktop app: a scientific calculator with history. It must start fast and use little memory."}
+{"id": "080-cross_fast", "app": 80, "phrasing": "cross_fast", "prompt": "Build a desktop app: a scientific calculator with history. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "080-novice", "app": 80, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a scientific calculator with history that I can run on my computer."}
+{"id": "081-bare", "app": 81, "phrasing": "bare", "prompt": "Build a desktop app: a unit and currency converter."}
+{"id": "081-cross", "app": 81, "phrasing": "cross", "prompt": "Build a desktop app: a unit and currency converter. It must run on Windows, macOS and Linux."}
+{"id": "081-fast", "app": 81, "phrasing": "fast", "prompt": "Build a desktop app: a unit and currency converter. It must start fast and use little memory."}
+{"id": "081-cross_fast", "app": 81, "phrasing": "cross_fast", "prompt": "Build a desktop app: a unit and currency converter. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "081-novice", "app": 81, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a unit and currency converter that I can run on my computer."}
+{"id": "082-bare", "app": 82, "phrasing": "bare", "prompt": "Build a desktop app: a password manager that stores entries in an encrypted local file."}
+{"id": "082-cross", "app": 82, "phrasing": "cross", "prompt": "Build a desktop app: a password manager that stores entries in an encrypted local file. It must run on Windows, macOS and Linux."}
+{"id": "082-fast", "app": 82, "phrasing": "fast", "prompt": "Build a desktop app: a password manager that stores entries in an encrypted local file. It must start fast and use little memory."}
+{"id": "082-cross_fast", "app": 82, "phrasing": "cross_fast", "prompt": "Build a desktop app: a password manager that stores entries in an encrypted local file. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "082-novice", "app": 82, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a password manager that stores entries in an encrypted local file that I can run on my computer."}
+{"id": "083-bare", "app": 83, "phrasing": "bare", "prompt": "Build a desktop app: a password generator with configurable rules."}
+{"id": "083-cross", "app": 83, "phrasing": "cross", "prompt": "Build a desktop app: a password generator with configurable rules. It must run on Windows, macOS and Linux."}
+{"id": "083-fast", "app": 83, "phrasing": "fast", "prompt": "Build a desktop app: a password generator with configurable rules. It must start fast and use little memory."}
+{"id": "083-cross_fast", "app": 83, "phrasing": "cross_fast", "prompt": "Build a desktop app: a password generator with configurable rules. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "083-novice", "app": 83, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a password generator with configurable rules that I can run on my computer."}
+{"id": "084-bare", "app": 84, "phrasing": "bare", "prompt": "Build a desktop app: a QR code generator and reader."}
+{"id": "084-cross", "app": 84, "phrasing": "cross", "prompt": "Build a desktop app: a QR code generator and reader. It must run on Windows, macOS and Linux."}
+{"id": "084-fast", "app": 84, "phrasing": "fast", "prompt": "Build a desktop app: a QR code generator and reader. It must start fast and use little memory."}
+{"id": "084-cross_fast", "app": 84, "phrasing": "cross_fast", "prompt": "Build a desktop app: a QR code generator and reader. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "084-novice", "app": 84, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a QR code generator and reader that I can run on my computer."}
+{"id": "085-bare", "app": 85, "phrasing": "bare", "prompt": "Build a desktop app: a weather app that shows a five-day forecast for saved cities."}
+{"id": "085-cross", "app": 85, "phrasing": "cross", "prompt": "Build a desktop app: a weather app that shows a five-day forecast for saved cities. It must run on Windows, macOS and Linux."}
+{"id": "085-fast", "app": 85, "phrasing": "fast", "prompt": "Build a desktop app: a weather app that shows a five-day forecast for saved cities. It must start fast and use little memory."}
+{"id": "085-cross_fast", "app": 85, "phrasing": "cross_fast", "prompt": "Build a desktop app: a weather app that shows a five-day forecast for saved cities. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "085-novice", "app": 85, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a weather app that shows a five-day forecast for saved cities that I can run on my computer."}
+{"id": "086-bare", "app": 86, "phrasing": "bare", "prompt": "Build a desktop app: a world clock showing several time zones with a meeting planner."}
+{"id": "086-cross", "app": 86, "phrasing": "cross", "prompt": "Build a desktop app: a world clock showing several time zones with a meeting planner. It must run on Windows, macOS and Linux."}
+{"id": "086-fast", "app": 86, "phrasing": "fast", "prompt": "Build a desktop app: a world clock showing several time zones with a meeting planner. It must start fast and use little memory."}
+{"id": "086-cross_fast", "app": 86, "phrasing": "cross_fast", "prompt": "Build a desktop app: a world clock showing several time zones with a meeting planner. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "086-novice", "app": 86, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a world clock showing several time zones with a meeting planner that I can run on my computer."}
+{"id": "087-bare", "app": 87, "phrasing": "bare", "prompt": "Build a desktop app: a text-to-speech reader for documents."}
+{"id": "087-cross", "app": 87, "phrasing": "cross", "prompt": "Build a desktop app: a text-to-speech reader for documents. It must run on Windows, macOS and Linux."}
+{"id": "087-fast", "app": 87, "phrasing": "fast", "prompt": "Build a desktop app: a text-to-speech reader for documents. It must start fast and use little memory."}
+{"id": "087-cross_fast", "app": 87, "phrasing": "cross_fast", "prompt": "Build a desktop app: a text-to-speech reader for documents. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "087-novice", "app": 87, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a text-to-speech reader for documents that I can run on my computer."}
+{"id": "088-bare", "app": 88, "phrasing": "bare", "prompt": "Build a desktop app: an OCR tool that extracts text from a selected area of the screen."}
+{"id": "088-cross", "app": 88, "phrasing": "cross", "prompt": "Build a desktop app: an OCR tool that extracts text from a selected area of the screen. It must run on Windows, macOS and Linux."}
+{"id": "088-fast", "app": 88, "phrasing": "fast", "prompt": "Build a desktop app: an OCR tool that extracts text from a selected area of the screen. It must start fast and use little memory."}
+{"id": "088-cross_fast", "app": 88, "phrasing": "cross_fast", "prompt": "Build a desktop app: an OCR tool that extracts text from a selected area of the screen. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "088-novice", "app": 88, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me an OCR tool that extracts text from a selected area of the screen that I can run on my computer."}
+{"id": "089-bare", "app": 89, "phrasing": "bare", "prompt": "Build a desktop app: a dictionary and thesaurus that works offline."}
+{"id": "089-cross", "app": 89, "phrasing": "cross", "prompt": "Build a desktop app: a dictionary and thesaurus that works offline. It must run on Windows, macOS and Linux."}
+{"id": "089-fast", "app": 89, "phrasing": "fast", "prompt": "Build a desktop app: a dictionary and thesaurus that works offline. It must start fast and use little memory."}
+{"id": "089-cross_fast", "app": 89, "phrasing": "cross_fast", "prompt": "Build a desktop app: a dictionary and thesaurus that works offline. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "089-novice", "app": 89, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a dictionary and thesaurus that works offline that I can run on my computer."}
+{"id": "090-bare", "app": 90, "phrasing": "bare", "prompt": "Build a desktop app: a chess game against the computer with move history."}
+{"id": "090-cross", "app": 90, "phrasing": "cross", "prompt": "Build a desktop app: a chess game against the computer with move history. It must run on Windows, macOS and Linux."}
+{"id": "090-fast", "app": 90, "phrasing": "fast", "prompt": "Build a desktop app: a chess game against the computer with move history. It must start fast and use little memory."}
+{"id": "090-cross_fast", "app": 90, "phrasing": "cross_fast", "prompt": "Build a desktop app: a chess game against the computer with move history. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "090-novice", "app": 90, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a chess game against the computer with move history that I can run on my computer."}
+{"id": "091-bare", "app": 91, "phrasing": "bare", "prompt": "Build a desktop app: a sudoku game with a puzzle generator and hints."}
+{"id": "091-cross", "app": 91, "phrasing": "cross", "prompt": "Build a desktop app: a sudoku game with a puzzle generator and hints. It must run on Windows, macOS and Linux."}
+{"id": "091-fast", "app": 91, "phrasing": "fast", "prompt": "Build a desktop app: a sudoku game with a puzzle generator and hints. It must start fast and use little memory."}
+{"id": "091-cross_fast", "app": 91, "phrasing": "cross_fast", "prompt": "Build a desktop app: a sudoku game with a puzzle generator and hints. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "091-novice", "app": 91, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a sudoku game with a puzzle generator and hints that I can run on my computer."}
+{"id": "092-bare", "app": 92, "phrasing": "bare", "prompt": "Build a desktop app: a typing tutor that measures speed and accuracy."}
+{"id": "092-cross", "app": 92, "phrasing": "cross", "prompt": "Build a desktop app: a typing tutor that measures speed and accuracy. It must run on Windows, macOS and Linux."}
+{"id": "092-fast", "app": 92, "phrasing": "fast", "prompt": "Build a desktop app: a typing tutor that measures speed and accuracy. It must start fast and use little memory."}
+{"id": "092-cross_fast", "app": 92, "phrasing": "cross_fast", "prompt": "Build a desktop app: a typing tutor that measures speed and accuracy. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "092-novice", "app": 92, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a typing tutor that measures speed and accuracy that I can run on my computer."}
+{"id": "093-bare", "app": 93, "phrasing": "bare", "prompt": "Build a desktop app: a language vocabulary trainer with quizzes."}
+{"id": "093-cross", "app": 93, "phrasing": "cross", "prompt": "Build a desktop app: a language vocabulary trainer with quizzes. It must run on Windows, macOS and Linux."}
+{"id": "093-fast", "app": 93, "phrasing": "fast", "prompt": "Build a desktop app: a language vocabulary trainer with quizzes. It must start fast and use little memory."}
+{"id": "093-cross_fast", "app": 93, "phrasing": "cross_fast", "prompt": "Build a desktop app: a language vocabulary trainer with quizzes. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "093-novice", "app": 93, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a language vocabulary trainer with quizzes that I can run on my computer."}
+{"id": "094-bare", "app": 94, "phrasing": "bare", "prompt": "Build a desktop app: a guitar tuner that listens through the microphone."}
+{"id": "094-cross", "app": 94, "phrasing": "cross", "prompt": "Build a desktop app: a guitar tuner that listens through the microphone. It must run on Windows, macOS and Linux."}
+{"id": "094-fast", "app": 94, "phrasing": "fast", "prompt": "Build a desktop app: a guitar tuner that listens through the microphone. It must start fast and use little memory."}
+{"id": "094-cross_fast", "app": 94, "phrasing": "cross_fast", "prompt": "Build a desktop app: a guitar tuner that listens through the microphone. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "094-novice", "app": 94, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a guitar tuner that listens through the microphone that I can run on my computer."}
+{"id": "095-bare", "app": 95, "phrasing": "bare", "prompt": "Build a desktop app: a metronome with tap tempo and time signatures."}
+{"id": "095-cross", "app": 95, "phrasing": "cross", "prompt": "Build a desktop app: a metronome with tap tempo and time signatures. It must run on Windows, macOS and Linux."}
+{"id": "095-fast", "app": 95, "phrasing": "fast", "prompt": "Build a desktop app: a metronome with tap tempo and time signatures. It must start fast and use little memory."}
+{"id": "095-cross_fast", "app": 95, "phrasing": "cross_fast", "prompt": "Build a desktop app: a metronome with tap tempo and time signatures. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "095-novice", "app": 95, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a metronome with tap tempo and time signatures that I can run on my computer."}
+{"id": "096-bare", "app": 96, "phrasing": "bare", "prompt": "Build a desktop app: a star map that shows the night sky for my location and time."}
+{"id": "096-cross", "app": 96, "phrasing": "cross", "prompt": "Build a desktop app: a star map that shows the night sky for my location and time. It must run on Windows, macOS and Linux."}
+{"id": "096-fast", "app": 96, "phrasing": "fast", "prompt": "Build a desktop app: a star map that shows the night sky for my location and time. It must start fast and use little memory."}
+{"id": "096-cross_fast", "app": 96, "phrasing": "cross_fast", "prompt": "Build a desktop app: a star map that shows the night sky for my location and time. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "096-novice", "app": 96, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a star map that shows the night sky for my location and time that I can run on my computer."}
+{"id": "097-bare", "app": 97, "phrasing": "bare", "prompt": "Build a desktop app: a family tree editor."}
+{"id": "097-cross", "app": 97, "phrasing": "cross", "prompt": "Build a desktop app: a family tree editor. It must run on Windows, macOS and Linux."}
+{"id": "097-fast", "app": 97, "phrasing": "fast", "prompt": "Build a desktop app: a family tree editor. It must start fast and use little memory."}
+{"id": "097-cross_fast", "app": 97, "phrasing": "cross_fast", "prompt": "Build a desktop app: a family tree editor. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "097-novice", "app": 97, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a family tree editor that I can run on my computer."}
+{"id": "098-bare", "app": 98, "phrasing": "bare", "prompt": "Build a desktop app: a book library catalogue for my home collection with cover images."}
+{"id": "098-cross", "app": 98, "phrasing": "cross", "prompt": "Build a desktop app: a book library catalogue for my home collection with cover images. It must run on Windows, macOS and Linux."}
+{"id": "098-fast", "app": 98, "phrasing": "fast", "prompt": "Build a desktop app: a book library catalogue for my home collection with cover images. It must start fast and use little memory."}
+{"id": "098-cross_fast", "app": 98, "phrasing": "cross_fast", "prompt": "Build a desktop app: a book library catalogue for my home collection with cover images. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "098-novice", "app": 98, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a book library catalogue for my home collection with cover images that I can run on my computer."}
+{"id": "099-bare", "app": 99, "phrasing": "bare", "prompt": "Build a desktop app: a workout log with exercises, sets and progress charts."}
+{"id": "099-cross", "app": 99, "phrasing": "cross", "prompt": "Build a desktop app: a workout log with exercises, sets and progress charts. It must run on Windows, macOS and Linux."}
+{"id": "099-fast", "app": 99, "phrasing": "fast", "prompt": "Build a desktop app: a workout log with exercises, sets and progress charts. It must start fast and use little memory."}
+{"id": "099-cross_fast", "app": 99, "phrasing": "cross_fast", "prompt": "Build a desktop app: a workout log with exercises, sets and progress charts. It must run on Windows, macOS and Linux, start fast and use little memory."}
+{"id": "099-novice", "app": 99, "phrasing": "novice", "prompt": "I'm not a programmer. Please make me a workout log with exercises, sets and progress charts that I can run on my computer."}

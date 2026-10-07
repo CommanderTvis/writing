@@ -1,5 +1,6 @@
 /*
 !/.gitignore
+!/README.md
 !/rr-truffle-rewrite/
 /rr-truffle-rewrite/*
 !/rr-truffle-rewrite/README.md

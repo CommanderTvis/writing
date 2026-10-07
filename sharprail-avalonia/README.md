@@ -37,9 +37,9 @@ Agents then built the application twice.
 
 Both were measured against JetBrains' Thinkrail, Zed and [JetBrains Air](https://blog.jetbrains.com/air/2026/03/air-launches-as-public-preview-a-new-wave-of-dev-tooling-built-on-26-years-of-experience/): ten cold launches each, time to first window, time to a laid-out workspace, memory.
 
-![Startup timeline: time to first window and to a laid-out workspace for Thinkrail, the React Native prototype, SharpRail embedded and remote, Zed and JetBrains Air](img/benchmark-startup-dark.png)
+![Startup timeline: time to first window and to a laid-out workspace for Thinkrail, the React Native prototype, SharpRail embedded and remote, Zed and JetBrains Air](img/benchmark-startup.svg)
 
-![Memory footprint five seconds after launch for the same six rows](img/benchmark-footprint-dark.png)
+![Memory footprint five seconds after launch for the same six rows](img/benchmark-footprint.svg)
 
 These are runs on one Apple M4 Pro. The [report](https://github.com/CommanderTvis/thinkrail/blob/bfa68eb6a3954b19f5e40598a3656520dc4ec149/apps/native/BENCHMARK.md) defines each column. The SharpRail rows do not start the Pi agent host, so their workload is lighter than the first two.
 
@@ -100,7 +100,7 @@ flowchart LR
 
 Ghostty renders into a Metal texture. A [patch](https://github.com/CommanderTvis/sharprail/blob/d0a31147710ddc4e8057c6ef7a719ad724088b52/src/Ghostty.Avalonia/README.md#L101-L113) to the pinned Ghostty source exposes the finished texture and blocks its reuse while it is being read. An Avalonia draw operation wraps the texture as a Skia image and samples it, with no CPU copy and no second texture. Avalonia owns clipping, overlays and input. Ghostty keeps its text shaping and image support.
 
-The extra step costs some latency and CPU on redraw, and it is [measured](https://github.com/CommanderTvis/sharprail/blob/d0a31147710ddc4e8057c6ef7a719ad724088b52/benchmarks/ghostty/README.md). This cost is small. Avalonia itself costs much more: in the charts above, the React Native prototype uses native views, shows its first window sooner and takes less than half the memory.
+The extra step costs some latency and CPU on redraw, and it is [measured](https://github.com/CommanderTvis/sharprail/blob/d0a31147710ddc4e8057c6ef7a719ad724088b52/benchmarks/ghostty/README.md). This cost is small. Avalonia itself costs much more: in the charts above, the React Native prototype uses native views, shows its first window sooner and takes about half the memory.
 
 Without Metal, a second control draws the terminal with Skia from libghostty-vt's cell grid, with no image protocols and no ligatures across cells. Its design comes from [RoyalTerminal](https://github.com/royalapplications/RoyalTerminal).
 

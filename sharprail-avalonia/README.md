@@ -49,7 +49,9 @@ Both were measured against JetBrains' ThinkRail, Zed and [JetBrains Air](https:/
 
 ![Memory footprint five seconds after launch for the same six rows](img/benchmark-footprint.svg)
 
-These are runs on one Apple M4 Pro. The [report](https://github.com/CommanderTvis/thinkrail/blob/bfa68eb6a3954b19f5e40598a3656520dc4ec149/apps/native/BENCHMARK.md) defines each column. SharpRail appears twice: with the C# host inside the UI process, and with the host as a separate process. Neither row starts the Pi agent host, so their workload is lighter than the first two. In ThinkRail the window is created only after the Bun host has booted, so the host accounts for most of the time to the first window.
+These are runs on one Apple M4 Pro. The [report](https://github.com/CommanderTvis/thinkrail/blob/bfa68eb6a3954b19f5e40598a3656520dc4ec149/apps/native/BENCHMARK.md) defines each column. The SharpRail rows differ from ThinkRail in more than the UI toolkit. The host is rewritten in C#, and the transport is different: ThinkRail's UI talks to its host in JSON over a WebSocket, while SharpRail's UI calls the host directly when both are in one process, and uses gRPC when the host is a separate process. Both variants are in the charts. Neither starts the Pi agent host, so their workload is lighter than the first two. All of this affects startup time and memory, so the charts compare whole applications and say little about Avalonia against a WebView alone.
+
+In ThinkRail the window is created only after the Bun host has booted, so the host accounts for most of the time to the first window.
 
 ### Why not React Native if it's so good?
 

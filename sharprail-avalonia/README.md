@@ -1,4 +1,4 @@
-# I ported Thinkrail's workbench from a WebView to Avalonia with Ghostty
+# I ported ThinkRail, an agent workbench, from a WebView to Avalonia with Ghostty
 
 ![SharpRail: a Claude Code terminal on the left, a Markdown preview in the middle, the file tree and the Claude Code context panel on the right](img/sharprail.png)
 
@@ -6,19 +6,19 @@ Shopify [wrote in September](https://shopify.engineering/back-to-native) that it
 
 This article is about [SharpRail](https://github.com/CommanderTvis/sharprail), a desktop app I rewrote on [Avalonia](https://avaloniaui.net/), a .NET toolkit that draws its own UI. Its terminal is Ghostty and its editor is Scintilla. I now work in it every day.
 
-## The fork: extending Thinkrail
+## The fork: extending ThinkRail
 
-[Thinkrail](https://github.com/JetBrains/thinkrail) is JetBrains' open-source desktop client for the [pi](https://www.npmjs.com/package/@earendil-works/pi-coding-agent) coding agent. It is a React application in the system WebView, with a Bun host process behind it.
+[ThinkRail](https://github.com/JetBrains/thinkrail) is JetBrains' open-source desktop client for the [pi](https://www.npmjs.com/package/@earendil-works/pi-coding-agent) coding agent. It is a React application in the system WebView, with a Bun host process behind it.
 
 I [forked](https://github.com/CommanderTvis/thinkrail) it because I work with Claude Code and Codex. The fork runs them in its terminals and adds what they need around them: a configuration pane, hooks, a bridge to the editor. To keep such integrations out of the core I added a plugin API. Plugins are loaded into the running app and add their own panels, and the Claude Code and Codex support are now plugins themselves.
 
-All of this is added on top of Thinkrail's code. The React UI, the WebView and the Bun host are the original ones.
+All of this is added on top of ThinkRail's code. The React UI, the WebView and the Bun host are the original ones.
 
 ## The rewrite: SharpRail
 
-SharpRail is a second project with a new codebase. It shares no code with Thinkrail or the fork. From Thinkrail it takes the look of the UI, and from the fork the feature list.
+SharpRail is a second project with a new codebase. It shares no code with ThinkRail or the fork. From ThinkRail it takes the look of the UI, and from the fork the feature list.
 
-I like the UI of Thinkrail and got annoyed with the WebView under it. So the requirements for a replacement were:
+I like the UI of ThinkRail and got annoyed with the WebView under it. So the requirements for a replacement were:
 
 1. Static typing and an open world, with a very light runtime.
 2. Reusable UI components, so that I do not test every small thing on three computers. Native GPU-accelerated views must be embeddable in the window.
@@ -38,18 +38,18 @@ Agents then built the application twice.
 | | React Native prototype | Avalonia prototype |
 | --- | --- | --- |
 | UI | AppKit views through [react-native-macos](https://github.com/microsoft/react-native-macos) | [Skia](https://skia.org), drawn by Avalonia |
-| Host | Thinkrail's Bun host, unchanged | rewritten in C#, in-process |
+| Host | ThinkRail's Bun host, unchanged | rewritten in C#, in-process |
 | Scope | projects, workspaces, chats, files, diffs, specs, most settings; plain-text editor and terminal | tabs, docking, settings, Markdown preview, Git changes, worktrees |
 | Platforms it ran on | macOS | macOS |
 | Source | [`apps/native`](https://github.com/CommanderTvis/thinkrail/tree/bfa68eb6a3954b19f5e40598a3656520dc4ec149/apps/native) | [sharprail](https://github.com/CommanderTvis/sharprail) |
 
-Both were measured against JetBrains' Thinkrail, Zed and [JetBrains Air](https://blog.jetbrains.com/air/2026/03/air-launches-as-public-preview-a-new-wave-of-dev-tooling-built-on-26-years-of-experience/): ten cold launches each, time to first window, time to a laid-out workspace, memory.
+Both were measured against JetBrains' ThinkRail, Zed and [JetBrains Air](https://blog.jetbrains.com/air/2026/03/air-launches-as-public-preview-a-new-wave-of-dev-tooling-built-on-26-years-of-experience/): ten cold launches each, time to first window, time to a laid-out workspace, memory.
 
-![Startup timeline: time to first window and to a laid-out workspace for Thinkrail, the React Native prototype, SharpRail embedded and remote, Zed and JetBrains Air](img/benchmark-startup.svg)
+![Startup timeline: time to first window and to a laid-out workspace for ThinkRail, the React Native prototype, SharpRail embedded and remote, Zed and JetBrains Air](img/benchmark-startup.svg)
 
 ![Memory footprint five seconds after launch for the same six rows](img/benchmark-footprint.svg)
 
-These are runs on one Apple M4 Pro. The [report](https://github.com/CommanderTvis/thinkrail/blob/bfa68eb6a3954b19f5e40598a3656520dc4ec149/apps/native/BENCHMARK.md) defines each column. SharpRail appears twice: with the C# host inside the UI process, and with the host as a separate process. Neither row starts the Pi agent host, so their workload is lighter than the first two. In Thinkrail the window is created only after the Bun host has booted, so the host accounts for most of the time to the first window.
+These are runs on one Apple M4 Pro. The [report](https://github.com/CommanderTvis/thinkrail/blob/bfa68eb6a3954b19f5e40598a3656520dc4ec149/apps/native/BENCHMARK.md) defines each column. SharpRail appears twice: with the C# host inside the UI process, and with the host as a separate process. Neither row starts the Pi agent host, so their workload is lighter than the first two. In ThinkRail the window is created only after the Bun host has booted, so the host accounts for most of the time to the first window.
 
 ### Why not React Native if it's so good?
 
@@ -110,13 +110,13 @@ The extra step costs some latency and CPU on redraw, and it is [measured](https:
 
 Without Metal, a second control draws the terminal with Skia from the cell grid of libghostty-vt, the terminal-state part of Ghostty without a renderer. It has no image protocols and no ligatures across cells. Its design comes from [RoyalTerminal](https://github.com/royalapplications/RoyalTerminal).
 
-Thinkrail's terminal is [xterm.js](https://xtermjs.org/). xterm.js can draw on the GPU through an optional WebGL module. Thinkrail's authors left it off and draw the terminal with HTML elements. They [wrote down why](https://github.com/JetBrains/thinkrail/blob/3822748ba86a365d776c4db73af341f822d064dc/architecture.md#L203-L207): the module does not release its GPU resources when a terminal is closed, and Thinkrail opens and closes terminals often.
+ThinkRail's terminal is [xterm.js](https://xtermjs.org/). xterm.js can draw on the GPU through an optional WebGL module. ThinkRail's authors left it off and draw the terminal with HTML elements. They [wrote down why](https://github.com/JetBrains/thinkrail/blob/3822748ba86a365d776c4db73af341f822d064dc/architecture.md#L203-L207): the module does not release its GPU resources when a terminal is closed, and ThinkRail opens and closes terminals often.
 
-Also, in Thinkrail every keystroke in a terminal is [a request](https://github.com/JetBrains/thinkrail/blob/3822748ba86a365d776c4db73af341f822d064dc/apps/web/src/panels/TerminalInstance.tsx#L219-L221) from the page to the Bun host over [a WebSocket](https://github.com/JetBrains/thinkrail/blob/3822748ba86a365d776c4db73af341f822d064dc/apps/web/src/transport/transport.ts#L84), and output returns the same way. I have not measured what that costs. In SharpRail a local terminal [talks to its shell in process](https://github.com/CommanderTvis/sharprail/commit/e561421f1c3312c4c9af895762c62c774cff30a7), with no socket in between.
+Also, in ThinkRail every keystroke in a terminal is [a request](https://github.com/JetBrains/thinkrail/blob/3822748ba86a365d776c4db73af341f822d064dc/apps/web/src/panels/TerminalInstance.tsx#L219-L221) from the page to the Bun host over [a WebSocket](https://github.com/JetBrains/thinkrail/blob/3822748ba86a365d776c4db73af341f822d064dc/apps/web/src/transport/transport.ts#L84), and output returns the same way. I have not measured what that costs. In SharpRail a local terminal [talks to its shell in process](https://github.com/CommanderTvis/sharprail/commit/e561421f1c3312c4c9af895762c62c774cff30a7), with no socket in between.
 
 ## Scintilla drawn with Skia
 
-The editor is [Scintilla](https://www.scintilla.org/), in place of Thinkrail's [Monaco](https://microsoft.github.io/monaco-editor/). Scintilla keeps the document, selections, undo and line wrapping. To run somewhere new, Scintilla needs two things from its host: keyboard and mouse events, and a set of drawing functions such as "draw this text here" and "how wide is this string". SharpRail provides both. The drawing functions are C++ stubs that call into C#, where Skia draws. The result is cached and redrawn only when the text changes.
+The editor is [Scintilla](https://www.scintilla.org/), in place of ThinkRail's [Monaco](https://microsoft.github.io/monaco-editor/). Scintilla keeps the document, selections, undo and line wrapping. To run somewhere new, Scintilla needs two things from its host: keyboard and mouse events, and a set of drawing functions such as "draw this text here" and "how wide is this string". SharpRail provides both. The drawing functions are C++ stubs that call into C#, where Skia draws. The result is cached and redrawn only when the text changes.
 
 [HarfBuzz](https://harfbuzz.github.io/) turns characters into glyphs, and [SheenBidi](https://github.com/Tehreer/SheenBidi) puts right-to-left text into visual order. Scintilla draws text in the order it is stored, so one [patch](https://github.com/CommanderTvis/sharprail/blob/d0a31147710ddc4e8057c6ef7a719ad724088b52/src/SharpRail.Scintilla/README.md#L44-L59) sends two of its drawing paths through this layout.
 
@@ -128,7 +128,7 @@ Not implemented: syntax lexers, completion, an accessibility text provider.
 - It uses more memory than the WebView app it replaces. Most of the difference arrived with the terminal: Ghostty's GPU renderer runs next to Avalonia's. I have not yet compared the same build with the terminal on and off.
 - I have not measured typing latency, scrolling or frame time. By feel, xterm.js without its WebGL module is worse than Ghostty, and Ghostty is one of the terminals others get compared to.
 - Nine plugins from the fork are ported, including Claude Code and Codex.
-- Plugins run with the full rights of the app. A security model for them is a separate task that I have not started. My experiments are far from being merged into JetBrains' Thinkrail, so nobody else will write plugins for this runtime for now.
+- Plugins run with the full rights of the app. A security model for them is a separate task that I have not started. My experiments are far from being merged into JetBrains' ThinkRail, so nobody else will write plugins for this runtime for now.
 
 ## Takeaways
 

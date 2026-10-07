@@ -104,7 +104,7 @@ flowchart LR
     C --> W[window]
 ```
 
-The lease is a [patch](https://github.com/CommanderTvis/sharprail/blob/d0a31147710ddc4e8057c6ef7a719ad724088b52/src/Ghostty.Avalonia/README.md#L101-L113) to the pinned Ghostty source. The texture is sampled in place, with no CPU copy and no second texture. Avalonia owns clipping, overlays and input. Ghostty keeps its text shaping and image support. A second patch fixes a leak in Ghostty's scrollback page recycling.
+Ghostty has no API for handing its frames to another renderer, and it reuses its textures from frame to frame. So I [patched](https://github.com/CommanderTvis/sharprail/blob/d0a31147710ddc4e8057c6ef7a719ad724088b52/src/Ghostty.Avalonia/README.md#L101-L113) the Ghostty version SharpRail builds against. The patch gives Avalonia the texture of the last finished frame, and Ghostty does not draw into that texture again until Avalonia has read it. That hold is the lease in the diagram. Avalonia reads the texture where it is, with no CPU copy and no second texture. A second patch fixes a leak in Ghostty's scrollback page recycling.
 
 The extra step costs some latency and CPU on redraw, and it is [measured](https://github.com/CommanderTvis/sharprail/blob/d0a31147710ddc4e8057c6ef7a719ad724088b52/benchmarks/ghostty/README.md). This cost is small. Avalonia itself costs much more: in the charts above, the React Native prototype uses native views, shows its first window sooner and takes about half the memory.
 

@@ -1,6 +1,6 @@
 # I ported ThinkRail, an agent workbench, from a WebView to Avalonia with Ghostty
 
-![SharpRail: a Claude Code terminal on the left, a Markdown preview in the middle, the file tree and the Claude Code context panel on the right](img/sharprail.png)
+![SharpRail: projects and workspaces on the left, a Claude Code session in the middle, the file tree and the language server panel on the right](img/sharprail.png)
 
 Shopify [wrote in September](https://shopify.engineering/back-to-native) that it is moving from React Native back to Swift and Kotlin, because with coding agents "building the same feature in Swift and Kotlin no longer carries the cost it used to". For a desktop app that road means SwiftUI, WinUI and GTK, and then checking every screen on every system. Writing the code several times got cheap. Testing it several times did not.
 
@@ -43,13 +43,15 @@ Agents then built the application twice.
 | Platforms it ran on | macOS | macOS |
 | Source | [`apps/native`](https://github.com/CommanderTvis/thinkrail/tree/bfa68eb6a3954b19f5e40598a3656520dc4ec149/apps/native) | [sharprail](https://github.com/CommanderTvis/sharprail) |
 
-Both were measured against JetBrains' ThinkRail, Zed and [JetBrains Air](https://blog.jetbrains.com/air/2026/03/air-launches-as-public-preview-a-new-wave-of-dev-tooling-built-on-26-years-of-experience/): ten cold launches each, time to first window, time to a laid-out workspace, memory.
+Both were measured against JetBrains' ThinkRail, Zed, [JetBrains Air](https://blog.jetbrains.com/air/2026/03/air-launches-as-public-preview-a-new-wave-of-dev-tooling-built-on-26-years-of-experience/) and IntelliJ IDEA Community: ten cold launches each, time to first window, memory.
 
-![Startup timeline: time to first window and to a laid-out workspace for ThinkRail, the React Native prototype, SharpRail embedded and remote, Zed and JetBrains Air](img/benchmark-startup.svg)
+![Time to first window for ThinkRail, the React Native prototype, SharpRail embedded, Zed, JetBrains Air and IntelliJ IDEA Community](img/benchmark-startup.svg)
 
 ![Memory footprint five seconds after launch for the same six rows](img/benchmark-footprint.svg)
 
-These are runs on one Apple M4 Pro. The [report](https://github.com/CommanderTvis/thinkrail/blob/bfa68eb6a3954b19f5e40598a3656520dc4ec149/apps/native/BENCHMARK.md) defines each column. The SharpRail rows differ from ThinkRail in more than the UI toolkit. The host is rewritten in C#, and the transport is different: ThinkRail's UI talks to its host in JSON over a WebSocket, while SharpRail's UI calls the host directly when both are in one process, and uses gRPC when the host is a separate process. Both variants are in the charts. Neither starts the Pi agent host, so their workload is lighter than the first two. All of this affects startup time and memory, so the charts compare whole applications and say little about Avalonia against a WebView alone.
+These are runs on one Apple M4 Pro. The [report](https://github.com/CommanderTvis/thinkrail/blob/bfa68eb6a3954b19f5e40598a3656520dc4ec149/apps/native/BENCHMARK.md) defines each column. The SharpRail rows differ from ThinkRail in more than the UI toolkit. The host is rewritten in C#. The charts show SharpRail with the host in the same process. It does not start the Pi agent host, so its workload is lighter than the first two. All of this affects startup time and memory, so the charts compare whole applications and say little about Avalonia against a WebView alone.
+
+Remote clients now use [protobuf messages over a WebSocket](https://github.com/CommanderTvis/sharprail/commit/32478e9ceaa08d0c000903d023235863bf39688b), shared by the desktop, Android and browser clients. The charts still describe the earlier build. Local calls still stay in process.
 
 In ThinkRail the window is created only after the Bun host has booted, so the host accounts for most of the time to the first window.
 
@@ -108,7 +110,7 @@ flowchart LR
 
 Ghostty has no API for handing its frames to another renderer, and it reuses its textures from frame to frame. So I [patched](https://github.com/CommanderTvis/sharprail/blob/d0a31147710ddc4e8057c6ef7a719ad724088b52/src/Ghostty.Avalonia/README.md#L101-L113) the Ghostty version SharpRail builds against. The patch gives Avalonia the texture of the last finished frame, and Ghostty does not draw into that texture again until Avalonia has read it. That hold is the lease in the diagram. Avalonia reads the texture where it is, with no CPU copy and no second texture. A second patch fixes a leak in Ghostty's scrollback page recycling.
 
-The extra step costs some latency and CPU on redraw, and it is [measured](https://github.com/CommanderTvis/sharprail/blob/d0a31147710ddc4e8057c6ef7a719ad724088b52/benchmarks/ghostty/README.md). This cost is small. Avalonia itself costs much more: in the charts above, the React Native prototype uses native views, shows its first window sooner and takes about half the memory.
+The extra step costs some latency and CPU on redraw, and it is [measured](https://github.com/CommanderTvis/sharprail/blob/d0a31147710ddc4e8057c6ef7a719ad724088b52/benchmarks/ghostty/README.md). This cost is small. Avalonia itself costs much more: in the charts above, the React Native prototype uses native views, shows its first window sooner and takes less than half the memory.
 
 Without Metal, a second control draws the terminal with Skia from the cell grid of libghostty-vt, the terminal-state part of Ghostty without a renderer. It has no image protocols and no ligatures across cells. Its design comes from [RoyalTerminal](https://github.com/royalapplications/RoyalTerminal).
 
@@ -122,12 +124,12 @@ The editor is [Scintilla](https://www.scintilla.org/), in place of ThinkRail's [
 
 [HarfBuzz](https://harfbuzz.github.io/) turns characters into glyphs, and [SheenBidi](https://github.com/Tehreer/SheenBidi) puts right-to-left text into visual order. Scintilla draws text in the order it is stored, so one [patch](https://github.com/CommanderTvis/sharprail/blob/d0a31147710ddc4e8057c6ef7a719ad724088b52/src/SharpRail.Scintilla/README.md#L44-L59) sends two of its drawing paths through this layout.
 
-Not implemented: syntax lexers, completion, an accessibility text provider.
+The editor now has TextMate syntax highlighting. Completion and an accessibility text provider are not implemented.
 
 ## Where it stands
 
-- Everything is tested on macOS only. Porting to Windows and Linux is not hard, but SharpRail is at the prototype stage, even though I am writing this article in it. Avalonia draws the same pixels on every system, so the part that needs testing on each platform is the natively rendered Ghostty terminal.
-- It uses more memory than the WebView app it replaces. Most of the difference arrived with the terminal: Ghostty's GPU renderer runs next to Avalonia's. I have not yet compared the same build with the terminal on and off.
+- SharpRail is still a prototype, and macOS is where I use it daily. There is now a [Windows desktop client and host](https://github.com/CommanderTvis/sharprail/blob/d6d074c2567edfe18da11adf646603a8d3523d91/WINDOWS.md), an [Android remote client](https://github.com/CommanderTvis/sharprail/tree/32478e9ceaa08d0c000903d023235863bf39688b/src/SharpRail.Android), and a [browser client compiled to WebAssembly](https://github.com/CommanderTvis/sharprail/blob/32478e9ceaa08d0c000903d023235863bf39688b/src/SharpRail.Browser/README.md). They reuse the Avalonia workbench. Android and browser clients keep files, Git operations and shell processes on the host. The nightly build also has a [Linux AppImage](https://github.com/CommanderTvis/sharprail/blob/87816bdb44b0c9c31d38601ba5557ddd95b629a1/LINUX.md) for x86-64 and arm64. Windows, Linux and Android draw terminals with Skia; the browser uses restty with WebGL. Windows has had minimal testing and debugging; it is not my daily tool. I have not tested Linux at all. Android validation is mostly on emulators. The browser client is at a very early stage. iOS is not supported.
+- In the chart it uses less memory than ThinkRail, 392 MiB against 467, but ThinkRail also runs the Pi agent host. Against the React Native prototype it uses more, and much of that arrived with the terminal: Ghostty's GPU renderer runs next to Avalonia's. I have not yet compared the same build with the terminal on and off.
 - I have not measured typing latency, scrolling or frame time. By feel, xterm.js without its WebGL module is worse than Ghostty, and Ghostty is one of the terminals others get compared to.
 - Nine plugins from the fork are ported, including Claude Code and Codex.
 - Plugins run with the full rights of the app. A security model for them is a separate task that I have not started. My experiments are far from being merged into JetBrains' ThinkRail, so nobody else will write plugins for this runtime for now.
